@@ -1,7 +1,6 @@
 development:
   encoding: unicode
   adapter: postgresql
-  host: <%= CHEAPEST_SEATS_DB_HOST %>
   database: <%= CHEAPEST_SEATS_DB_NAME %>
   username: <%= CHEAPEST_SEATS_DB_USERNAME %>
   password: <%= CHEAPEST_SEATS_DB_PASSWORD %>
@@ -11,7 +10,6 @@ development:
 test:
   encoding: unicode
   adapter: postgresql
-  host: <%= CHEAPEST_SEATS_DB_HOST %>
   database: <%= CHEAPEST_SEATS_DB_NAME %>
   username: <%= CHEAPEST_SEATS_DB_USERNAME %>
   password: <%= CHEAPEST_SEATS_DB_PASSWORD %>
@@ -21,7 +19,6 @@ test:
 staging:
   encoding: unicode
   adapter: postgresql
-  host: <%= CHEAPEST_SEATS_DB_HOST %>
   database: <%= CHEAPEST_SEATS_DB_NAME %>
   username: <%= CHEAPEST_SEATS_DB_USERNAME %>
   password: <%= CHEAPEST_SEATS_DB_PASSWORD %>
