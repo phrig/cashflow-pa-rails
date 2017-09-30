@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170930163757) do
+ActiveRecord::Schema.define(version: 20170930165146) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,25 @@ ActiveRecord::Schema.define(version: 20170930163757) do
     t.string "expense_description"
     t.string "expense_location_1"
     t.string "expense_location_2"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "receipts", force: :cascade do |t|
+    t.integer "filer_id"
+    t.integer "election_year"
+    t.integer "election_cycle"
+    t.string "name"
+    t.string "receipt_address_1"
+    t.string "receipt_address_2"
+    t.string "receipt_city"
+    t.string "receipt_state"
+    t.string "receipt_zipcode"
+    t.string "receipt_description"
+    t.date "receipt_date"
+    t.float "receipt_amount"
+    t.string "receipt_location_1"
+    t.string "receipt_location_2"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
