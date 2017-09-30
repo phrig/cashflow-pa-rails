@@ -25,3 +25,11 @@ Copy the environment variables and secrets into their appropriate place and oyt 
 
 Run the server
     `rails s`
+
+## Contribution workflow
+
+Use a feature branch. When you want to make a contribution, do a `git fetch` and `pull` to get the latest version of `master`. Then re-base your branch, resolve any conflicts that may occur, and then make a pull request.
+
+
+
+
