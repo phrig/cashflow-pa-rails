@@ -1,36 +1,18 @@
 development:
   encoding: unicode
   adapter: postgresql
-  database: <%= CHEAPEST_SEATS_DB_NAME %>
-  username: <%= CHEAPEST_SEATS_DB_USERNAME %>
-  password: <%= CHEAPEST_SEATS_DB_PASSWORD %>
-  pool: 5
-  min_messages: WARNING
+  database: cheapest_seats_development
 
 test:
   encoding: unicode
   adapter: postgresql
-  database: <%= CHEAPEST_SEATS_DB_NAME %>
-  username: <%= CHEAPEST_SEATS_DB_USERNAME %>
-  password: <%= CHEAPEST_SEATS_DB_PASSWORD %>
-  pool: 5
-  min_messages: WARNING
-
-staging:
-  encoding: unicode
-  adapter: postgresql
-  database: <%= CHEAPEST_SEATS_DB_NAME %>
-  username: <%= CHEAPEST_SEATS_DB_USERNAME %>
-  password: <%= CHEAPEST_SEATS_DB_PASSWORD %>
-  pool: 5
-  min_messages: WARNING
+  database: cheapest_seats_test
 
 production:
   encoding: unicode
   adapter: postgresql
-  host: <%= CHEAPEST_SEATS_DB_HOST %>
-  database: <%= CHEAPEST_SEATS_DB_NAME %>
-  username: <%= CHEAPEST_SEATS_DB_USERNAME %>
-  password: <%= CHEAPEST_SEATS_DB_PASSWORD %>
+  database: <%= ENV["CHEAPEST_SEATS_DB_NAME"] %>
+  username: <%= ENV["CHEAPEST_SEATS_DB_USERNAME"] %>
+  password: <%= ENV["CHEAPEST_SEATS_DB_PASSWORD"] %>
   pool: 5
   min_messages: WARNING
