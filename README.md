@@ -19,3 +19,6 @@ Copy the environment variables and secrets into their appropriate place and oyt 
 `cp .env.example .env`
 `cp /config/database.yml.example /config/database.yml`
 `cp /config/secrets.yml.example /config/secrets.yml`
+`rails db:create`
+`rails db:migrate`
+`rails db:seed`
