@@ -3,13 +3,13 @@
 ## Prerequisites
 
 - Git
-- Ruby 2.4.2
+- Ruby 2.3.4
 - rvm
 - postgres
 
 ## Run the app in development
 
-Once you have `rvm` and `ruby 2.4.2` installed,
+Once you have `rvm` and `ruby 2.3.4` installed,
 
 `git clone git@github.com:phrig/cheapest_seats.git`
 `bundle install`
