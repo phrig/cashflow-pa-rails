@@ -10,10 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170930165146) do
+ActiveRecord::Schema.define(version: 20170930165829) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "debts", force: :cascade do |t|
+    t.string "filer_id"
+    t.integer "election_year"
+    t.integer "election_cycle"
+    t.string "debt_reporter_name"
+    t.string "debt_reporting_address_1"
+    t.string "debt_reporting_address_2"
+    t.string "debt_reporting_city"
+    t.string "debt_reporting_state"
+    t.string "debt_reporting_zipcode"
+    t.date "debt_accrual_date"
+    t.float "debt_amount"
+    t.string "debt_description"
+    t.string "debt_reporting_location_1"
+    t.string "debt_reporting_location2"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "expenses", force: :cascade do |t|
     t.integer "filer_id"
