@@ -10,10 +10,39 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170930165829) do
+ActiveRecord::Schema.define(version: 20170930170335) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "contributions", force: :cascade do |t|
+    t.integer "filer_id"
+    t.integer "election_year"
+    t.integer "election_cycle"
+    t.string "section"
+    t.string "contributor"
+    t.string "contributor_address_1"
+    t.string "contributor_address_2"
+    t.string "contributor_city"
+    t.string "contributor_state"
+    t.string "contributor_zipcode"
+    t.string "occupation"
+    t.string "employer_name"
+    t.string "employer_address_1"
+    t.string "employer_address_2"
+    t.string "employer_state"
+    t.string "employer_city"
+    t.string "employer_zipcode"
+    t.date "contribution_date"
+    t.float "contribution_amount"
+    t.string "contribution_description"
+    t.string "contributor_location_1"
+    t.string "contributor_location_2"
+    t.string "employer_location_1"
+    t.string "employer_location_2"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "debts", force: :cascade do |t|
     t.string "filer_id"
