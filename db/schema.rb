@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170930185755) do
+ActiveRecord::Schema.define(version: 20170930222945) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -92,6 +92,10 @@ ActiveRecord::Schema.define(version: 20170930185755) do
     t.string "expense_location_2_city"
     t.string "expense_location_2_state"
     t.string "expense_location_2_zip"
+    t.float "receipt_location_1_lat"
+    t.float "receipt_location_1_long"
+    t.float "receipt_location_2_lat"
+    t.float "receipt_location_2_long"
   end
 
   create_table "filers", force: :cascade do |t|
@@ -134,10 +138,18 @@ ActiveRecord::Schema.define(version: 20170930185755) do
     t.string "receipt_description"
     t.date "receipt_date"
     t.float "receipt_amount"
-    t.string "receipt_location_1"
-    t.string "receipt_location_2"
+    t.json "receipt_location_1"
+    t.json "receipt_location_2"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "receipt_location_1_address"
+    t.string "receipt_location_1_city"
+    t.string "receipt_location_1_state"
+    t.string "receipt_location_1_zip"
+    t.string "receipt_location_2_address"
+    t.string "receipt_location_2_city"
+    t.string "receipt_location_2_state"
+    t.string "receipt_location_2_zip"
   end
 
 end
