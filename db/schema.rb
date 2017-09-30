@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170930175151) do
+ActiveRecord::Schema.define(version: 20170930182238) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -76,8 +76,8 @@ ActiveRecord::Schema.define(version: 20170930175151) do
     t.date "expense_date"
     t.float "expense_amount"
     t.string "expense_description"
-    t.string "expense_location_1"
-    t.string "expense_location_2"
+    t.json "expense_location_1"
+    t.json "expense_location_2"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "lat"
