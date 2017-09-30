@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170930185138) do
+ActiveRecord::Schema.define(version: 20170930185755) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -86,6 +86,12 @@ ActiveRecord::Schema.define(version: 20170930185138) do
     t.float "expense_location_2_long"
     t.string "expense_location_1_address"
     t.string "expense_location_2_address"
+    t.string "expense_location_1_city"
+    t.string "expense_location_1_state"
+    t.string "expense_location_1_zip"
+    t.string "expense_location_2_city"
+    t.string "expense_location_2_state"
+    t.string "expense_location_2_zip"
   end
 
   create_table "filers", force: :cascade do |t|
