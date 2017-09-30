@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170930170335) do
+ActiveRecord::Schema.define(version: 20170930172015) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -78,6 +78,33 @@ ActiveRecord::Schema.define(version: 20170930170335) do
     t.string "expense_description"
     t.string "expense_location_1"
     t.string "expense_location_2"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "filers", force: :cascade do |t|
+    t.integer "filer_id"
+    t.integer "election_year"
+    t.integer "election_cycle"
+    t.string "amended_report_indicator"
+    t.string "termination_indicator"
+    t.string "filer_type"
+    t.string "filer_name"
+    t.string "office"
+    t.string "district"
+    t.string "party"
+    t.string "filer_address_1"
+    t.string "filer_address_2"
+    t.string "filer_city"
+    t.string "filer_state"
+    t.string "filer_zipcode"
+    t.string "county"
+    t.string "phone_number"
+    t.float "beginning_balance"
+    t.float "monetary"
+    t.float "in_kind"
+    t.string "filer_location_1"
+    t.string "filer_location_2"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -1,0 +1,2 @@
+class Filer < ApplicationRecord
+end
