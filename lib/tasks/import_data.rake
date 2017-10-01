@@ -26,8 +26,8 @@ namespace :import do
       end
       expense.expense_description = expense_obj["expense_description"]
       if !expense_obj["expense_location_1"].nil?
-        expense.expense_location_1_lat = expense_obj["expense_location_1"]["coordinates"].last
-        expense.expense_location_1_long = expense_obj["expense_location_1"]["coordinates"].first
+        expense.expense_location_1_lat = expense_obj["expense_location_1"]["coordinates"].last.to_f
+        expense.expense_location_1_long = expense_obj["expense_location_1"]["coordinates"].first.to_f
       end
       expense.expense_location_1 = expense_obj["expense_location_1"]
       expense.expense_location_1_address = expense_obj["expense_location_1_address"]
@@ -35,8 +35,8 @@ namespace :import do
       expense.expense_location_1_state = expense_obj["expense_location_1_state"]
       expense.expense_location_1_zip = expense_obj["expense_location_1_zip"]
       if !expense_obj["expense_location_2"].nil?
-        expense.expense_location_2_lat = expense_obj["expense_location_2"]["coordinates"].last
-        expense.expense_location_2_long = expense_obj["expense_location_2"]["coordinates"].first
+        expense.expense_location_2_lat = expense_obj["expense_location_2"]["coordinates"].last.to_f
+        expense.expense_location_2_long = expense_obj["expense_location_2"]["coordinates"].first.to_f
       end
       expense.expense_location_2 = expense_obj["expense_location_2"]
       if !expense_obj["expense_location_2_address"].nil?
