@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170930222945) do
+ActiveRecord::Schema.define(version: 20171001124358) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,10 +57,22 @@ ActiveRecord::Schema.define(version: 20170930222945) do
     t.date "debt_accrual_date"
     t.float "debt_amount"
     t.string "debt_description"
-    t.string "debt_reporting_location_1"
-    t.string "debt_reporting_location2"
+    t.json "debt_reporting_location_1"
+    t.json "debt_reporting_location_2"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float "debt_reporting_location_1_lat"
+    t.float "debt_reporting_location_1_long"
+    t.float "debt_reporting_location_2_lat"
+    t.float "debt_reporting_location_2_long"
+    t.string "debt_reporting_location_1_address"
+    t.string "debt_reporting_location_2_address"
+    t.string "debt_reporting_location_1_city"
+    t.string "debt_reporting_location_2_city"
+    t.string "debt_reporting_location_1_state"
+    t.string "debt_reporting_location_2_state"
+    t.string "debt_reporting_location_1_zipcode"
+    t.string "debt_reporting_location_2_zipcode"
   end
 
   create_table "expenses", force: :cascade do |t|
