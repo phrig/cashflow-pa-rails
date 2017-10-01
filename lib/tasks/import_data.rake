@@ -139,78 +139,89 @@ namespace :import do
     end
   end
 
-  task contributions: :environment do
-    desc "Import all expenses data from OpenDataPA"
-    response = HTTParty.get(  'https://data.pa.gov/resource/3nz5-zuve.json',
-                              query: {'$limit' => 5000 },
+  task debts: :environment do
+    desc "Import all dept data from OpenDataPA"
+    response = HTTParty.get(  'https://data.pa.gov/resource/9dzz-fwce.json',
+                              query: {'$limit' => 50000 },
                               headers: {'X-App-Token' => 'n4EA22fkjanBVoRtLsvv6Fp0V' }
                             )
 
-    response.each do |contribution_obj|
+    response.each do |debt_obj|
       begin
-      contribution = Contribution.new
-      contribution_obj[""]
+      debt = Debt.new
 
       # More universal values
-      contribution.election_cycle = contribution_obj["election_cycle"].to_i
-      contribution.election_year = contribution_obj["election_year"].to_i
-      contribution.filer_id = contribution_obj["filer_identification_number"]
-      contribution.name = contribution_obj["name"]
-      contribution.contribution_amount = contribution_obj["contribution_amount"].to_f
-      if !contribution_obj["contribution_date"].nil? # odd that the contribution date wouldn't exist
-        contribution.contribution_date = Date.parse(contribution_obj["contribution_date"])
+      debt.election_cycle = debt_obj["cycle"].to_i
+      debt.election_year = debt_obj["election_year"].to_i
+      debt.filer_id = debt_obj["filer_identification_number"].to_i
+      if debt_obj["debt_reporter_s_name"].nil?
+        dept.debt_reporter_name = debt_obj["debt_reporter_s_name"]
       end
-      contribution.contribution_description = contribution_obj["contribution_description"]
+      debt.debt_amount = debt_obj["debt_amount"].to_f
+      if !debt_obj["debt_accrual_date"].nil?
+        debt.debt_accrual_date = Date.parse(debt_obj["debt_accrual_date"])
+      end
+      debt.debt_description = debt_obj["debt_description"]
+      if !debt_obj["debt_reporting_zip_code"].nil?
+        debt.debt_reporting_zipcode = debt_obj["debt_reporting_zip_code"]
+      end
 
       # Less universal values
-      # Since these are fairly lat JSON, checking every field is saver
+      # Since these are fairly lat JSON, checking every field is safer
       # than what appears in the expenses import task.
 
-      if !contribution_obj["contribution_address_1"].nil?
-        contribution.contribution_address_1 = contribution_obj["contribution_address_1"]
+      if !debt_obj["debt_reporting_address_1"].nil?
+        debt.debt_reporting_address_1 = debt_obj["debt_reporting_address_1"]
       end
-      if !contribution_obj["contribution_address_2"].nil?
-        contribution.contribution_address_2 = contribution_obj["contribution_address_2"]
+      if !debt_obj["debt_reporting_address_2"].nil?
+        debt.debt_reporting_address_2 = debt_obj["debt_reporting_address_2"]
       end
-      if !contribution_obj["contribution_city"].nil?
-        contribution.contribution_city = contribution_obj["contribution_city"]
+      if !debt_obj["debt_reporting_location_1"].nil?
+        debt.debt_reporting_location_1 = debt_obj["debt_reporting_location_1"]
+        debt.debt_reporting_location_1_lat = debt_obj["debt_reporting_location_1_lat"]["coordinates"].last.to_f
+        debt.debt_reporting_location_1_long = debt_obj["debt_reporting_location_1_long"]["coordinates"].first.to_f
       end
-      if !contribution_obj["contribution_city"].nil?
-        contribution.contribution_city = contribution_obj["contribution_city"]
+      if !debt_obj["debt_reporting_location_2"].nil?
+        debt.debt_reporting_location_2 = debt_obj["debt_reporting_location_2"]
+        debt.debt_reporting_location_2_lat = debt_obj["debt_reporting_location_2_lat"]["coordinates"].last.to_f
+        debt.debt_reporting_location_2_long = debt_obj["debt_reporting_location_2_long"]["coordinates"].first.to_f
       end
-      if !contribution_obj["contribution_location_1_address"].nil?
-        contribution.contribution_location_1_address = contribution_obj["contribution_location_1_address"]
+      if !debt_obj["debt_reporting_city"].nil?
+        debt.debt_reporting_city = debt_obj["debt_reporting_city"]
       end
-      if !contribution_obj["contribution_location_1_city"].nil?
-        contribution.contribution_location_1_city = contribution_obj["contribution_location_1_city"]
+      if !debt_obj["debt_reporting_location_1_address"].nil?
+        debt.debt_reporting_location_1_address = debt_obj["debt_reporting_location_1_address"]
       end
-      if !contribution_obj["contribution_location_1_state"].nil?
-        contribution.contribution_location_1_state = contribution_obj["contribution_location_1_state"]
+      if !debt_obj["debt_reporting_location_1_city"].nil?
+        debt.debt_reporting_location_1_city = debt_obj["debt_reporting_location_1_city"]
       end
-      if !contribution_obj["contribution_location_1_zip"].nil?
-        contribution.contribution_location_1_zip = contribution_obj["contribution_location_1_zip"]
+      if !debt_obj["debt_reporting_location_1_state"].nil?
+        debt.debt_reporting_location_1_state = debt_obj["debt_reporting_location_1_state"]
       end
-      if !contribution_obj["contribution_location_2_address"].nil?
-        contribution.contribution_location_2_address = contribution_obj["contribution_location_2_address"]
+      if !debt_obj["debt_reporting_location_1_zip"].nil?
+        debt.debt_reporting_location_1_zipcode = debt_obj["debt_reporting_location_1_zip"]
       end
-      if !contribution_obj["contribution_location_2_city"].nil?
-        contribution.contribution_location_2_city = contribution_obj["contribution_location_2_city"]
+      if !debt_obj["debt_reporting_location_2"].nil?
+        debt.debt_reporting_location_2 = debt_obj["debt_reporting_location_2"]
       end
-      if !contribution_obj["contribution_location_2_state"].nil?
-        contribution.contribution_location_2_state = contribution_obj["contribution_location_2_state"]
+      if !debt_obj["debt_reporting_location_2_city"].nil?
+        debt.debt_reporting_location_2_city = debt_obj["debt_reporting_location_2_city"]
       end
-      if !contribution_obj["contribution_location_2_zip"].nil?
-        contribution.contribution_location_2_zip = contribution_obj["contribution_location_2_zip"]
+      if !debt_obj["debt_reporting_location_2_state"].nil?
+        debt.debt_reporting_location_2_state = debt_obj["debt_reporting_location_2_state"]
+      end
+      if !debt_obj["debt_reporting_location_2_zip"].nil?
+        debt.debt_reporting_location_2_zipcode = debt_obj["debt_reporting_location_2_zip"]
       end
 
     rescue TypeError => error
       binding.pry
     end
 
-      if contribution.save
-        puts "#{contribution.name} successfully saved."
+      if debt.save
+        puts "#{debt.debt_reporter_name} successfully saved."
       else
-        puts "Something went wrong saving #{contribution_obj['name']}"
+        puts "Something went wrong saving #{debt_obj['name']}"
       end
     end
   end
