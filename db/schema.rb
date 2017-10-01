@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171001141129) do
+ActiveRecord::Schema.define(version: 20171001143035) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,12 +36,36 @@ ActiveRecord::Schema.define(version: 20171001141129) do
     t.date "contribution_date"
     t.float "contribution_amount"
     t.string "contribution_description"
-    t.string "contributor_location_1"
-    t.string "contributor_location_2"
-    t.string "employer_location_1"
-    t.string "employer_location_2"
+    t.json "contributor_location_1"
+    t.json "contributor_location_2"
+    t.json "employer_location_1"
+    t.json "employer_location_2"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float "contributor_location_1_lat"
+    t.float "contributor_location_1_long"
+    t.float "contributor_location_2_lat"
+    t.float "contributor_location_2_long"
+    t.string "contributor_location_1_address"
+    t.string "contributor_location_2_address"
+    t.string "contributor_location_1_city"
+    t.string "contributor_location_2_city"
+    t.string "contributor_location_1_state"
+    t.string "contributor_location_2_state"
+    t.string "contributor_location_1_zip"
+    t.string "contributor_location_2_zip"
+    t.float "employer_location_1_lat"
+    t.float "employer_location_1_long"
+    t.float "employer_location_2_lat"
+    t.float "employer_location_2_long"
+    t.string "employer_location_1_address"
+    t.string "employer_location_2_address"
+    t.string "employer_location_1_city"
+    t.string "employer_location_2_city"
+    t.string "employer_location_1_state"
+    t.string "employer_location_2_state"
+    t.string "employer_location_1_zip"
+    t.string "employer_location_2_zip"
   end
 
   create_table "debts", force: :cascade do |t|
