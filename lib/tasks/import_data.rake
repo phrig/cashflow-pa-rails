@@ -10,7 +10,7 @@ namespace :import do
     desc "Import all expenses data from OpenDataPA"
 
     response = HTTParty.get(  'https://data.pa.gov/resource/hiuk-jafv.json',
-                              query: {'$limit' => 35000 },
+                              query: {'$limit' => 50000 },
                               headers: {'X-App-Token' => 'n4EA22fkjanBVoRtLsvv6Fp0V' }
                             )
 
