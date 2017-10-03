@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171001143035) do
+ActiveRecord::Schema.define(version: 20171003223931) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -136,25 +136,37 @@ ActiveRecord::Schema.define(version: 20171001143035) do
     t.integer "election_cycle"
     t.string "amended_report_indicator"
     t.string "termination_indicator"
-    t.string "filer_type"
+    t.integer "filer_type"
     t.string "filer_name"
     t.string "office"
-    t.string "district"
+    t.integer "district"
     t.string "party"
     t.string "filer_address_1"
     t.string "filer_address_2"
     t.string "filer_city"
     t.string "filer_state"
     t.string "filer_zipcode"
-    t.string "county"
+    t.integer "county"
     t.string "phone_number"
     t.float "beginning_balance"
     t.float "monetary"
     t.float "in_kind"
-    t.string "filer_location_1"
-    t.string "filer_location_2"
+    t.json "filer_location_1"
+    t.json "filer_location_2"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "filer_location_1_address"
+    t.string "filer_location_2_address"
+    t.string "filer_location_1_city"
+    t.string "filer_location_2_city"
+    t.string "filer_location_1_state"
+    t.string "filer_location_2_state"
+    t.string "filer_location_1_zip"
+    t.string "filer_location_2_zip"
+    t.float "filer_location_1_lat"
+    t.float "filer_location_1_long"
+    t.float "filer_location_2_lat"
+    t.float "filer_location_2_long"
   end
 
   create_table "receipts", force: :cascade do |t|
