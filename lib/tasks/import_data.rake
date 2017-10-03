@@ -178,13 +178,13 @@ namespace :import do
       end
       if !debt_obj["debt_reporting_location_1"].nil?
         debt.debt_reporting_location_1 = debt_obj["debt_reporting_location_1"]
-        debt.debt_reporting_location_1_lat = debt_obj["debt_reporting_location_1_lat"]["coordinates"].last.to_f
-        debt.debt_reporting_location_1_long = debt_obj["debt_reporting_location_1_long"]["coordinates"].first.to_f
+        debt.debt_reporting_location_1_lat = debt_obj["debt_reporting_location_1"]["coordinates"].last.to_f
+        debt.debt_reporting_location_1_long = debt_obj["debt_reporting_location_1"]["coordinates"].first.to_f
       end
       if !debt_obj["debt_reporting_location_2"].nil?
         debt.debt_reporting_location_2 = debt_obj["debt_reporting_location_2"]
-        debt.debt_reporting_location_2_lat = debt_obj["debt_reporting_location_2_lat"]["coordinates"].last.to_f
-        debt.debt_reporting_location_2_long = debt_obj["debt_reporting_location_2_long"]["coordinates"].first.to_f
+        debt.debt_reporting_location_2_lat = debt_obj["debt_reporting_location_2"]["coordinates"].last.to_f
+        debt.debt_reporting_location_2_long = debt_obj["debt_reporting_location_2"]["coordinates"].first.to_f
       end
       if !debt_obj["debt_reporting_city"].nil?
         debt.debt_reporting_city = debt_obj["debt_reporting_city"]
