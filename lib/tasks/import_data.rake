@@ -390,4 +390,140 @@ namespace :import do
     end
   end
 
+  task filers: :environment do
+    desc "Import all filer data from OpenDataPA"
+    response = HTTParty.get(  'https://data.pa.gov/resource/punj-45m5.json',
+                              query: {'$limit' => 200000 },
+                              headers: {'X-App-Token' => 'n4EA22fkjanBVoRtLsvv6Fp0V' }
+                            )
+
+    response.each do |filer_obj|
+
+      filer = Filer.new
+
+      filer.filer_id = filer_obj["filer_identification_number"].to_i
+      filer.election_year = filer_obj["election_year"].to_i
+      filer.election_cycle = filer_obj["election_cycle"].to_i
+      if !filer_obj["amended_report_indicator"].nil?
+        filer.amended_report_indicator = filer_obj["amended_report_indicator"]
+      end
+
+      if !filer_obj["termination_indicator"].nil?
+        filer.termination_indicator = filer_obj["termination_indicator"]
+      end
+
+      if !filer_obj["filer_type"].nil?
+        filer.filer_type = filer_obj["filer_type"].to_i
+      end
+
+      if !filer_obj["filer_name"].nil?
+        filer.filer_name = filer_obj["filer_name"]
+      end
+
+      if !filer_obj["office"].nil?
+        filer.office = filer_obj["office"]
+      end
+
+      if !filer_obj["district"].nil?
+        filer.district = filer_obj["district"].to_i
+      end
+
+      if !filer_obj["party"].nil?
+        filer.party = filer_obj["party"]
+      end
+
+      if !filer_obj["filer_address_1"].nil?
+        filer.filer_address_1 = filer_obj["filer_address_1"]
+      end
+
+      if !filer_obj["filer_address_2"].nil?
+        filer.filer_address_2 = filer_obj["filer_address_2"]
+      end
+
+      if !filer_obj["filer_city"].nil?
+        filer.filer_city = filer_obj["filer_city"]
+      end
+
+      if filer_obj["filer_state"].nil?
+        filer.filer_state = filer_obj["filer_state"]
+      end
+
+      if filer_obj["filer_zip_code"].nil?
+        filer.filer_zipcode = filer_obj["filer_zip_code"].to_i
+      end
+
+      if !filer_obj["counter"].nil?
+        filer.county = filer_obj["county"].to_i
+      end
+
+      if !filer_obj["phone_number"].nil?
+        filer.phone_number = filer_obj["phone_number"]
+      end
+
+      if !filer_obj["beginning_balance"].nil?
+        filer.beginning_balance = filer_obj["beginning_balance"]
+      end
+
+      if !filer_obj["monetary"].nil?
+        filer.monetary = filer_obj["monetary"].to_f
+      end
+
+      if !filer_obj["in_kind"].nil?
+        filer.in_kind = filer_obj["in_kind"].to_f
+      end
+
+      if !filer_obj["filer_location_1"].nil?
+        filer.filer_location_1 = filer_obj["filer_location_1"]
+        filer.filer_location_1_lat = filer_obj["filer_location_1"]["coordinates"].last.to_f
+        filer.filer_location_1_long = filer_obj["filer_location_1"]["coordinates"].first.to_f
+      end
+
+      if !filer_obj["filer_location_2"].nil?
+        filer.filer_location_2 = filer_obj["filer_location_2"]
+        filer.filer_location_2_lat = filer_obj["filer_location_2"]["coordinates"].last.to_f
+        filer.filer_location_2_long = filer_obj["filer_location_2"]["coordinates"].first.to_f
+      end
+
+      if !filer_obj["filer_location_1_address"].nil?
+        filer.filer_location_1_address = filer_obj["filer_location_1_address"]
+      end
+
+      if !filer_obj["filer_location_2_address"].nil?
+        filer.filer_location_2_address = filer_obj["filer_location_2_address"]
+      end
+
+      if !filer_obj["filer_location_1_city"].nil?
+        filer.filer_location_1_city = filer_obj["filer_location_1_city"]
+      end
+
+      if !filer_obj["filer_location_2_city"].nil?
+        filer.filer_location_2_city = filer_obj["filer_location_2_city"]
+      end
+
+      if !filer_obj["filer_location_1_state"].nil?
+        filer.filer_location_1_state = filer_obj["filer_location_1_state"]
+      end
+
+      if !filer_obj["filer_location_2_state"].nil?
+        filer.filer_location_2_state = filer_obj["filer_location_2_state"]
+      end
+
+      if !filer_obj["filer_location_1_zip"].nil?
+        filer.filer_location_1_zip = filer_obj["filer_location_1_zip"]
+      end
+
+      if !filer_obj["filer_location_2_zip"].nil?
+        filer.filer_location_2_zip = filer_obj["filer_location_2_zip"]
+      end
+
+      filer.save
+
+      # if filer.save
+      #   puts "#{filer.filer_name} successfully saved."
+      # else
+      #   puts "Something went wrong saving #{filer_obj['filer_name']}"
+      # end
+    end
+  end
+
 end
