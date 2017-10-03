@@ -256,8 +256,8 @@ namespace :import do
         contribution.contributor_state = contribution_obj["contributor_state"]
       end
 
-      if contribution_obj["contributor_zipcode"].nil?
-        contribution.contributor_zipcode = contribution_obj["contributor_zipcode"].to_i
+      if contribution_obj["contributor_zip_code"].nil?
+        contribution.contributor_zipcode = contribution_obj["contributor_zip_code"].to_i
       end
 
       if !contribution_obj["occupation"].nil?
@@ -284,8 +284,8 @@ namespace :import do
         contribution.employer_city = contribution_obj["employer_city"]
       end
 
-      if !contribution_obj["employer_zipcode"].nil?
-        contribution.employer_zipcode = contribution_obj["employer_zipcode"]
+      if !contribution_obj["employer_zip_code"].nil?
+        contribution.employer_zipcode = contribution_obj["employer_zip_code"]
       end
 
       if !contribution_obj["contribution_date"].nil?
