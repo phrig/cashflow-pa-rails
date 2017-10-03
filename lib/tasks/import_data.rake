@@ -4,7 +4,7 @@ desc "Import data from OpenDataPA"
 
 namespace :import do
 
-  task all: [:expenses]
+  task all: [:expenses, :receipts, :debts, :contributions, :filers]
 
   task expenses: :environment do
     desc "Import all expenses data from OpenDataPA"
@@ -57,7 +57,7 @@ namespace :import do
       # else
       #   puts "Something went wrong saving #{expense_obj['name']}"
 
-      end
+      # end
     end
   end
 
