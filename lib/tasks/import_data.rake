@@ -226,4 +226,181 @@ namespace :import do
     end
   end
 
+  task contributions: :environment do
+    desc "Import all dept data from OpenDataPA"
+    response = HTTParty.get(  'https://data.pa.gov/resource/3nz5-zuve.json',
+                              query: {'$limit' => 200000 },
+                              headers: {'X-App-Token' => 'n4EA22fkjanBVoRtLsvv6Fp0V' }
+                            )
+
+    response.each do |contribution_obj|
+      begin
+      contribution = Contribution.new
+
+      contribution.filer_id = contribution_obj["filer_identification_number"].to_i
+      contribution.election_year = contribution_obj["election_year"].to_i
+      contribution.election_cycle = contribution_obj["cycle"].to_i
+      if !contribution_obj["section"].nil?
+        contribution.section = contribution_obj["section"]
+      end
+
+      if !contribution_obj["contributor"].nil?
+        contribution.contributor = contribution_obj["contributor"]
+      end
+
+      if !contribution_obj["contribution_address_1"].nil?
+        contribution.contribution_address_1 = contribution_obj["contribution_address_1"]
+      end
+      if !contribution_obj["contribution_address_2"].nil?
+        contribution.contribution_address_2 = contribution_obj["contribution_address_2"]
+      end
+
+      if !contribution_obj["contributor_city"].nil?
+        contribution.contributor_city = contribution_obj["contributor_city"]
+      end
+
+      if contribution_obj["contributor_state"].nil?
+        contribution.contributor_state = contribution_obj["contributor_state"]
+      end
+
+      if contribution_obj["contributor_zipcode"].nil?
+        contribution.contributor_zipcode = contribution_obj["contributor_zipcode"].to_i
+      end
+
+      if !contribution_obj["occupation"].nil?
+        contribution.occupation = contribution_obj["occupation"]
+      end
+
+      if !contribution_obj["employer_name"].nil?
+        contribution.employer_name = contribution_obj["occupation"]
+      end
+
+      if !contribution_obj["employer_address_1"].nil?
+        contribution.employer_address_1 = contribution_obj["employer_address_1"]
+      end
+
+      if !contribution_obj["employer_address_2"].nil?
+        contribution.employer_address_2 = contribution_obj["employer_address_2"]
+      end
+
+      if !contribution_obj["employer_state"].nil?
+        contribution.employer_state = contribution_obj["employer_state"]
+      end
+
+      if !contribution_obj["employer_city"].nil?
+        contribution.employer_city = contribution_obj["employer_city"]
+      end
+
+      if !contribution_obj["employer_zipcode"].nil?
+        contribution.employer_zipcode = contribution_obj["employer_zipcode"]
+      end
+
+      if !contribution_obj["contribution_date"].nil?
+        contribution.contribution_date = Date.parse(contribution_obj["contribution_date"])
+      end
+
+      if !contribution_obj["contribution_amount"].nil?
+        contribution.contribution_amount = contribution_obj["contribution_amount"].to_f
+      end
+
+      if !contribution_obj["contribution_description"].nil?
+        contribution.contribution_description = contribution_obj["contribution_description"]
+      end
+
+      if !contribution_obj["contribution_location_1"].nil?
+        contribution.contribution_location_1 = contribution_obj["contribution_location_1"]
+        contribution.contribution_location_1_lat = contribution_obj["contribution_location_1"]["coordinates"].last.to_f
+        contribution.contribution_location_1_long = contribution_obj["contribution_location_1"]["coordinates"].first.to_f
+      end
+
+      if !contribution_obj["contribution_location_2"].nil?
+        contribution.contribution_location_2 = contribution_obj["contribution_location_2"]
+        contribution.contribution_location_2_lat = contribution_obj["contribution_location_2"]["coordinates"].last.to_f
+        contribution.contribution_location_2_long = contribution_obj["contribution_location_2"]["coordinates"].first.to_f
+      end
+
+      if !contribution_obj["contribution_location_1_address"].nil?
+        contribution.contribution_location_1_address = contribution_obj["contribution_location_1_address"]
+      end
+
+      if !contribution_obj["contribution_location_2_address"].nil?
+        contribution.contribution_location_2_address = contribution_obj["contribution_location_2_address"]
+      end
+
+      if !contribution_obj["contribution_location_1_city"].nil?
+        contribution.contribution_location_1_city = contribution_obj["contribution_location_1_city"]
+      end
+
+      if !contribution_obj["contribution_location_2_city"].nil?
+        contribution.contribution_location_2_city = contribution_obj["contribution_location_2_city"]
+      end
+
+      if !contribution_obj["contribution_location_1_state"].nil?
+        contribution.contribution_location_1_state = contribution_obj["contribution_location_1_state"]
+      end
+
+      if !contribution_obj["contribution_location_2_state"].nil?
+        contribution.contribution_location_2_state = contribution_obj["contribution_location_2_state"]
+      end
+
+      if !contribution_obj["contribution_location_1_zip"].nil?
+        contribution.contribution_location_1_zipcode = contribution_obj["contribution_location_1_zip"]
+      end
+
+      if !contribution_obj["contribution_location_2_zip"].nil?
+        contribution.contribution_location_2_zipcode = contribution_obj["contribution_location_2_zip"]
+      end
+
+      if !contribution_obj["employer_location_1"].nil?
+        contribution.employer_location_1 = contribution_obj["employer_location_1"]
+        contribution.employer_location_1_lat = contribution_obj["employer_location_1"]["coordinates"].last.to_f
+        contribution.employer_location_1_long = contribution_obj["employer_location_1"]["coordinates"].first.to_f
+      end
+
+      if !contribution_obj["employer_location_2"].nil?
+        contribution.employer_location_2 = contribution_obj["employer_location_2"]
+        contribution.employer_location_2_lat = contribution_obj["employer_location_2"]["coordinates"].last.to_f
+        contribution.employer_location_2_long = contribution_obj["employer_location_2"]["coordinates"].first.to_f
+      end
+
+      if !contribution_obj["employer_location_1_address"].nil?
+        contribution.employer_location_1_address = contribution_obj["employer_location_1_address"]
+      end
+
+      if !contribution_obj["employer_location_1_city"].nil?
+        contribution.employer_location_1_city = contribution_obj["employer_location_1_city"]
+      end
+
+      if !contribution_obj["employer_location_2_city"].nil?
+        contribution.employer_location_2_city = contribution_obj["employer_location_2_city"]
+      end
+
+      if !contribution_obj["employer_location_2_state"].nil?
+        contribution.employer_location_2_state = contribution_obj["employer_location_2_state"]
+      end
+
+      if !contribution_obj["employer_location_1_zip"].nil?
+        contribution.employer_location_1_zip = contribution_obj["employer_location_1_zip"]
+      end
+
+      if !contribution_obj["employer_location_2_zip"].nil?
+        contribution.employer_location_2_zip = contribution_obj["employer_location_2_zip"]
+      end
+
+    rescue NoMethodError => error
+      binding.pry
+    end
+
+      unless controbution.save
+        puts "something went wrong saving"
+      end
+
+      # if contribution.save
+      #   puts "#{contribution.contributor} successfully saved."
+      # else
+      #   puts "Something went wrong saving #{contribution_obj['contributor']}"
+      # end
+    end
+  end
+
 end
