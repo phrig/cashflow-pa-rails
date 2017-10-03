@@ -50,10 +50,13 @@ namespace :import do
       expense.filer_id = expense_obj["filer_identification_number"].to_i
       expense.name = expense_obj["name"]
 
-      if expense.save
-        puts "#{expense.name} successfully saved."
-      else
-        puts "Something went wrong saving #{expense_obj['name']}"
+      expense.save
+
+      # if expense.save
+      #   puts "#{expense.name} successfully saved."
+      # else
+      #   puts "Something went wrong saving #{expense_obj['name']}"
+
       end
     end
   end
@@ -68,20 +71,15 @@ namespace :import do
     response.each do |receipt_obj|
       receipt = Receipt.new
 
-      # More universal values
       receipt.election_cycle = receipt_obj["election_cycle"].to_i
       receipt.election_year = receipt_obj["election_year"].to_i
       receipt.filer_id = receipt_obj["filer_identification_number"].to_i
       receipt.name = receipt_obj["name"]
       receipt.receipt_amount = receipt_obj["receipt_amount"].to_f
-      if !receipt_obj["receipt_date"].nil? # odd that the receipt date wouldn't exist
+      if !receipt_obj["receipt_date"].nil?
         receipt.receipt_date = Date.parse(receipt_obj["receipt_date"])
       end
       receipt.receipt_description = receipt_obj["receipt_description"]
-
-      # Less universal values
-      # Since these are fairly lat JSON, checking every field is safer
-      # than what appears in the expenses import task.
 
       if !receipt_obj["receipt_address_1"].nil?
         receipt.receipt_address_1 = receipt_obj["receipt_address_1"]
@@ -130,11 +128,13 @@ namespace :import do
         receipt.receipt_location_2_zip = receipt_obj["receipt_location_2_zip"]
       end
 
-      if receipt.save
-        puts "#{receipt.name} successfully saved."
-      else
-        puts "Something went wrong saving #{receipt_obj['name']}"
-      end
+      reciept.save
+
+      # if receipt.save
+      #   puts "#{receipt.name} successfully saved."
+      # else
+      #   puts "Something went wrong saving #{receipt_obj['name']}"
+      # end
 
     end
   end
@@ -147,10 +147,9 @@ namespace :import do
                             )
 
     response.each do |debt_obj|
-      begin
+
       debt = Debt.new
 
-      # More universal values
       debt.election_cycle = debt_obj["cycle"].to_i
       debt.election_year = debt_obj["election_year"].to_i
       debt.filer_id = debt_obj["filer_identification_number"].to_i
@@ -165,10 +164,6 @@ namespace :import do
       if !debt_obj["debt_reporting_zip_code"].nil?
         debt.debt_reporting_zipcode = debt_obj["debt_reporting_zip_code"]
       end
-
-      # Less universal values
-      # Since these are fairly lat JSON, checking every field is safer
-      # than what appears in the expenses import task.
 
       if !debt_obj["debt_reporting_address_1"].nil?
         debt.debt_reporting_address_1 = debt_obj["debt_reporting_address_1"]
@@ -214,27 +209,25 @@ namespace :import do
         debt.debt_reporting_location_2_zipcode = debt_obj["debt_reporting_location_2_zip"]
       end
 
-    rescue TypeError => error
-      binding.pry
-    end
+      debt.save
 
-      if debt.save
-        puts "#{debt.debt_reporter_name} successfully saved."
-      else
-        puts "Something went wrong saving #{debt_obj['name']}"
-      end
+      # if debt.save
+      #   puts "#{debt.debt_reporter_name} successfully saved."
+      # else
+      #   puts "Something went wrong saving #{debt_obj['name']}"
+      # end
     end
   end
 
   task contributions: :environment do
-    desc "Import all dept data from OpenDataPA"
+    desc "Import all contribution data from OpenDataPA"
     response = HTTParty.get(  'https://data.pa.gov/resource/3nz5-zuve.json',
                               query: {'$limit' => 200000 },
                               headers: {'X-App-Token' => 'n4EA22fkjanBVoRtLsvv6Fp0V' }
                             )
 
     response.each do |contribution_obj|
-      begin
+
       contribution = Contribution.new
 
       contribution.filer_id = contribution_obj["filer_identification_number"].to_i
@@ -387,13 +380,7 @@ namespace :import do
         contribution.employer_location_2_zip = contribution_obj["employer_location_2_zip"]
       end
 
-    rescue NoMethodError => error
-      binding.pry
-    end
-
-      unless controbution.save
-        puts "something went wrong saving"
-      end
+      contribution.save
 
       # if contribution.save
       #   puts "#{contribution.contributor} successfully saved."
