@@ -59,6 +59,7 @@ namespace :import do
 
       # end
     end
+    puts "#{Expense.all.count} expenses successfully saved."
   end
 
   task receipts: :environment do
@@ -128,7 +129,7 @@ namespace :import do
         receipt.receipt_location_2_zip = receipt_obj["receipt_location_2_zip"]
       end
 
-      reciept.save
+      receipt.save
 
       # if receipt.save
       #   puts "#{receipt.name} successfully saved."
@@ -137,10 +138,11 @@ namespace :import do
       # end
 
     end
+    puts "#{Receipt.all.count} receipts successfully saved."
   end
 
   task debts: :environment do
-    desc "Import all dept data from OpenDataPA"
+    desc "Import all debt data from OpenDataPA"
     response = HTTParty.get(  'https://data.pa.gov/resource/9dzz-fwce.json',
                               query: {'$limit' => 50000 },
                               headers: {'X-App-Token' => 'n4EA22fkjanBVoRtLsvv6Fp0V' }
@@ -154,7 +156,7 @@ namespace :import do
       debt.election_year = debt_obj["election_year"].to_i
       debt.filer_id = debt_obj["filer_identification_number"].to_i
       if debt_obj["debt_reporter_s_name"].nil?
-        dept.debt_reporter_name = debt_obj["debt_reporter_s_name"]
+        debt.debt_reporter_name = debt_obj["debt_reporter_s_name"]
       end
       debt.debt_amount = debt_obj["debt_amount"].to_f
       if !debt_obj["debt_accrual_date"].nil?
@@ -217,6 +219,7 @@ namespace :import do
       #   puts "Something went wrong saving #{debt_obj['name']}"
       # end
     end
+    puts "#{Debt.all.count} debts successfully saved."
   end
 
   task contributions: :environment do
@@ -388,6 +391,7 @@ namespace :import do
       #   puts "Something went wrong saving #{contribution_obj['contributor']}"
       # end
     end
+    puts "#{Contribution.all.count} contributions successfully saved."
   end
 
   task filers: :environment do
@@ -524,6 +528,7 @@ namespace :import do
       #   puts "Something went wrong saving #{filer_obj['filer_name']}"
       # end
     end
+    puts "#{Filer.all.count} filers successfully save."
   end
 
 end
