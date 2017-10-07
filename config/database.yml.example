@@ -1,18 +1,18 @@
 development:
   encoding: unicode
   adapter: postgresql
-  database: cheapest_seats_development
+  database: cash_flow_pa_development
 
 test:
   encoding: unicode
   adapter: postgresql
-  database: cheapest_seats_test
+  database: cash_flow_pa_test
 
 production:
   encoding: unicode
   adapter: postgresql
-  database: <%= ENV["CHEAPEST_SEATS_DB_NAME"] %>
-  username: <%= ENV["CHEAPEST_SEATS_DB_USERNAME"] %>
-  password: <%= ENV["CHEAPEST_SEATS_DB_PASSWORD"] %>
+  database: <%= ENV["CASH_FLOW_PA_DB_NAME"] %>
+  username: <%= ENV["CASH_FLOW_PA_DB_USERNAME"] %>
+  password: <%= ENV["CASH_FLOW_PA_DB_PASSWORD"] %>
   pool: 5
   min_messages: WARNING

@@ -1,4 +1,4 @@
-# Cheapest Seats in PA
+# Cash Flow, PA
 
 ## Prerequisites
 
@@ -11,7 +11,7 @@
 
 Once you have `rvm` and `ruby 2.3.4` installed,
 
-    git clone git@github.com:phrig/cheapest_seats.git
+    git clone git@github.com:phrig/cash_flow_pa.git
     bundle install
 
 Copy the environment variables and secrets into their appropriate place and oyt in production data:
