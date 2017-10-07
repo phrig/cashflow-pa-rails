@@ -1,0 +1,20 @@
+server {
+  passenger_ruby /home/ubuntu/.rvm/gems/ruby-2.3.4/wrappers/ruby;
+  server_name 54.198.139.141;
+  listen 80;
+  error_log /rails/cash_flow_pa/current/log/error.log;
+  access_log /rails/cash_flow_pa/current/log/access.log;
+  root /rails/cash_flow_pa/current/public;
+  passenger_enabled on;
+  passenger_user ubuntu;
+  passenger_app_env production;
+  client_max_body_size 500M;
+  # try_files  /system/maintenance.html $uri; # $uri/index.html $uri.html;
+  if (-f $document_root/system/maintenance.html) {
+    rewrite  ^(.*)$ /system/maintenance.html break;
+  }
+  error_page  500 502 503 504  /50x.html;
+  location = /50x.html {
+    root  html;
+  }
+}
