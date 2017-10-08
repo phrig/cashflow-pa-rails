@@ -1,0 +1,5 @@
+### Cash Flow PA ###
+Host cash_flow 54.198.139.141
+  Hostname 54.198.139.141
+  User ubuntu
+  IdentityFile ~/.ssh/projects/cash_flow_pa/cash_flow_pa.pem
