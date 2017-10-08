@@ -27,11 +27,22 @@ Run the server
     rails s
 
 Run the console
+
     rails c
 
 Import the data
 
     rake import:all
+
+To import one data set, consult `lib/tasks/import_data.rake` for individual tasks.
+
+## SSH and deploying the application
+
+First, make sure you have put the secret key in the right place. Consult `doc/ssh-conf` to set the correct `ssh alias`.
+
+To deploy
+
+    cap production deploy
 
 ## Contribution workflow
 
