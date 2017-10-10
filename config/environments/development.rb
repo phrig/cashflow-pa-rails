@@ -26,6 +26,8 @@ Rails.application.configure do
     config.cache_store = :null_store
   end
 
+  config.debug_exception_response_format = :api
+
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
 
