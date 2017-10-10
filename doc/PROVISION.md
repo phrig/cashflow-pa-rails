@@ -26,6 +26,8 @@
 
     sudo -u postgres bash -c "echo 'CREATE DATABASE cash_flow_pa WITH OWNER = ubuntu' | psql"
 
+    scp cash_flow_pa_development_2017-10-10T02-03-21Z.sql.gz ubuntu@54.198.139.141:~/ (move local db to remote)
+
     gem install bundler --no-ri --no-rdoc
 
     # Passenger install

@@ -44,6 +44,27 @@ To deploy
 
     cap production deploy
 
+## Take a snapshot of the database and import the data into your development database
+
+SSH into the server and run the following command from the home directory:
+
+    pg_dump --no-acl --no-owner --clean cash_flow_pa | gzip > "cash_flow_pa_`date -u +'%Y-%m-%dT%H-%M-%SZ'`.sql.gz"
+
+In the home directory, run `ls` and make note of the new db snapshot name. Then download the snapshot to your local machine:
+
+    scp cash_flow:{SNAPSHOT_NAME} db/
+
+Gunzip the production db snapshot into your local database:
+
+    gunzip -c db/{SNAPSHOT_NAME} | psql cash_flow_pa_development
+
+If you are setting up the project for the first time, or you want to blow away your local database and start over, do it in this order:
+
+    rake db:drop
+    rake db:create
+    gunzip -c db/{SNAPSHOT_NAME} | psql cash_flow_pa_development
+    rake db:migrate
+
 ## Contribution workflow
 
 Use a feature branch. When you want to make a contribution, do a `git fetch` and `pull` to get the latest version of `master`. Then re-base your branch, resolve any conflicts that may occur, and then make a pull request.
