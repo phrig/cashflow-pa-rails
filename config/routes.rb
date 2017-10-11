@@ -4,4 +4,6 @@ Rails.application.routes.draw do
 
   resources :contributions, only: :index
 
+  resources :debts, only: :index
+
 end
