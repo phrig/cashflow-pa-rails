@@ -8,4 +8,6 @@ Rails.application.routes.draw do
 
   resources :expenses, only: :index
 
+  resources :filers, only: :index
+
 end
