@@ -10,6 +10,11 @@ set :branch, ENV['branch'] || 'master'
 set :linked_dirs, %w{tmp}
 set :linked_files, %w{config/database.yml config/secrets.yml}
 
+set :slackistrano, {
+  channel: '#cheapest_seats_dev',
+  webhook: 'https://hooks.slack.com/services/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'
+}
+
 namespace :deploy do
   desc 'Restart application'
   task :restart do
