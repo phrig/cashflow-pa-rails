@@ -10,4 +10,6 @@ Rails.application.routes.draw do
 
   resources :filers, only: :index
 
+  resources :receipts, only: :index
+
 end
