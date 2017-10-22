@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171003223931) do
+ActiveRecord::Schema.define(version: 20171022163844) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -66,6 +66,8 @@ ActiveRecord::Schema.define(version: 20171003223931) do
     t.string "employer_location_2_state"
     t.string "employer_location_1_zip"
     t.string "employer_location_2_zip"
+    t.integer "state_fips"
+    t.integer "county_fips"
   end
 
   create_table "debts", force: :cascade do |t|
@@ -97,6 +99,8 @@ ActiveRecord::Schema.define(version: 20171003223931) do
     t.string "debt_reporting_location_2_state"
     t.string "debt_reporting_location_1_zipcode"
     t.string "debt_reporting_location_2_zipcode"
+    t.integer "state_fips"
+    t.integer "county_fips"
   end
 
   create_table "expenses", force: :cascade do |t|
@@ -128,6 +132,8 @@ ActiveRecord::Schema.define(version: 20171003223931) do
     t.string "expense_location_2_city"
     t.string "expense_location_2_state"
     t.string "expense_location_2_zip"
+    t.integer "state_fips"
+    t.integer "county_fips"
   end
 
   create_table "filers", force: :cascade do |t|
@@ -167,6 +173,8 @@ ActiveRecord::Schema.define(version: 20171003223931) do
     t.float "filer_location_1_long"
     t.float "filer_location_2_lat"
     t.float "filer_location_2_long"
+    t.integer "state_fips"
+    t.integer "county_fips"
   end
 
   create_table "receipts", force: :cascade do |t|
@@ -198,6 +206,8 @@ ActiveRecord::Schema.define(version: 20171003223931) do
     t.float "receipt_location_1_long"
     t.float "receipt_location_2_lat"
     t.float "receipt_location_2_long"
+    t.integer "state_fips"
+    t.integer "county_fips"
   end
 
 end
