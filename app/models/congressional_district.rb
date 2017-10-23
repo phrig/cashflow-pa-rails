@@ -1,0 +1,2 @@
+class CongressionalDistrict < ApplicationRecord
+end

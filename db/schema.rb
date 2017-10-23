@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171023014156) do
+ActiveRecord::Schema.define(version: 20171023020717) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "congressional_districts", force: :cascade do |t|
+    t.string "c_first_name"
+    t.string "c_last_name"
+    t.string "home_county"
+    t.string "party"
+    t.integer "legislative_district"
+    t.json "feature"
+  end
 
   create_table "contributions", force: :cascade do |t|
     t.integer "filer_id"
