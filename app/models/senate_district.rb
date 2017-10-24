@@ -1,0 +1,2 @@
+class SenateDistrict < ApplicationRecord
+end
