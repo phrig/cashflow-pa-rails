@@ -35,7 +35,7 @@ class TransactionsController < ApplicationController
   private
 
   def transaction_params
-    params.permit(:type, :lat_long, :dist)
+    params.permit(:type, :point, :search_distance)
   end
 
 end

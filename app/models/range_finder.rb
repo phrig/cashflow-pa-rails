@@ -2,10 +2,8 @@ module RangeFinder
   include Math
 
   def self.find_lat_range(lat, dist)
-    lat = lat.to_f
-    dist = dist.to_f
 
-    dist_degree = dist/69 # 1 mile == 1/69th degrees
+    dist_degree = dist.to_f/69 # 1 mile == 1/69th degrees
 
     results = {}
 
@@ -16,10 +14,8 @@ module RangeFinder
   end
 
   def self.find_long_range(lat, long, dist)
-    long = long.to_f
-    dist = dist.to_f
 
-    long_range = dist * ( 180 / ( PI * 3959 * Math.cos( lat * (PI / 180) ) ) )
+    long_range = dist.to_f * ( 180 / ( PI * 3959 * Math.cos( lat * (PI / 180) ) ) )
 
     results = {}
 
