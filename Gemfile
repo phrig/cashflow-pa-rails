@@ -13,6 +13,7 @@ gem 'puma', '~> 3.7'
 gem 'jbuilder', '~> 2.5'
 gem 'httparty'
 gem 'listen', '>= 3.0.5', '< 3.2'
+gem 'rack-cors', :require => 'rack/cors'
 
 group :development, :test do
   gem 'pry'
