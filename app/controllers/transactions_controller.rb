@@ -3,9 +3,9 @@ class TransactionsController < ApplicationController
 
   def show
 
-    type_query = params[:type]
-    point = JSON.parse(params[:point]).with_indifferent_access
-    distance = params[:search_distance]
+    type_query = params['type']
+    point = params['point']
+    distance = params['search_distance']
 
     type_class = type_query.singularize.capitalize.constantize
 
@@ -13,7 +13,7 @@ class TransactionsController < ApplicationController
     #   raise TypeError, "Unknown transaction type: #{type_class}"
     # end
 
-    transactions = type_class.get_nearby_expenses(point[:latitude], point[:longitude], distance)
+    transactions = type_class.get_nearby_expenses(point['latitude'], point['longitude'], distance)
 
     results = { }
 
