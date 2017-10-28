@@ -12,4 +12,6 @@ Rails.application.routes.draw do
 
   resources :receipts, only: :index
 
+  post "/transactions" => 'transactions#show'
+
 end
