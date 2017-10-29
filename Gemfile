@@ -15,6 +15,8 @@ gem 'httparty'
 gem 'listen', '>= 3.0.5', '< 3.2'
 gem 'rack-cors', :require => 'rack/cors'
 gem 'geocoder'
+gem 'rgeo'
+gem 'rgeo-geojson'
 
 group :development, :test do
   gem 'pry'
