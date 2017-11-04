@@ -34,8 +34,7 @@ class CongressionalDistrict < ApplicationRecord
 
     results.map do |result|
       congressional_info = {}
-      congressional_info[:c_first_name] = result.c_first_name
-      congressional_info[:c_last_name] = result.c_last_name
+      congressional_info[:name] = "#{result.c_first_name} #{result.c_last_name}"
       congressional_info[:home_county] = result.home_county
       congressional_info[:legislative_district] = result.legislative_district
       congressional_info[:district_shape] = result.feature['geometry']
