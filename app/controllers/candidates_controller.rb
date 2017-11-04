@@ -14,14 +14,13 @@ class CandidatesController < ApplicationController
   end
 
   def show
-    query_point = eval(params['point'])
-
+    query_point = params['point']
     results_hash = {}
+
     results_hash['candidate_types'] = get_district_data(query_point)
 
     respond_to do |format|
       format.json { render json: results_hash }
     end
-
   end
 end
