@@ -18,6 +18,8 @@ gem 'geocoder'
 gem 'geokit-rails'
 gem 'geokit'
 gem 'haml-rails'
+gem 'bootstrap-sass'
+gem 'sass-rails'
 
 group :development, :test do
   gem 'pry'
