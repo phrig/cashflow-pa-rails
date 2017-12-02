@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'search/search'
+
   get 'home/index'
 
   get 'home/index'
@@ -20,4 +22,5 @@ Rails.application.routes.draw do
   post "/transactions" => 'transactions#show'
   post '/candidates' => 'candidates#show'
 
+  get '/search' => 'search#get_results'
 end

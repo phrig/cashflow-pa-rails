@@ -20,6 +20,7 @@ gem 'geokit'
 gem 'haml-rails'
 gem 'bootstrap-sass'
 gem 'sass-rails'
+gem 'coffee-rails'
 
 group :development, :test do
   gem 'pry'
