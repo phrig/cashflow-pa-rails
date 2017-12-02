@@ -11,3 +11,7 @@
 .env
 /config/database.yml
 /config/secrets.yml
+
+
+.DS_Store
+cash_flow_pa_development2017*
