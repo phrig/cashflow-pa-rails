@@ -1,0 +1,13 @@
+#header
+  %nav.navbar.header-nav
+    %container-fluid        
+      %ul.nav.navbar-nav.navbar-left
+        %li
+          = link_to image_tag("logo.png", width:100), root_path, class: "nav-link"
+        %li
+          = link_to "Link 1", root_path
+        %li
+          = link_to "Link 2", root_path
+      = form_tag("/search", method: "get") do
+        = text_field_tag(:query, nil, placeholder:"Enter your address or zip")
+        = submit_tag("Search")
