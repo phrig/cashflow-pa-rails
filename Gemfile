@@ -17,6 +17,7 @@ gem 'rack-cors', :require => 'rack/cors'
 gem 'geocoder'
 gem 'geokit-rails'
 gem 'geokit'
+gem 'haml-rails'
 
 group :development, :test do
   gem 'pry'
