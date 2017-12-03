@@ -3,18 +3,19 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 #mapid {
-	height: 300px;
+  height: 300px;
 }
 
 .header-nav {
-	background-color: #002A86;
+  background-color: #002A86;
+  height: 9em;
 }
 
 .header-nav a {
-	color: #fff;
+  color: #fff;
 }
 
 .header-nav li a:hover {
-	color: #82CCE2;
-	background-color: #002A86;
+  color: #82CCE2;
+  background-color: #002A86;
 }
