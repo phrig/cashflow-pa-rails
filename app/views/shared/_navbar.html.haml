@@ -1,13 +1,16 @@
-#header
-  %nav.navbar.header-nav
-    %container-fluid        
-      %ul.nav.navbar-nav.navbar-left
-        %li
-          = link_to image_tag("logo.png", width:100), root_path, class: "nav-link"
-        %li
-          = link_to "Link 1", root_path
-        %li
-          = link_to "Link 2", root_path
-      = form_tag("/search", method: "get") do
-        = text_field_tag(:query, nil, placeholder:"Enter your address or zip")
-        = submit_tag("Search")
+%nav.navbar.navbar-inverse.bg-inverse.navbar-toggleable-sm.header-nav
+  %button.navbar-toggle.navbar-toggler-left{'aria-controls' => 'navbarsExampleDefault', 'aria-expanded' => 'false', 'aria-label' => 'Toggle navigation', 'data-target' => '#navbarsExampleDefault', 'data-toggle' => 'collapse', :type => 'button'}
+    %span.icon-bar
+    %span.icon-bar
+    %span.icon-bar
+  = link_to image_tag('logo.png', width:100), root_path, class: 'navbar-brand'
+  #navbarsExampleDefault.collapse.navbar-collapse
+    %ul.nav.navbar-nav.mr-auto
+      %li.nav-item
+        = link_to "Link 1", root_path, class: 'nav-link'
+      %li.nav-item
+        = link_to "Link 2", root_path, class: 'nav-link'
+    = form_tag("/search", method: "get", class: 'navbar-form navbar-right' ) do
+      = text_field_tag( :query, nil, placeholder: "Enter your address or zip",
+                        class: 'form-control mr-sm-2', 'aria-label' => 'Search' )
+      = button_to('Search', nil, class: 'btn btn-default')
