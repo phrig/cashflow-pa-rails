@@ -21,6 +21,8 @@ gem 'haml-rails'
 gem 'bootstrap-sass'
 gem 'sass-rails'
 gem 'coffee-rails'
+gem 'jquery-rails'
+gem 'turbolinks'
 
 group :development, :test do
   gem 'pry'
