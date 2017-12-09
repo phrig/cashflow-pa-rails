@@ -15,4 +15,6 @@
 //= require turbolinks
 //= require bootstrap-sprockets
 //= require leaflet
+//= require Leaflet.GoogleMutant
+//= require leaflet-cash-flow
 //= require_tree .
