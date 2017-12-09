@@ -23,6 +23,7 @@ gem 'sass-rails'
 gem 'coffee-rails'
 gem 'jquery-rails'
 gem 'turbolinks'
+gem 'leaflet-rails'
 
 group :development, :test do
   gem 'pry'
