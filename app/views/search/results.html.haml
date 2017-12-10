@@ -3,5 +3,7 @@
   .row
     .col-xs-9.col-md-9
       #results_map
-        = map(:center => { :latlng => [51.52238797921441, -0.08366235665359283], :zoom => 18})
+        = map(center: { latlng: [39.9336927, -75.1603751], zoom: 7},
+              geojsons: [ { geojson: @pa_state_geojson } ],
+              )
     = render 'shared/sidebar'
