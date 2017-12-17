@@ -2,11 +2,11 @@ require 'geocoder'
 
 class SearchController < ApplicationController
   include LocationSearchConcern
+  include TransactionSearchConcern
 
   before_action :search_params
 
   def search_results
-    render :js => "console.log('hello')!!!"
 
     File.open('doc/PA_State.geojson', 'r') do |file|
       file.each_line do |line|
@@ -15,6 +15,12 @@ class SearchController < ApplicationController
     end
 
     @result = Geocoder.search(search_params[:query]).first
+
+    result_lat = @result.geometry['location']['lat']
+    result_lng = @result.geometry['location']['lng']
+
+    transactions = get_transactions(result_lat, result_lng, 5)
+
     if @result
       if in_pennsylvania?(@result)
         @result
