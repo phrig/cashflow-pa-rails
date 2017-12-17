@@ -3,7 +3,7 @@ require 'geocoder'
 class SearchController < ApplicationController
   before_action :search_params
 
-  def get_results
+  def search_results
 
     File.open('doc/PA_State.geojson', 'r') do |file|
       file.each_line do |line|

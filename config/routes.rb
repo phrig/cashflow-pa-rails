@@ -17,5 +17,6 @@ Rails.application.routes.draw do
   post "/transactions" => 'transactions#show'
   post '/candidates' => 'candidates#show'
 
-  get '/search' => 'search#get_results'
+  get '/search' => 'search#search_results'
+
 end
