@@ -6,7 +6,8 @@
   .row
     .col-xs-9.col-md-9
       #results_map
-        = map(center: { latlng: [39.9336927, -75.1603751], zoom: 7},
+        = map(center: { latlng: [@result_lat, @result_lng], zoom: 10},
               geojsons: [ { geojson: @pa_state_geojson } ],
+              :markers => @markers,
               )
     = render 'shared/sidebar'
