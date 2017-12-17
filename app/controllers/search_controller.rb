@@ -1,6 +1,8 @@
 require 'geocoder'
 
 class SearchController < ApplicationController
+  include LocationSearchConcern
+
   before_action :search_params
 
   def search_results
