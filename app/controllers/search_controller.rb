@@ -16,10 +16,15 @@ class SearchController < ApplicationController
 
     @result = Geocoder.search(search_params[:query]).first
 
-    result_lat = @result.geometry['location']['lat']
-    result_lng = @result.geometry['location']['lng']
+    @result_lat = @result.geometry['location']['lat']
+    @result_lng = @result.geometry['location']['lng']
 
-    transactions = get_transactions(result_lat, result_lng, 5)
+    transactions = get_transactions(@result_lat, @result_lng, 5)
+
+    @markers = []
+    transactions.each do |transaction|
+      @markers << {:latlng => transaction.lat_lng, :popup => transaction.description}
+    end
 
     if @result
       if in_pennsylvania?(@result)
