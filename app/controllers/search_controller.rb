@@ -6,6 +6,7 @@ class SearchController < ApplicationController
   before_action :search_params
 
   def search_results
+    render :js => "console.log('hello')!!!"
 
     File.open('doc/PA_State.geojson', 'r') do |file|
       file.each_line do |line|
