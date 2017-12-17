@@ -11,4 +11,13 @@ class Receipt < ApplicationRecord
                       .where('receipt_location_1_long >= ?', long_ranges[:min_long])
     receipts
   end
+
+  def lat_lng
+    lat_lng = []
+    lat_lng.push(receipt_location_1_lat).push(receipt_location_1_long)
+  end
+
+  def description
+    "#{name} received $#{receipt_amount} for #{receipt_description}."
+  end
 end
