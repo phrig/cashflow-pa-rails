@@ -1,10 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'search/search'
-
-  get 'home/index'
-
-  get 'home/index'
   root 'home#index'
 
   resources :status, only: :index
