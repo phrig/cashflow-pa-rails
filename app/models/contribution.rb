@@ -11,4 +11,14 @@ class Contribution < ApplicationRecord
                       .where('contributor_location_1_long >= ?', long_ranges[:min_long])
     contributions
   end
+
+  def lat_lng
+    lat_lng = []
+    lat_lng.push(contributor_location_1_lat).push(contributor_location_1_long)
+  end
+
+  def description
+    "#{contributor} gave $#{contribution_amount} (#{contribution_description})."
+  end
+
 end

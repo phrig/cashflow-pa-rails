@@ -14,4 +14,12 @@ class Expense < ApplicationRecord
 
   end
 
+  def lat_lng
+    lat_lng = []
+    lat_lng.push(expense_location_1_lat).push(expense_location_1_long)
+  end
+
+  def description
+    "#{name} spent $#{expense_amount}."
+  end
 end

@@ -54,4 +54,13 @@ class Debt < ApplicationRecord
                       .where('debt_reporting_location_1_long >= ?', long_ranges[:min_long])
     debt
   end
+
+  def lat_lng
+    lat_lng = []
+    lat_lng.push(debt_reporting_location_1_lat).push(debt_reporting_location_1_long)
+  end
+
+  def description
+    "$#{debt_amount} was paid for #{debt_description}."
+  end
 end
