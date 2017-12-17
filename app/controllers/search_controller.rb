@@ -13,9 +13,7 @@ class SearchController < ApplicationController
       end
     end
 
-    @location = Geocoder.search(search_params[:query])
-    if @location
-      render "results"
+    @result = Geocoder.search(search_params[:query]).first
     else
       raise "#{search_params.inspect}Boo"
     end
