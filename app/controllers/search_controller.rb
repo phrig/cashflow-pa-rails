@@ -15,21 +15,21 @@ class SearchController < ApplicationController
     end
 
     @result = Geocoder.search(search_params[:query]).first
-
-    @result_lat = @result.geometry['location']['lat']
-    @result_lng = @result.geometry['location']['lng']
-
-    transactions = get_transactions(@result_lat, @result_lng, 5)
-
-    @markers = []
-    transactions.each do |transaction|
-      @markers << {:latlng => transaction.lat_lng, :popup => transaction.description}
-    end
-
     if @result
       if in_pennsylvania?(@result)
-        @result
+
+        @result_lat = @result.geometry['location']['lat']
+        @result_lng = @result.geometry['location']['lng']
+
+        transactions = get_transactions(@result_lat, @result_lng, 5)
+
+        @markers = []
+        transactions.each do |transaction|
+          @markers << {:latlng => transaction.lat_lng, :popup => transaction.description}
+        end
+
         @location_error = { error: false }
+
       else
         @location_error = {
           error: true, message: 'You searched for a location outside Pennsylvania.'
