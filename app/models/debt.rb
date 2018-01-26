@@ -55,7 +55,7 @@ class Debt < ApplicationRecord
                       .where('debt_reporting_location_1_long >= ?', long_ranges[:min_long])
 
     center = Geokit::LatLng.new(lat, long)
-
+    binding.pry
     distances = debts.map do |debt|
       center.distance_to(debt.lat_lng)
     end
@@ -69,6 +69,7 @@ class Debt < ApplicationRecord
   end
 
   def description
-    "$#{sprintf('%.2f', debt_amount)} was paid for #{ debt_description}."
+    "debt amount: $#{sprintf('%.2f', debt_amount)}, debt description: #{ debt_description}, debt accrual date: #{debt_accrual_date},  filer id: #{filer_id}."
   end
+
 end
