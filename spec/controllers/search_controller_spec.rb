@@ -22,6 +22,26 @@ RSpec.describe SearchController, type: :controller do
         do_action
         expect(assigns(:location_error)).to eq( { error: false } )
       end
+
+      context 'when there are transactions' do
+        let!(:local_debt) { FactoryBot.create(:debt) }
+        let!(:local_expense) { FactoryBot.create(:expense) }
+        let!(:far_debt) { FactoryBot.create(:debt,
+          debt_reporting_location_1_lat: 45.522781, debt_reporting_location_1_long: -122.6779265 ) }
+
+        context 'when there are nearby transactions' do
+          it 'returns two nearby transactions' do
+            do_action
+            lat_lngs = assigns(:markers).map{ |hash| hash[:latlng] }
+            expect(lat_lngs).to contain_exactly(local_debt.lat_lng, local_expense.lat_lng)
+          end
+        end
+
+        it 'does not return transactions from far away' do
+          do_action
+          expect(assigns(:markers).map{ |hash| hash[:latlng] }).not_to include(far_debt.lat_lng)
+        end
+      end
     end
 
     context 'when a result is not in PA' do
