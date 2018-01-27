@@ -1,4 +1,5 @@
 class Contribution < ApplicationRecord
+  require 'geokit'
 
   def self.get_nearby(lat, long, dist)
 
@@ -9,7 +10,14 @@ class Contribution < ApplicationRecord
                       .where('contributor_location_1_lat >= ?', lat_ranges[:min_lat])
                       .where('contributor_location_1_long <= ?', long_ranges[:max_long])
                       .where('contributor_location_1_long >= ?', long_ranges[:min_long])
-    contributions
+
+    center = Geokit::LatLng.new(lat, long)
+
+    distances = contributions.map do |contribution|
+      center.distance_to(contribution.lat_lng)
+    end
+
+    contributions.zip(distances)
   end
 
   def lat_lng
@@ -18,7 +26,7 @@ class Contribution < ApplicationRecord
   end
 
   def description
-    "#{contributor} gave $#{contribution_amount} (#{contribution_description})."
+    "#{contributor} gave $#{sprintf('%.2f', contribution_amount)} (#{contribution_description})."
   end
 
 end

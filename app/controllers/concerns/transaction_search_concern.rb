@@ -4,16 +4,18 @@ module TransactionSearchConcern
   def get_transactions(result_lat, result_lng, distance)
     transactions = []
 
-    expenses = Expense.get_nearby_expenses(result_lat, result_lng, distance)
+    expenses = Expense.get_nearby(result_lat, result_lng, distance)
     debts = Debt.get_nearby(result_lat, result_lng, distance)
     receipts = Receipt.get_nearby(result_lat, result_lng, distance)
     contributions = Contribution.get_nearby(result_lat, result_lng, distance)
 
-    expenses.map{ |expense| transactions.push(expense) }
-    debts.map{ |debt| transactions.push(debt) }
-    receipts.map{ |receipt| transactions.push(receipt) }
-    contributions.map{ |contribution| transactions.push(contribution) }
-
     transactions
+      .concat(expenses)
+      .concat(debts)
+      .concat(receipts)
+      .concat(contributions)
+      .sort_by(&:last)
+      .map(&:first)
+      .slice(0,50)
   end
 end

@@ -1,4 +1,5 @@
 class Receipt < ApplicationRecord
+  require 'geokit'
 
   def self.get_nearby(lat, long, dist)
 
@@ -10,6 +11,14 @@ class Receipt < ApplicationRecord
                       .where('receipt_location_1_long <= ?', long_ranges[:max_long])
                       .where('receipt_location_1_long >= ?', long_ranges[:min_long])
     receipts
+
+    center = Geokit::LatLng.new(lat, long)
+
+    distances = receipts.map do |receipt|
+      center.distance_to(receipt.lat_lng)
+    end
+
+    receipts.zip(distances)
   end
 
   def lat_lng
@@ -18,6 +27,6 @@ class Receipt < ApplicationRecord
   end
 
   def description
-    "#{name} received $#{receipt_amount} for #{receipt_description}."
+    "#{name} received $#{sprintf('%.2f', receipt_amount)} for #{receipt_description}."
   end
 end

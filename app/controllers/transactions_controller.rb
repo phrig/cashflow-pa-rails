@@ -13,7 +13,7 @@ class TransactionsController < ApplicationController
     #   raise TypeError, "Unknown transaction type: #{type_class}"
     # end
 
-    transactions = type_class.get_nearby_expenses(point['latitude'], point['longitude'], distance)
+    transactions = type_class.get_nearby(point['latitude'], point['longitude'], distance)
 
     results = { }
 
