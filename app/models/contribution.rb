@@ -26,7 +26,7 @@ class Contribution < ApplicationRecord
   end
 
   def description
-    "#{contributor} gave $#{sprintf('%.2f', contribution_amount)} (#{contribution_description})."
+    "Contribution: #{contributor} gave $#{sprintf('%.2f', contribution_amount)} on #{contribution_date.strftime("%m/%d/%Y")}#{contribution_description ? " for" + contribution_description + "." : ". No contribution description provided."} Filer id: #{filer_id}."
   end
 
 end

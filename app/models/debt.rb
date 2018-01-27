@@ -69,7 +69,7 @@ class Debt < ApplicationRecord
   end
 
   def description
-    "debt amount: $#{sprintf('%.2f', debt_amount)}, debt description: #{ debt_description}, debt accrual date: #{debt_accrual_date},  filer id: #{filer_id}."
+    "Debt: $#{sprintf('%.2f', debt_amount)} was accrued on #{debt_accrual_date.strftime("%m/%d/%Y")}#{debt_description ? " for" + debt_description + "." : ". No debt description provided."}. (Filer ID: #{filer_id})"
   end
 
 end

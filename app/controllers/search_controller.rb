@@ -22,7 +22,7 @@ class SearchController < ApplicationController
         @result_lng = @result.geometry['location']['lng']
 
         transactions = get_transactions(@result_lat, @result_lng, 5)
-        
+        binding.pry
         @markers = []
         transactions.each do |transaction|
           @markers << {:latlng => transaction.lat_lng, :popup => transaction.description}

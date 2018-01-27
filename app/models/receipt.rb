@@ -27,6 +27,6 @@ class Receipt < ApplicationRecord
   end
 
   def description
-    "#{name} received $#{sprintf('%.2f', receipt_amount)} for #{receipt_description}."
+    "Receipt: #{name} received $#{sprintf('%.2f', receipt_amount)} for #{receipt_description ? " for" + receipt_description + "." : ". No receipt description provided."}."
   end
 end
