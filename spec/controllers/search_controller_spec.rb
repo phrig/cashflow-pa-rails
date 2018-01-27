@@ -35,6 +35,15 @@ RSpec.describe SearchController, type: :controller do
             lat_lngs = assigns(:markers).map{ |hash| hash[:latlng] }
             expect(lat_lngs).to contain_exactly(local_debt.lat_lng, local_expense.lat_lng)
           end
+
+          it 'returns the correct transaction descriptions' do
+            do_action
+            popups = assigns(:markers).map{ |hash| hash[:popup] }
+            expect(popups).to contain_exactly(
+              "12345678 (Filer_id) paid $25000.00 to Committee to Elect Ben Franklin on 04/24/2017 for <em>Hoagies</em>.",
+              "debt amount: $40000.00, debt description: Hoagies, debt accrual date: 2017-04-25, filer id: 12345678."
+            )
+          end
         end
 
         it 'does not return transactions from far away' do
