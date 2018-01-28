@@ -6,6 +6,18 @@ class SearchController < ApplicationController
 
   before_action :search_params
 
+  def icon_characteristics
+    {
+      icon_url: 'assets/leaf-green.png',
+      shadow_url: 'assets/leaf-shadow.png',
+      icon_size: [38, 95],
+      shadow_size: [50, 64],
+      icon_anchor: [22, 94],
+      shadow_anchor: [4, 62],
+      popup_anchor: [-3, -76]
+    }
+  end
+
   def search_results
 
     File.open('doc/PA_State.geojson', 'r') do |file|
@@ -30,7 +42,7 @@ class SearchController < ApplicationController
       transactions = get_transactions(@result_lat, @result_lng, 5)
 
       @markers = transactions.map do |transaction|
-        {latlng: transaction.lat_lng, popup: transaction.description}
+        { latlng: transaction.lat_lng, popup: transaction.description, icon: icon_characteristics }
       end
 
       @location_error = { error: false }
