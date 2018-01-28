@@ -12,7 +12,7 @@
           %table.table
             -@markers&.each do |marker|
               %tr
-                %td
+                %td{:id => "#{marker[:id]}"}
                   %p= marker[:popup].html_safe
     .panel.panel-default
       .panel-heading
