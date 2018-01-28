@@ -10,10 +10,10 @@
       #collapseOne.panel-collapse.collapse
         .panel-body
           %table.table
-            -@markers&.each do |m|
+            -@markers&.each do |marker|
               %tr
                 %td
-                  %p= m[:popup].html_safe
+                  %p= marker[:popup].html_safe
     .panel.panel-default
       .panel-heading
         %h4.panel-title
