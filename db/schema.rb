@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171024015918) do
+ActiveRecord::Schema.define(version: 20180128235550) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -197,6 +197,7 @@ ActiveRecord::Schema.define(version: 20171024015918) do
     t.integer "state_fips"
     t.integer "county_fips"
     t.string "county_name"
+    t.string "filer_type_code"
   end
 
   create_table "house_districts", force: :cascade do |t|
