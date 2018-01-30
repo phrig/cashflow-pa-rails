@@ -12,7 +12,8 @@
           %table.table
             -@markers&.each do |marker|
               %tr
-                %td{:id => "#{marker[:id]}"}
+                %td{:id => "#{marker[:id]}",
+                    :onclick => "map.panTo(#{marker[:latlng]})"}
                   %p= marker[:popup].html_safe
     .panel.panel-default
       .panel-heading
