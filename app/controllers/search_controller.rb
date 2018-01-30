@@ -30,8 +30,11 @@ class SearchController < ApplicationController
       transactions = get_transactions(@result_lat, @result_lng, 5)
 
       @markers = transactions.map do |transaction|
-
-        {latlng: transaction.lat_lng, popup: transaction.description, id: "#{transaction.class.name}_#{transaction.id}" }
+        {
+          latlng: transaction.lat_lng,
+          popup: transaction.description,
+          id: "#{transaction.class.name}_#{transaction.id}",
+        }
       end
 
       @location_error = { error: false }
