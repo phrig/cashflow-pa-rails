@@ -23,12 +23,11 @@ class SearchController < ApplicationController
 
         transactions = get_transactions(@result_lat, @result_lng, 5)
         
-        @markers = []
-        transactions.each do |transaction|
-          @markers << {:latlng => transaction.lat_lng, :popup => transaction.description}
-        end
+      @markers = transactions.map do |transaction|
+        { latlng: transaction.lat_lng, popup: transaction.description, icon:transaction.icon }
+      end
 
-        @location_error = { error: false }
+      @location_error = { error: false }
 
       else
         @location_error = {

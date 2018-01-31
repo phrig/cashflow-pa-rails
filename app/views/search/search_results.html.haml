@@ -2,6 +2,7 @@
 = render 'shared/navbar'
 :javascript
   checkLocationError(#{@location_error.to_json.html_safe})
+
 .container-fluid
   .row
     .col-xs-9.col-md-9
@@ -10,4 +11,5 @@
               geojsons: [ { geojson: @pa_state_geojson } ],
               :markers => @markers,
               )
+
     = render 'shared/sidebar'
