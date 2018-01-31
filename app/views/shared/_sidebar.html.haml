@@ -10,9 +10,9 @@
       #collapseOne.panel-collapse.collapse
         .panel-body
           %table.table
-            -@markers&.each do |marker|
+            -@markers&.each_with_index do |marker, index|
               %tr
-                %td{:id => "#{marker[:id]}",
+                %td{:tabindex => "#{index}", :id => "#{marker[:id]}",
                     :onclick => "map.panTo(#{marker[:latlng]})"}
                   %p= marker[:popup].html_safe
     .panel.panel-default
@@ -24,9 +24,9 @@
       #collapseTwo.panel-collapse.collapse
         .panel-body
           %table.table
-            -@filers&.each do |filer_id, filer|
+            -@filers&.each_with_index do |(filer_id, filer), index|
               %tr
-                %td
+                %td{:tabindex => "#{index}"}
                   %p= filer[:filer_name]
 
     .panel.panel-default

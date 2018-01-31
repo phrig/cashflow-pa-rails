@@ -2,3 +2,17 @@
   height: 450px;
   width: 100%;
 }
+
+#collapseOne, #collapseTwo {
+  overflow: scroll;
+  height: 50vh;
+  td {
+    color: #0090B2;
+    &:hover {
+      background-color: #FF7A00;
+    }
+    &:focus {
+      background-color: red;
+    }
+  }
+}
