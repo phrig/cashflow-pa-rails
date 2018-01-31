@@ -30,10 +30,6 @@ class Expense < ApplicationRecord
     "Expense: #{filer_id} (Filer_id) paid $#{sprintf('%.2f', expense_amount)} to #{name} on #{expense_date.strftime("%m/%d/%Y")} for <em>#{expense_description}</em>."
   end
 
-  def type
-    "expense"
-  end
-
   def icon
     {
       icon_url: 'assets/icon-yellow-minus.png',

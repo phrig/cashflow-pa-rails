@@ -72,10 +72,6 @@ class Debt < ApplicationRecord
     "debt amount: $#{sprintf('%.2f', debt_amount)}, debt description: #{ debt_description}, debt accrual date: #{debt_accrual_date},  filer id: #{filer_id}."
   end
 
-  def type
-    "debt"
-  end
-
   def icon
     {
       icon_url: 'assets/icon-yellow-minus.png',

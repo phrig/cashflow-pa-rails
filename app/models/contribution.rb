@@ -29,10 +29,6 @@ class Contribution < ApplicationRecord
     "Contribution: #{contributor} gave $#{sprintf('%.2f', contribution_amount)} (#{contribution_description})."
   end
 
-  def type
-    "contribution"
-  end
-
   def icon
     {
       icon_url: 'assets/icon-lightblue-plus.png',
@@ -44,5 +40,7 @@ class Contribution < ApplicationRecord
       popup_anchor: [0, -34]
     }
   end
+
+
 
 end

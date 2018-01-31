@@ -29,10 +29,6 @@ class Receipt < ApplicationRecord
   def description
     "Receipt: #{name} received $#{sprintf('%.2f', receipt_amount)} for #{receipt_description}."
   end
-  
-  def type
-    "receipt"
-  end
 
   def icon
     {
