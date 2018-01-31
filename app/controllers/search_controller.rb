@@ -37,6 +37,11 @@ class SearchController < ApplicationController
         }
       end
 
+      @filers = transactions.map { |transaction| transaction.filer_id }
+        .uniq
+        .map { |filer_id| [filer_id, Filer.find_by(filer_id: filer_id)] }
+        .to_h
+
       @location_error = { error: false }
 
     else
