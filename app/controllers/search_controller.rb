@@ -29,9 +29,9 @@ class SearchController < ApplicationController
 
       transactions = get_transactions(@result_lat, @result_lng, 5)
 
-      @markers = transactions.map do |transaction|
-        {latlng: transaction.lat_lng, popup: transaction.description}
-      end
+      @markers = get_markers(transactions)
+      @bounds = get_bounds
+      @filers = get_filers(transactions)
 
       @location_error = { error: false }
 
@@ -43,6 +43,30 @@ class SearchController < ApplicationController
   end
 
   private
+
+  def get_markers(transactions)
+    transactions.map do |transaction|
+      {
+        latlng: transaction.lat_lng,
+        popup: transaction.description,
+        id: "#{transaction.class.name}_#{transaction.id}",
+      }
+    end
+  end
+
+  def get_bounds
+    points = @markers.map { |marker| marker[:latlng] }
+    lats = points.map(&:first)
+    lngs = points.map(&:last)
+    [[lats.min, lngs.min], [lats.max, lngs.max]]
+  end
+
+  def get_filers(transactions)
+    transactions.map { |transaction| transaction.filer_id }
+      .uniq
+      .map { |filer_id| [filer_id, Filer.find_by(filer_id: filer_id)] }
+      .to_h
+  end
 
   def search_params
     params.permit(:query)
