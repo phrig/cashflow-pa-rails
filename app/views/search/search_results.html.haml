@@ -2,6 +2,7 @@
 = render 'shared/navbar'
 :javascript
   checkLocationError(#{@location_error.to_json.html_safe})
+
 .container-fluid
   .row
     .col-xs-9.col-md-9
@@ -11,4 +12,5 @@
               :markers => @markers,
               :fitbounds => @bounds,
               )
+
     = render 'shared/sidebar'
