@@ -2,12 +2,15 @@
 = render 'shared/navbar'
 :javascript
   checkLocationError(#{@location_error.to_json.html_safe})
+
 .container-fluid
   .row
     .col-xs-9.col-md-9
       #results_map
-        = map(center: { latlng: [@result_lat, @result_lng], zoom: 10},
+        = map(center: { latlng: [@result_lat, @result_lng], zoom: 18},
               geojsons: [ { geojson: @pa_state_geojson } ],
               :markers => @markers,
+              :fitbounds => @bounds,
               )
+
     = render 'shared/sidebar'

@@ -17,5 +17,7 @@
 //= require leaflet
 //= require Leaflet.GoogleMutant
 //= require leaflet-cash-flow
+//= require leaflet.awesome-markers
 //= require search
 //= require_tree .
+
