@@ -2,14 +2,18 @@
 = render 'shared/navbar'
 :javascript
   checkLocationError(#{@location_error.to_json.html_safe})
+- unless @location_error[:error]
+  :javascript
+    initalCenter = #{[@result_lat, @result_lng]}
+    markerData = #{@markers.to_json.html_safe}
+    bounds = #{@bounds}
 
 .row
   .col-xs-8
-    #results_map
-      = map(center: { latlng: [@result_lat, @result_lng], zoom: 18},
-            geojsons: [ { geojson: @pa_state_geojson } ],
-            :markers => @markers,
-            :fitbounds => @bounds,
-            )
+    #map
 
   = render 'shared/sidebar'
+
+- unless @location_error[:error]
+  :javascript
+    map = L.map('map').setView(initalCenter, 15)
