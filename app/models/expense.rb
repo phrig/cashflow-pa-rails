@@ -27,7 +27,7 @@ class Expense < ApplicationRecord
   end
 
   def description
-    "Expense: #{filer_id} (Filer_id) paid $#{sprintf('%.2f', expense_amount)} to #{name} on #{expense_date.strftime("%m/%d/%Y")} for <em>#{expense_description}</em>."
+    "Expense: #{filer_id} (Filer_id) paid $#{sprintf('%.2f', expense_amount)} to #{name} on #{expense_date&.strftime("%m/%d/%Y")} for <em>#{expense_description}</em>."
   end
 
   def icon

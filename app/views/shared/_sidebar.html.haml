@@ -5,49 +5,30 @@
         %h4.panel-title
           %a{'data-parent' => '#accordion', 'data-toggle' => 'collapse', href: '#collapseOne'}
             %span.glyphicon.glyphicon-folder-close>
-            Sample Accordian Menu
+            Nearby Transactions
+            ="(#{@markers.count} found)" if @markers
       #collapseOne.panel-collapse.collapse
         .panel-body
           %table.table
-            %tr
-              %td
-                %span.glyphicon.glyphicon-pencil.text-primary
-                %a{ href: '#'} Articles
-            %tr
-              %td
-                %span.glyphicon.glyphicon-flash.text-success
-                %a{ href: '#'} News
-            %tr
-              %td
-                %span.glyphicon.glyphicon-file.text-info
-                %a{ href: '#'} Newsletters
-            %tr
-              %td
-                %span.glyphicon.glyphicon-comment.text-success
-                %a{ href: '#'} Comments
-                %span.badge 42
+            -@markers&.each do |marker|
+              %tr
+                %td{:id => "#{marker[:id]}",
+                    :onclick => "map.panTo(#{marker[:latlng]})"}
+                  %p= marker[:popup].html_safe
     .panel.panel-default
       .panel-heading
         %h4.panel-title
           %a{'data-parent' => '#accordion', 'data-toggle' => 'collapse',  href: '#collapseTwo'}
             %span.glyphicon.glyphicon-th>
-            Modules
+            Filers
       #collapseTwo.panel-collapse.collapse
         .panel-body
           %table.table
-            %tr
-              %td
-                %a{ href: '#'} Orders
-                %span.label.label-success $ 320
-            %tr
-              %td
-                %a{ href: '#'} Invoices
-            %tr
-              %td
-                %a{ href: '#'} Shipments
-            %tr
-              %td
-                %a{ href: '#'} Tex
+            -@filers&.each do |filer_id, filer|
+              %tr
+                %td
+                  %p= filer[:filer_name]
+
     .panel.panel-default
       .panel-heading
         %h4.panel-title
