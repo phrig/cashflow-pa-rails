@@ -23,7 +23,6 @@ gem 'sass-rails'
 gem 'coffee-rails'
 gem 'jquery-rails'
 gem 'turbolinks'
-gem 'leaflet-rails'
 gem 'leaflet-awesome-markers-rails', '~> 2.0'
 gem 'uglifier'
 

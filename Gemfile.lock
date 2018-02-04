@@ -131,8 +131,6 @@ GEM
       thor (>= 0.14, < 2.0)
     leaflet-awesome-markers-rails (2.0.2)
       rails (>= 4.0.1)
-    leaflet-rails (1.2.0)
-      rails (>= 4.2.0)
     listen (3.1.5)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -290,7 +288,6 @@ DEPENDENCIES
   jbuilder (~> 2.5)
   jquery-rails
   leaflet-awesome-markers-rails (~> 2.0)
-  leaflet-rails
   listen (>= 3.0.5, < 3.2)
   pg
   pry
