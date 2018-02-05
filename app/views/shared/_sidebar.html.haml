@@ -13,7 +13,7 @@
             -@markers&.each_with_index do |marker, index|
               %tr
                 %td{:tabindex => "#{index}", :id => "#{marker[:id]}",
-                    :onclick => "map.panTo(#{marker[:latlng]})"}
+                  :onclick => "marker.bindPopup(\"#{marker[:popup]}\").openPopup(#{marker[:latlng]});map.panTo(#{marker[:latlng]});" }
                   %p= marker[:popup].html_safe
     .panel.panel-default
       .panel-heading
