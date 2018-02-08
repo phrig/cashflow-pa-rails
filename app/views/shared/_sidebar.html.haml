@@ -1,10 +1,10 @@
-.col-sm-3.col-md-3
+.col-xs-4
   #accordion.panel-group
     .panel.panel-default
       .panel-heading
         %h4.panel-title
           %a{'data-parent' => '#accordion', 'data-toggle' => 'collapse', href: '#collapseOne'}
-            %span.glyphicon.glyphicon-folder-close>
+            %span.fas.fa-money-bill-alt
             Nearby Transactions
             ="(#{@markers.count} found)" if @markers
       #collapseOne.panel-collapse.collapse
@@ -19,7 +19,7 @@
       .panel-heading
         %h4.panel-title
           %a{'data-parent' => '#accordion', 'data-toggle' => 'collapse',  href: '#collapseTwo'}
-            %span.glyphicon.glyphicon-th>
+            %span.fas.fa-users
             Filers
       #collapseTwo.panel-collapse.collapse
         .panel-body
@@ -28,53 +28,3 @@
               %tr
                 %td{:tabindex => "#{index}"}
                   %p= filer[:filer_name]
-
-    .panel.panel-default
-      .panel-heading
-        %h4.panel-title
-          %a{'data-parent' => '#accordion', 'data-toggle' => 'collapse', href: '#collapseThree'}
-            %span.glyphicon.glyphicon-user>
-            Account
-      #collapseThree.panel-collapse.collapse
-        .panel-body
-          %table.table
-            %tr
-              %td
-                %a{ href: '#'} Change Password
-            %tr
-              %td
-                %a{ href: '#'} Notifications
-                %span.label.label-info 5
-            %tr
-              %td
-                %a{ href: '#'} Import/Export
-            %tr
-              %td
-                %span.glyphicon.glyphicon-trash.text-danger
-                %a.text-danger{ href: '#'}
-                  Delete Account
-    .panel.panel-default
-      .panel-heading
-        %h4.panel-title
-          %a{'data-parent' => '#accordion', 'data-toggle' => 'collapse', href: '#collapseFour'}
-            %span.glyphicon.glyphicon-file>
-            Reports
-      #collapseFour.panel-collapse.collapse
-        .panel-body
-          %table.table
-            %tr
-              %td
-                %span.glyphicon.glyphicon-usd
-                %a{ href: '#'} Sales
-            %tr
-              %td
-                %span.glyphicon.glyphicon-user
-                %a{ href: '#'} Customers
-            %tr
-              %td
-                %span.glyphicon.glyphicon-tasks
-                %a{ href: '#'} Products
-            %tr
-              %td
-                %span.glyphicon.glyphicon-shopping-cart
-                %a{ href: '#'} Shopping Cart
