@@ -1,10 +1,11 @@
 %nav.navbar
-  = image_tag 'logo.png', :id=>'logo'
-  %div#title
-    %h1
-      Cash Flow PA
-    %h4
-      Movement of campaign money in Pennsylvania
+  %a{:href => root_path}
+    = image_tag 'logo.png', :id=>'logo'
+    %div#title
+      %h1
+        Cash Flow PA
+      %h4
+        Movement of campaign money in Pennsylvania
   %div#search.collapse.navbar-collapse
     = form_tag("/search", method: "get", class: 'navbar-form navbar-right' ) do
       = text_field_tag( :query, nil, placeholder: "Enter your address or zip",

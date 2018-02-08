@@ -4,7 +4,7 @@
       .panel-heading
         %h4.panel-title
           %a{'data-parent' => '#accordion', 'data-toggle' => 'collapse', href: '#collapseOne'}
-            %span.glyphicon.glyphicon-folder-close>
+            %span.fas.fa-money-bill-alt
             Nearby Transactions
             ="(#{@markers.count} found)" if @markers
       #collapseOne.panel-collapse.collapse
@@ -19,7 +19,7 @@
       .panel-heading
         %h4.panel-title
           %a{'data-parent' => '#accordion', 'data-toggle' => 'collapse',  href: '#collapseTwo'}
-            %span.glyphicon.glyphicon-th>
+            %span.fas.fa-users
             Filers
       #collapseTwo.panel-collapse.collapse
         .panel-body
