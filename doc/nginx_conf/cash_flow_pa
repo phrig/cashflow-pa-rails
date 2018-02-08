@@ -1,6 +1,6 @@
 server {
   passenger_ruby /home/ubuntu/.rvm/gems/ruby-2.3.4/wrappers/ruby;
-  server_name 54.146.216.72;
+  server_name 35.171.234.200;
   listen 80;
   error_log /rails/cashflow-pa-rails/current/log/error.log;
   access_log /rails/cashflow-pa-rails/current/log/access.log;

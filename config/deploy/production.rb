@@ -1,5 +1,5 @@
 # set :slack_webhook, "https://hooks.slack.com/services/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"
-server '54.146.216.72', roles: [:app, :web, :db], user: "ubuntu"
+server '35.171.234.200', roles: [:app, :web, :db], user: "ubuntu"
 set :deploy_to, '/rails/cashflow-pa-rails'
 set :default_env, {
   path: "/home/ubuntu/.rvm/gems/ruby-2.3.4/bin:$PATH"
