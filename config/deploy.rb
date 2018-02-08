@@ -2,9 +2,9 @@ lock "3.9.1"
 
 set :rvm_ruby_version, "2.3.4"
 
-set :application, "cash_flow_pa"
+set :application, "cashflow-pa-rails"
 
-set :repo_url, "git@github.com:phrig/cash_flow_pa.git"
+set :repo_url, "git@github.com:phrig/cashflow-pa-rails.git"
 set :branch, ENV['branch'] || 'master'
 
 set :linked_dirs, %w{tmp}
