@@ -1,15 +1,11 @@
-%nav.navbar.navbar-inverse.bg-inverse.navbar-toggleable-sm.header-nav
-  %button.navbar-toggle.navbar-toggler-left{'aria-controls' => 'navbarsExampleDefault', 'aria-expanded' => 'false', 'aria-label' => 'Toggle navigation', 'data-target' => '#navbarsExampleDefault', 'data-toggle' => 'collapse', :type => 'button'}
-    %span.icon-bar
-    %span.icon-bar
-    %span.icon-bar
-  = link_to image_tag('logo.png', width:100), root_path, class: 'navbar-brand'
-  #navbarsExampleDefault.collapse.navbar-collapse
-    %ul.nav.navbar-nav.mr-auto
-      %li.nav-item
-        = link_to "Link 1", root_path, class: 'nav-link'
-      %li.nav-item
-        = link_to "Link 2", root_path, class: 'nav-link'
+%nav.navbar
+  = image_tag 'logo.png', :id=>'logo'
+  %div#title
+    %h1
+      Cash Flow PA
+    %h4
+      Movement of campaign money in Pennsylvania
+  %div#search.collapse.navbar-collapse
     = form_tag("/search", method: "get", class: 'navbar-form navbar-right' ) do
       = text_field_tag( :query, nil, placeholder: "Enter your address or zip",
                         class: 'form-control mr-sm-2', 'aria-label' => 'Search' )
