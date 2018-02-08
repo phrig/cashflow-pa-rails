@@ -6,13 +6,13 @@
 
     source /home/ubuntu/.rvm/scripts/rvm
 
-    rvm install ruby-2.2.0
+    rvm install ruby-2.3.4
 
-    sudo mkdir -p /rails/cansurround
+    sudo mkdir -p /rails/cashflow-pa-rails
 
     sudo chown -R ubuntu:ubuntu /rails
 
-    rvm use ruby-2.2.0
+    rvm use ruby-2.3.4
 
     sudo sh -c 'echo deb http://apt.postgresql.org/pub/repos/apt/ xenial-pgdg main > /etc/apt/sources.list.d/pgdg.list'
 
@@ -26,7 +26,7 @@
 
     sudo -u postgres bash -c "echo 'CREATE DATABASE cash_flow_pa WITH OWNER = ubuntu' | psql"
 
-    scp cash_flow_pa_development_2017-10-10T02-03-21Z.sql.gz ubuntu@54.198.139.141:~/ (move local db to remote)
+    scp cash_flow_pa_development2017-11-01T21-47-43Z.sql.gz ubuntu@54.146.216.72:~/ (move local db to remote)
 
     gem install bundler --no-ri --no-rdoc
 
@@ -40,5 +40,5 @@
     sudo service nginx restart
     sudo /usr/bin/passenger-config validate-install
 
-    # After tweaking the config file
-    sudo ln -s /etc/nginx/sites-available/cansurround /etc/nginx/sites-enabled/ && sudo rm /etc/nginx/sites-enabled/default && sudo service nginx restart
+    # After tweaking the config file @ /etc/nginx/nginx.conf
+    sudo ln -s /etc/nginx/sites-available/cashflow-pa-rails /etc/nginx/sites-enabled/ && sudo rm /etc/nginx/sites-enabled/default && sudo service nginx restart

@@ -1,10 +1,10 @@
 server {
   passenger_ruby /home/ubuntu/.rvm/gems/ruby-2.3.4/wrappers/ruby;
-  server_name 54.198.139.141;
+  server_name 54.146.216.72;
   listen 80;
-  error_log /rails/cash_flow_pa/current/log/error.log;
-  access_log /rails/cash_flow_pa/current/log/access.log;
-  root /rails/cash_flow_pa/current/public;
+  error_log /rails/cashflow-pa-rails/current/log/error.log;
+  access_log /rails/cashflow-pa-rails/current/log/access.log;
+  root /rails/cashflow-pa-rails/current/public;
   passenger_enabled on;
   passenger_user ubuntu;
   passenger_app_env production;
