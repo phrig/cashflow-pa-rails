@@ -1,0 +1,9 @@
+$ ->
+  icon_path = '<%= image_path "icon-yellow.png" %>'
+  defaultIcon = L.icon({ iconUrl: icon_path })
+  L.gridLayer.googleMutant(type: 'roadmap').addTo(map)
+  markerData.forEach (markerPoint)->
+    marker = L.marker(markerPoint.latlng, {icon: defaultIcon}).bindPopup(markerPoint.popup)
+    map.addLayer(marker)
+
+  map.fitBounds(bounds)
