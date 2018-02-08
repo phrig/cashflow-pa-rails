@@ -25,6 +25,7 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'leaflet-rails'
 gem 'leaflet-awesome-markers-rails', '~> 2.0'
+gem 'uglifier'
 
 group :development, :test do
   gem 'pry'
