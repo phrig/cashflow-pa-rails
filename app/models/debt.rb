@@ -74,8 +74,8 @@ class Debt < ApplicationRecord
 
   def icon
     {
-      icon_url: 'assets/icon-yellow-minus.png',
-      shadow_url: 'assets/marker-shadow.png',
+      icon_url: ActionController::Base.helpers.asset_path('icon-yellow-minus.png'),
+      shadow_url: ActionController::Base.helpers.asset_path('marker-shadow.png'),
       icon_size: [25, 41],
       shadow_size: [41, 41],
       icon_anchor: [12, 41],
