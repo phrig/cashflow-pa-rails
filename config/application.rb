@@ -8,7 +8,7 @@ Dotenv::Railtie.load
 
 HOSTNAME = ENV['HOSTNAME']
 
-module CashFlowPa
+module CashflowPaRails
   class Application < Rails::Application
 
     config.middleware.insert_before 0, Rack::Cors do
