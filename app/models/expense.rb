@@ -1,4 +1,5 @@
 class Expense < ApplicationRecord
+  include TransactionConcern
   include RangeFinder
   require 'geokit'
 
