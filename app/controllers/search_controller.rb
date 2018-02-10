@@ -49,8 +49,7 @@ class SearchController < ApplicationController
       {
         latlng: transaction.lat_lng,
         popup: transaction.description,
-        id: "#{transaction.class.name}_#{transaction.id}",
-        icon: transaction.icon,
+        id: "#{transaction.class.name.downcase}-#{transaction.id}"
       }
     end
   end
