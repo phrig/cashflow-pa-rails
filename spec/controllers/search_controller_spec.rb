@@ -43,8 +43,8 @@ RSpec.describe SearchController, type: :controller do
             do_action
             popups = assigns(:markers).map{ |hash| hash[:popup] }
             expect(popups).to contain_exactly(
-              "Expense: 12345678 (Filer_id) paid $25000.00 to Committee to Elect Ben Franklin on 04/24/2017 for <em>Hoagies</em>.",
-              "debt amount: $40000.00, debt description: Hoagies, debt accrual date: 2017-04-25, filer id: 12345678."
+              "Expense: Daddy Warbucks paid $25000.00 to Committee to Elect Ben Franklin on 04/24/2017 for <em>Hoagies</em>.",
+              "Debt: $40000.00, debt description: Hoagies, debt accrual date: 2017-04-25, filer: Daddy Warbucks."
             )
           end
         end
