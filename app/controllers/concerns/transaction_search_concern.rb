@@ -16,6 +16,5 @@ module TransactionSearchConcern
       .concat(contributions)
       .sort_by(&:last)
       .map(&:first)
-      .slice(0,50)
   end
 end
