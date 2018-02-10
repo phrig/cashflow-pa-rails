@@ -16,7 +16,7 @@ getIcon = (markerType)->
       popupAnchor: [0, -34]
     })
 
-$ ->
+@loadMarkers = ()->
   L.gridLayer.googleMutant(type: 'roadmap').addTo(map) # Add Google map tiles
 
   markerData.forEach (markerPoint)->
