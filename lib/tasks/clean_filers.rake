@@ -2,9 +2,13 @@ require 'csv'
 
 namespace :clean_filers do
 
-  task srip_whitespace_from_names: :environment do
+  task strip_whitespace: :environment do
     Filer.all.map do |filer|
-      filer.filer_name.strip!
+      filer.attributes.values.map do |value|
+        if value.is_a?(String)
+          value.strip!
+        end
+      end
       filer.save
     end
   end
