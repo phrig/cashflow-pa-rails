@@ -64,10 +64,12 @@ class SearchController < ApplicationController
   end
 
   def get_filers(transactions)
-    transactions.map { |transaction| transaction.filer_id }
-      .uniq
-      .map { |filer_id| [filer_id, Filer.find_by(filer_id: filer_id)] }
-      .to_h
+    filers = {}
+    transactions.map do |transaction|
+      filer = transaction.filer
+      filers[filer.filer_id] = filer
+    end
+    filers
   end
 
   def search_params
