@@ -1,4 +1,5 @@
 class Debt < ApplicationRecord
+  include TransactionConcern
   require 'geokit'
 
   def to_geojson
