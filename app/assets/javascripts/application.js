@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap-sprockets
+//= require image_path
 //= require leaflet
 //= require Leaflet.GoogleMutant
 //= require leaflet-cashflow

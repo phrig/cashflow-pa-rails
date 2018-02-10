@@ -1,0 +1,14 @@
+# refs: http://dennisreimann.de/blog/referencing-rails-assets-in-coffeescript/
+<%
+image_path_map = {}
+Dir.chdir("#{Rails.root}/app/assets/images/") do
+  image_path_map = Dir.glob('**/*').inject({}) do |result, filepath|
+    next result if File::ftype(filepath) == 'directory'
+    result.merge(filepath => image_path(filepath))
+  end
+end
+%>
+
+window.image_path = (name) ->
+  image_path = <%= image_path_map.to_json %>[name]
+  image_path ? name
