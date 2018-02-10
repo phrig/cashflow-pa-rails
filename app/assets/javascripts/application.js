@@ -16,7 +16,7 @@
 //= require bootstrap-sprockets
 //= require leaflet
 //= require Leaflet.GoogleMutant
-//= require leaflet-cash-flow
+//= require leaflet-cashflow
 //= require leaflet.awesome-markers
 //= require search
 //= require_tree .
