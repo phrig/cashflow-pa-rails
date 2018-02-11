@@ -1,4 +1,5 @@
 require 'geocoder'
+require 'will_paginate/array'
 
 class SearchController < ApplicationController
   include LocationSearchConcern
@@ -29,7 +30,9 @@ class SearchController < ApplicationController
 
       transactions = get_transactions(@result_lat, @result_lng, 5)
 
-      @markers = get_markers(transactions)
+      @transactions_count = transactions.count
+
+      @markers = get_markers(transactions).paginate(page: params[:page], per_page: 50)
       @bounds = get_bounds
       @filers = get_filers(transactions)
 
