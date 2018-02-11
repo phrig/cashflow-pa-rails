@@ -1,0 +1,31 @@
+getIcon = (markerType)->
+  iconPath = switch
+    when markerType == 'expense' then image_path('icon-yellow-minus.png')
+    when markerType == 'contribution' then image_path('icon-lightblue-plus.png')
+    when markerType == 'debt' then image_path('icon-yellow-minus.png')
+    when markerType == 'receipt' then image_path('icon-lightblue-plus.png')
+    else image_path('marker-icon.png')
+
+  return L.icon({
+      iconUrl: iconPath,
+      shadowUrl: 'assets/marker-shadow.png',
+      iconSize: [25, 41],
+      shadowSize: [41, 41],
+      iconAnchor: [12, 41],
+      shadowAnchor: [12, 41],
+      popupAnchor: [0, -34]
+    })
+
+@loadMarkers = ()->
+  L.gridLayer.googleMutant(type: 'roadmap').addTo(map) # Add Google map tiles
+
+  markerData.forEach (markerPoint)->
+
+    markerPoint[markerPoint.id] = L.marker(
+        markerPoint.latlng,
+        { icon: getIcon(markerPoint.marker_type) }
+      ).bindPopup(markerPoint.popup).addTo(map)
+
+    markerPoint[markerPoint.id]._icon.id = markerPoint.id;
+
+  map.fitBounds(bounds)

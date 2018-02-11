@@ -46,11 +46,12 @@ class SearchController < ApplicationController
 
   def get_markers(transactions)
     transactions.map do |transaction|
+      transaction_type = transaction.class.name.downcase
       {
         latlng: transaction.lat_lng,
         popup: transaction.description,
-        id: "#{transaction.class.name}_#{transaction.id}",
-        icon: transaction.icon,
+        id: "#{transaction_type}-#{transaction.id}",
+        marker_type: transaction_type
       }
     end
   end

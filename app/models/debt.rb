@@ -71,17 +71,4 @@ class Debt < ApplicationRecord
   def description
     "debt amount: $#{sprintf('%.2f', debt_amount)}, debt description: #{ debt_description}, debt accrual date: #{debt_accrual_date}, filer id: #{filer_id}."
   end
-
-  def icon
-    {
-      icon_url: ActionController::Base.helpers.asset_path('icon-yellow-minus.png'),
-      shadow_url: ActionController::Base.helpers.asset_path('marker-shadow.png'),
-      icon_size: [25, 41],
-      shadow_size: [41, 41],
-      icon_anchor: [12, 41],
-      shadow_anchor: [12, 41],
-      popup_anchor: [0, -34]
-    }
-  end
-  
 end
