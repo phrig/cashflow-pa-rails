@@ -1,4 +1,5 @@
 class Receipt < ApplicationRecord
+  include TransactionConcern
   require 'geokit'
 
   def self.get_nearby(lat, long, dist)

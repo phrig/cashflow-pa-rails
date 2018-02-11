@@ -1,4 +1,5 @@
 class Debt < ApplicationRecord
+  include TransactionConcern
   require 'geokit'
 
   def to_geojson
@@ -69,6 +70,6 @@ class Debt < ApplicationRecord
   end
 
   def description
-    "debt amount: $#{sprintf('%.2f', debt_amount)}, debt description: #{ debt_description}, debt accrual date: #{debt_accrual_date}, filer id: #{filer_id}."
+    "Debt: $#{sprintf('%.2f', debt_amount)}, debt description: #{ debt_description}, debt accrual date: #{debt_accrual_date}, filer: #{filer.filer_name}."
   end
 end
