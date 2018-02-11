@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
   resources :expenses, only: :index
 
-  resources :filers, only: :index
+  resources :filers, only: [:show, :index]
 
   resources :receipts, only: :index
 
