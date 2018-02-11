@@ -12,6 +12,8 @@ class Filer < ApplicationRecord
       'Political Party Committee'
     when 'MCC'
       'ACBA JUDICIAL EXCELLENCE COMMITTEE'
+    when 'Lobbyist'
+      'Lobbyist'
     else
       'Unknown'
     end
