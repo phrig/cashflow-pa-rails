@@ -1,1 +1,7 @@
 = render "/shared/navbar.html.haml"
+= form_tag("/search", method: "get") do
+  .input-group
+    = text_field_tag( :query, nil, placeholder: "Enter your address or zip",
+                      class: 'form-control', 'aria-label' => 'Search' )
+    %span.input-group-btn
+      = button_to('Search', nil, class: 'btn btn-default')

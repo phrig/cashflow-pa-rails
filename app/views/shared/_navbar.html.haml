@@ -6,8 +6,3 @@
         Cash Flow PA
       %h4
         Movement of campaign money in Pennsylvania
-  %div#search.collapse.navbar-collapse
-    = form_tag("/search", method: "get", class: 'navbar-form navbar-right' ) do
-      = text_field_tag( :query, nil, placeholder: "Enter your address or zip",
-                        class: 'form-control mr-sm-2', 'aria-label' => 'Search' )
-      = button_to('Search', nil, class: 'btn btn-default')
