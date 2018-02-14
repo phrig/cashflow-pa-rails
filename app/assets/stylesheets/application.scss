@@ -43,6 +43,7 @@ h4 {
 }
 
 #logo {
+  float:none;
   display:inline-block;
   vertical-align:middle;
   width: 100px;
@@ -63,4 +64,14 @@ footer {
   border-color: #82CCE2;
   margin-top: 1em;
   padding-top: 1em;
+}
+
+.pagination {
+  margin: 0;
+  padding: 0;
+}
+
+.panel-map {
+  padding: 0;
+  margin:0;
 }

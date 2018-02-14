@@ -7,10 +7,14 @@
     initalCenter = #{[@result_lat, @result_lng]}
     markerData = #{@markers.to_json.html_safe}
     bounds = #{@bounds}
-
+    
 .row
   .col-xs-8
-    #map
+    .panel.panel-default
+      .panel-heading
+        Select a marker to see the description
+      .panel-body.panel-map
+        #map
 
   = render 'shared/sidebar'
 
