@@ -1,7 +1,32 @@
-= render "/shared/navbar.html.haml"
-= form_tag("/search", method: "get") do
-  .input-group
-    = text_field_tag( :query, nil, placeholder: "Enter your address or zip",
-                      class: 'form-control', 'aria-label' => 'Search' )
-    %span.input-group-btn
-      = button_to('Search', nil, class: 'btn btn-default')
+#hero-image.jumbotron.text-center
+  .row
+    = image_tag 'logo.svg'
+    %h1 Cash Flow PA
+    %h4 Movement of campaign money in Pennsylvania
+  .row
+    .col-xs-3
+    .col-xs-6
+      = form_tag("/search", method: "get") do
+        %h5 Enter an address to see campaign contributions and expenses nearby:
+        .input-group
+          = text_field_tag( :query, nil, placeholder: "Enter your address or zip",
+                            class: 'form-control', 'aria-label' => 'Search' )
+          %span.input-group-btn
+            = button_to('Search', nil, class: 'btn btn-default')
+    .col-xs-3
+.row
+  .col-xs-4
+    %h5
+      Interesting fact zone
+    %p
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
+  .col-xs-4
+    %h5
+      Hmm, facts!
+    %p
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
+  .col-xs-4
+    %h5
+      All the insights fit to print
+    %p
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
