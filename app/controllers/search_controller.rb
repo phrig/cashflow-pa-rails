@@ -54,6 +54,7 @@ class SearchController < ApplicationController
         latlng: transaction.lat_lng,
         popup: transaction.description,
         id: "#{transaction_type}-#{transaction.id}",
+        filer_id: "filer_object_id-#{transaction.filer.id}",
         marker_type: transaction_type
       }
     end

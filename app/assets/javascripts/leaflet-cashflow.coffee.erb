@@ -16,6 +16,18 @@ getIcon = (markerType)->
       popupAnchor: [0, -34]
     })
 
+highlightFiler = () ->
+  marker_icon_id = this._icon.id
+  markerData.forEach (markerPoint)->
+    if markerPoint.id == marker_icon_id
+      console.log "#{markerPoint.filer_id}"
+      $("##{markerPoint.filer_id}" ).css( "border", "3px solid red" );
+      $('#collapseTwo').collapse('show')
+    else
+      $("##{markerPoint.filer_id}" ).css( "border", "none" );
+    return
+  return
+
 @loadMarkers = ()->
   L.gridLayer.googleMutant(type: 'roadmap').addTo(map) # Add Google map tiles
 
@@ -24,7 +36,7 @@ getIcon = (markerType)->
     markerPoint[markerPoint.id] = L.marker(
         markerPoint.latlng,
         { icon: getIcon(markerPoint.marker_type) }
-      ).bindPopup(markerPoint.popup).addTo(map)
+      ).bindPopup(markerPoint.popup).addTo(map).addEventListener 'click', highlightFiler
 
     markerPoint[markerPoint.id]._icon.id = markerPoint.id;
 
