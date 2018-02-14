@@ -3,6 +3,10 @@
   width: 100%;
 }
 
+#accordion {
+  cursor: pointer;
+}
+
 #collapseOne, #collapseTwo {
   overflow: scroll;
   height: 50vh;
