@@ -43,6 +43,7 @@ h4 {
 }
 
 #logo {
+  float:none;
   display:inline-block;
   vertical-align:middle;
   width: 100px;
@@ -55,4 +56,22 @@ h4 {
 
 #search {
   float: right;
+}
+
+footer {
+  color: #666;
+  border-top: 1px solid;
+  border-color: #82CCE2;
+  margin-top: 1em;
+  padding-top: 1em;
+}
+
+.pagination {
+  margin: 0;
+  padding: 0;
+}
+
+.panel-map {
+  padding: 0;
+  margin:0;
 }
