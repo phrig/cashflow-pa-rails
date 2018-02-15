@@ -20,5 +20,6 @@
 //= require leaflet-cashflow
 //= require leaflet.awesome-markers
 //= require search
+//= require leaflet.markercluster
 //= require_tree .
 
