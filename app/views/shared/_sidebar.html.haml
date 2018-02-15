@@ -37,5 +37,5 @@
           %table.table
             -@filers&.each_with_index do |(filer_id, filer), index|
               %tr
-                %td{:tabindex => "#{index}", :id => "filer_object_id-#{filer.id}"}
+                %td{:tabindex => "#{index}", :id => "filer_id-#{filer.filer_id}"}
                   %p= filer[:filer_name]
