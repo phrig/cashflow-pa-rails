@@ -8,11 +8,12 @@
     markerData = #{@markers.to_json.html_safe}
     bounds = #{@bounds}
 
-.row
-  .col-xs-8
-    #map
-
-  = render 'shared/sidebar'
+.container-fluid
+  .row
+    .col-xs-8
+      #map
+    .col-4
+      = render 'shared/sidebar'
 
 - unless @location_error[:error]
   :javascript
