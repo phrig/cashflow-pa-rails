@@ -10,6 +10,7 @@ class FilersController < ApplicationController
 
   def get_filer
     @filer = Filer.find(params[:id])
+    @transactions = @filer.transactions
   end
 end
 

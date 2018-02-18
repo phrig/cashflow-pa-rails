@@ -63,4 +63,13 @@
             %td
 
     .col-sm-4
+  .row
+    %h1
+      Filer Transactions
+    %table.table.table-striped
+      %tbody
+        - @transactions.map do | transaction |
+          %tr
+            %td
+              = transaction.description.html_safe
 
