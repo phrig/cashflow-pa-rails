@@ -1,3 +1,24 @@
 // Place all the styles related to the home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#hero-image {
+  background-image: image-url("home-background.jpg");
+  height: 50%;
+  background-position:center;
+  background-repeat:no-repeat;
+  background-size: cover;
+  position:relative;
+}
+
+.jumbotron img {
+  width: 20%;
+}
+
+.jumbotron h1, .jumbotron h5 {
+  color: #FFCE00;
+}
+
+h5 {
+  font-weight: bold;
+}

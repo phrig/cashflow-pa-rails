@@ -1,0 +1,20 @@
+// ******************* FONTS ********************* //
+
+h1, h2, h4 {
+  font-family: 'Fjalla One', verdana, arial, helvetica, sans-serif;
+  text-transform: uppercase;
+}
+
+// ******************* COLORS ******************* //
+
+$tangerine-yellow: #FFCE00;
+$middle-blue: #82CCE2;
+$smalt-blue: #002A86;
+
+footer {
+  color: #666;
+  border-top: 1px solid;
+  border-color: #82CCE2;
+  margin-top: 1em;
+  padding-top: 1em;
+}

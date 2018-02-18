@@ -19,4 +19,19 @@ class Filer < ApplicationRecord
     end
   end
 
+  def transactions
+    transactions = []
+
+    expenses = Expense.where(filer_id: filer_id, election_cycle: election_cycle)
+    debts = Debt.where(filer_id: filer_id, election_cycle: election_cycle)
+    receipts = Receipt.where(filer_id: filer_id, election_cycle: election_cycle)
+    contributions = Contribution.where(filer_id: filer_id, election_cycle: election_cycle)
+
+    transactions
+      .concat(expenses)
+      .concat(debts)
+      .concat(receipts)
+      .concat(contributions)
+  end
+
 end

@@ -1,9 +1,16 @@
 class FilersController < ApplicationController
 
-  def index
-    @filers = Filer.all.limit(50)
+  before_action :get_filer, only: :show
 
-    render json: @filers, status: 200
+  def index
   end
 
+  def show
+  end
+
+  def get_filer
+    @filer = Filer.find(params[:id])
+    @transactions = @filer.transactions
+  end
 end
+

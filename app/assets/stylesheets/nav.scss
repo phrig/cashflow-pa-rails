@@ -1,0 +1,27 @@
+nav {
+  background-color: $smalt-blue;
+  margin-top: 1em;
+}
+
+nav h1 {
+  color: $tangerine-yellow;
+}
+
+nav h4 {
+  color: $middle-blue;
+}
+
+#logo {
+  display:inline-block;
+  vertical-align:middle;
+  width: 100px;
+}
+
+#title {
+  display:inline-block;
+  vertical-align:bottom;
+}
+
+#search {
+  float: right;
+}

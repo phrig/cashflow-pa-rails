@@ -35,7 +35,8 @@
       #collapseTwo.panel-collapse.collapse
         .panel-body
           %table.table
-            -@filers&.each_with_index do |(filer_id, filer), index|
+            -@filers&.each_with_index do |filer, index|
               %tr
-                %td{:tabindex => "#{index}", :id => "filer_id-#{filer.filer_id}"}
-                  %p= filer[:filer_name]
+                %td{ tabindex: "#{index}" }
+                  %p= filer.filer_name
+                  = link_to 'View filer profile', filer_path(filer.id)
