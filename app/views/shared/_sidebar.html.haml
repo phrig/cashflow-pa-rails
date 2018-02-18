@@ -1,42 +1,41 @@
-.col-xs-4
-  .panel-group
-    .panel
-      = form_tag("/search", method: "get") do
-        .input-group
-          = text_field_tag( :query, nil, placeholder: "Enter your address or zip",
-                            class: 'form-control', 'aria-label' => 'Search' )
-          %span.input-group-btn
-            = button_to('Search', nil, class: 'btn btn-default')
-  #accordion.panel-group
-    .panel.panel-default
-      .panel-heading
-        %h4.panel-title
-          %a{'data-parent' => '#accordion', 'data-toggle' => 'collapse', href: '#collapseOne'}
-            %span.fas.fa-money-bill-alt
-            Nearby Transactions
-            ="(#{@markers.count} found)" if @markers
-            %br
-            = page_entries_info(@markers, { model: 'Transactions' })
-            = will_paginate @markers, page_links: false
-      #collapseOne.panel-collapse.collapse
-        .panel-body
-          %table.table
-            -@markers&.each_with_index do |marker, index|
-              %tr
-                %td{:tabindex => "#{index}", :id => "#{marker[:id]}",
-                    :onclick => "map.panTo(#{marker[:latlng]})"}
-                  %p= marker[:popup].html_safe
-    .panel.panel-default
-      .panel-heading
-        %h4.panel-title
-          %a{'data-parent' => '#accordion', 'data-toggle' => 'collapse',  href: '#collapseTwo'}
-            %span.fas.fa-users
-            Filers
-      #collapseTwo.panel-collapse.collapse
-        .panel-body
-          %table.table
-            -@filers&.each_with_index do |filer, index|
-              %tr
-                %td{ tabindex: "#{index}" }
-                  %p= filer.filer_name
-                  = link_to 'View filer profile', filer_path(filer.id)
+.panel-group
+  .panel
+    = form_tag("/search", method: "get") do
+      .input-group
+        = text_field_tag( :query, nil, placeholder: "Enter your address or zip",
+                          class: 'form-control', 'aria-label' => 'Search' )
+        %span.input-group-btn
+          = button_to('Search', nil, class: 'btn btn-default')
+#accordion.panel-group
+  .panel.panel-default
+    .panel-heading
+      %h4.panel-title
+        %a{'data-parent' => '#accordion', 'data-toggle' => 'collapse', href: '#collapseOne'}
+          %span.fas.fa-money-bill-alt
+          Nearby Transactions
+          ="(#{@markers.count} found)" if @markers
+          %br
+          = page_entries_info(@markers, { model: 'Transactions' })
+          = will_paginate @markers, page_links: false
+    #collapseOne.panel-collapse.collapse
+      .panel-body
+        %table.table
+          -@markers&.each_with_index do |marker, index|
+            %tr
+              %td{:tabindex => "#{index}", :id => "#{marker[:id]}",
+                  :onclick => "map.panTo(#{marker[:latlng]})"}
+                %p= marker[:popup].html_safe
+  .panel.panel-default
+    .panel-heading
+      %h4.panel-title
+        %a{'data-parent' => '#accordion', 'data-toggle' => 'collapse',  href: '#collapseTwo'}
+          %span.fas.fa-users
+          Filers
+    #collapseTwo.panel-collapse.collapse
+      .panel-body
+        %table.table
+          -@filers&.each_with_index do |filer, index|
+            %tr
+              %td{ tabindex: "#{index}" }
+                %p= filer.filer_name
+                = link_to 'View filer profile', filer_path(filer.id)
