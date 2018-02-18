@@ -24,8 +24,18 @@ getIcon = (markerType)->
     markerPoint[markerPoint.id] = L.marker(
         markerPoint.latlng,
         { icon: getIcon(markerPoint.marker_type) }
-      ).bindPopup(markerPoint.popup).addTo(map)
+      ).bindPopup(markerPoint.popup).addTo(map).addEventListener 'click', ->
+        $('[id^=filer_id]').removeClass('active')
+        $("##{markerPoint.filer_id}").addClass('active')
+        $('#collapseTwo').collapse('show')
+        return
 
     markerPoint[markerPoint.id]._icon.id = markerPoint.id;
 
   map.fitBounds(bounds)
+
+  $('[id^=filer_id]').click ->
+    $('[id^=filer_id]').removeClass('active')
+    $(this).addClass('active')
+    console.log(this.id)
+    return

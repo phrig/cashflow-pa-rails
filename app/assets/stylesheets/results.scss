@@ -3,19 +3,23 @@
   width: 100%;
 }
 
+#accordion {
+  cursor: pointer;
+}
+
 #collapseOne, #collapseTwo {
   overflow: scroll;
   height: 50vh;
   td {
     color: #0090B2;
     border-radius: 5px;
+    border: 0;
     &:hover {
       color: white;
       background-color: #59A0D1;
     }
-    &:focus {
-      background-color: #FECD2F;
-      outline: none;
-    }
+  }
+  .active {
+    background-color: #FECD2F;
   }
 }
