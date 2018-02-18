@@ -28,6 +28,16 @@
   .panel.panel-default
     .panel-heading
       %h4.panel-title
+        %a{'data-parent' => '#accordion', 'data-toggle' => 'collapse',  href: '#collapseThree'}
+          %span.fas.fa-exclamation-circle
+          Fast Facts
+    #collapseThree.panel-collapse.collapse
+      .panel-body
+        work in progress!
+
+  .panel.panel-default
+    .panel-heading
+      %h4.panel-title
         %a{'data-parent' => '#accordion', 'data-toggle' => 'collapse',  href: '#collapseTwo'}
           %span.fas.fa-users
           Filers
