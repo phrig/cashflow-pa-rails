@@ -68,7 +68,7 @@ class SearchController < ApplicationController
   end
 
   def get_filers(transactions)
-    transactions.each do |transaction|
+    transactions.map do |transaction|
       transaction.filer
     end
   end
