@@ -67,12 +67,9 @@ class SearchController < ApplicationController
   end
 
   def get_filers(transactions)
-    filers = {}
     transactions.map do |transaction|
-      filer = transaction.filer
-      filers[filer.filer_id] = filer
+      transaction.filer
     end
-    filers
   end
 
   def search_params
