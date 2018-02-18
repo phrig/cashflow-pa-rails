@@ -1,9 +1,9 @@
 getIcon = (markerType)->
   iconPath = switch
-    when markerType == 'expense' then image_path('icon-yellow-minus.png')
-    when markerType == 'contribution' then image_path('icon-lightblue-plus.png')
-    when markerType == 'debt' then image_path('icon-yellow-minus.png')
-    when markerType == 'receipt' then image_path('icon-lightblue-plus.png')
+    when markerType == 'expense' then 'E' 
+    when markerType == 'contribution' then 'C' 
+    when markerType == 'debt' then 'D'
+    when markerType == 'receipt' then 'R'
     else image_path('marker-icon.png')
 
   return L.icon({
@@ -21,9 +21,10 @@ getIcon = (markerType)->
 
   markerData.forEach (markerPoint)->
 
+    console.log( getIcon(markerPoint.marker_type.iconPath).options.iconUrl  )
     markerPoint[markerPoint.id] = L.marker(
         markerPoint.latlng,
-        { icon: getIcon(markerPoint.marker_type) }
+        { icon: L.icon.glyph({prefix: '',glyph:  getIcon(markerPoint.marker_type).options.iconUrl  })  }
       ).bindPopup(markerPoint.popup).addTo(map).addEventListener 'click', ->
         $('[id^=filer_id]').removeClass('active')
         $("##{markerPoint.filer_id}").addClass('active')
