@@ -1,4 +1,9 @@
-getIcon = (markerType)->
+@showFiler = (filer_id)->
+  $('[id^=filer_id]').removeClass('active')
+  $("##{filer_id}").addClass('active')
+  $('#collapseTwo').collapse('show')
+
+getIcon = (markerType, filerId)->
   iconPath = switch
     when markerType == 'expense' then image_path('icon-yellow-minus.png')
     when markerType == 'contribution' then image_path('icon-lightblue-plus.png')
@@ -6,36 +11,36 @@ getIcon = (markerType)->
     when markerType == 'receipt' then image_path('icon-lightblue-plus.png')
     else image_path('marker-icon.png')
 
-  return L.icon({
+  return L.extendedIcon({
       iconUrl: iconPath,
       shadowUrl: 'assets/marker-shadow.png',
       iconSize: [25, 41],
       shadowSize: [41, 41],
       iconAnchor: [12, 41],
       shadowAnchor: [12, 41],
-      popupAnchor: [0, -34]
+      popupAnchor: [0, -34],
+      id: filerId,
+      onclick: showFiler
     })
 
 @loadMarkers = ()->
+
   L.gridLayer.googleMutant(type: 'roadmap').addTo(map) # Add Google map tiles
+  markers = L.markerClusterGroup()
 
   markerData.forEach (markerPoint)->
 
-    markerPoint[markerPoint.id] = L.marker(
-        markerPoint.latlng,
-        { icon: getIcon(markerPoint.marker_type) }
-      ).bindPopup(markerPoint.popup).addTo(map).addEventListener 'click', ->
-        $('[id^=filer_id]').removeClass('active')
-        $("##{markerPoint.filer_id}").addClass('active')
-        $('#collapseTwo').collapse('show')
-        return
+    markerItem = L.marker(
+      markerPoint.latlng,
+        { icon: getIcon(markerPoint.marker_type, markerPoint.filer_id) }
+      ).bindPopup(markerPoint.popup)
 
-    markerPoint[markerPoint.id]._icon.id = markerPoint.id;
+    markers.addLayer(markerItem)
 
+  map.addLayer(markers)
   map.fitBounds(bounds)
 
   $('[id^=filer_id]').click ->
     $('[id^=filer_id]').removeClass('active')
     $(this).addClass('active')
-    console.log(this.id)
-    return
+
