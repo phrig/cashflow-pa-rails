@@ -14,10 +14,10 @@
           %a{'data-parent' => '#accordion', 'data-toggle' => 'collapse', href: '#collapseOne'}
             %span.fas.fa-money-bill-alt
             Nearby Transactions
-            ="(#{@markers.count} found)" if @markers
-            %br
-            = page_entries_info(@markers, { model: 'Transactions' })
-            = will_paginate @markers, page_links: false
+        %span
+          = page_entries_info(@markers, { model: 'Transactions' })
+          -# Line below appears inside <div> with class "pagination"
+          = will_paginate @markers, page_links: false
       #collapseOne.panel-collapse.collapse
         .panel-body
           %table.table
