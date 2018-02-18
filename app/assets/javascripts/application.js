@@ -19,6 +19,7 @@
 //= require Leaflet.GoogleMutant
 //= require leaflet-cashflow
 //= require leaflet.awesome-markers
+//= require Leaflet.Icon.Glyph
 //= require search
 //= require_tree .
 
