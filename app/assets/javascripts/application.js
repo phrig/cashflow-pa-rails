@@ -17,8 +17,10 @@
 //= require image_path
 //= require leaflet
 //= require Leaflet.GoogleMutant
+//= require extended-icon
 //= require leaflet-cashflow
 //= require leaflet.awesome-markers
 //= require search
+//= require leaflet.markercluster
 //= require_tree .
 
