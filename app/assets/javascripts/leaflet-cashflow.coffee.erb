@@ -38,9 +38,22 @@ getIcon = (markerType, filerId)->
     markers.addLayer(markerItem)
 
   map.addLayer(markers)
-  map.fitBounds(bounds)
+  adjusted_initial_bounds = L.latLngBounds(bounds)
+  map.fitBounds(adjusted_initial_bounds)
+  $('#map-reset').click ->
+    console.log('button clicked')
+    $('#map-reset').fadeOut()
+    map.fitBounds(adjusted_initial_bounds)
+
+  map.on 'move, zoom', () ->
+    console.log 'move or zoom detected'
+    if map.getBounds().equals(adjusted_initial_bounds)
+      console.log 'bounds are equal, hiding'
+      $('#map-reset').fadeOut()
+    else
+      console.log 'bounds are unequal, showing'
+      $('#map-reset').fadeIn()
 
   $('[id^=filer_id]').click ->
     $('[id^=filer_id]').removeClass('active')
     $(this).addClass('active')
-
