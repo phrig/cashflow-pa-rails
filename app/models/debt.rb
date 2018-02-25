@@ -1,5 +1,6 @@
 class Debt < ApplicationRecord
   include TransactionConcern
+  include ActionView::Helpers::UrlHelper
   require 'geokit'
 
   def to_geojson
@@ -70,9 +71,9 @@ class Debt < ApplicationRecord
   end
 
   def description
-    "<em>#{debt_accrual_date}</em>
+    "<em>#{debt_accrual_date}</em><br />
     <strong>Debt</strong> $#{sprintf('%.2f', debt_amount)} <br />
-    <strong>Incurred by</strong> {filer.filer_name} <br />
+    <strong>Incurred by</strong> #{link_to filer.filer_name, Rails.application.routes.url_helpers.filer_path(filer.id)}<br />
     <strong>Description</strong> #{ debt_description}"
   end
 end

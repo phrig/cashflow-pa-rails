@@ -1,5 +1,6 @@
 class Receipt < ApplicationRecord
   include TransactionConcern
+  include ActionView::Helpers::UrlHelper
   require 'geokit'
 
   def self.get_nearby(lat, long, dist)
@@ -30,11 +31,11 @@ class Receipt < ApplicationRecord
   def description
     description = "<em>#{receipt_date&.strftime("%m/%d/%Y")}</em><br />
     <strong>Receipt</strong> $#{sprintf('%.2f', receipt_amount)} <br />
-    <strong>To</strong> #{filer.filer_name}<br />"
+    <strong>To</strong> #{link_to filer.filer_name, Rails.application.routes.url_helpers.filer_path(filer.id)}<br />"
     if receipt_description.to_s.empty?
       description << ""
     else
-      description << "<strong>Description</strong>#{receipt_description}"
+      description << "<strong>Description</strong> #{receipt_description}"
     end
   end
 end

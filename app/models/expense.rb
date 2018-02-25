@@ -1,5 +1,6 @@
 class Expense < ApplicationRecord
   include TransactionConcern
+  include ActionView::Helpers::UrlHelper
   include RangeFinder
   require 'geokit'
 
@@ -30,7 +31,7 @@ class Expense < ApplicationRecord
   def description
     "<em>#{expense_date&.strftime("%m/%d/%Y")}</em><br />
     <strong>Expense</strong> $#{sprintf('%.2f', expense_amount)}<br />
-    <strong>From</strong> #{filer.filer_name}<br />
+    <strong>From</strong> #{link_to filer.filer_name, Rails.application.routes.url_helpers.filer_path(filer.id)}<br />
     <strong>To</strong> #{name}<br />
     <strong>Description</strong> #{expense_description}"
   end

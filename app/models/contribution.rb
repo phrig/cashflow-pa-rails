@@ -1,5 +1,6 @@
 class Contribution < ApplicationRecord
   include TransactionConcern
+  include ActionView::Helpers::UrlHelper
   require 'geokit'
 
   def self.get_nearby(lat, long, dist)
@@ -29,7 +30,7 @@ class Contribution < ApplicationRecord
   def description
     description = "<em>#{contribution_date&.strftime("%m/%d/%Y")}</em><br />
     <strong>Contribution</strong> $#{sprintf('%.2f', contribution_amount)} <br />
-    <strong>To</strong> #{filer.filer_name}<br />
+    <strong>To</strong> #{link_to filer.filer_name, Rails.application.routes.url_helpers.filer_path(filer.id)}<br />
     <strong>From</strong> #{contributor} <br />"
     if contribution_description.to_s.empty?
       description << ""
