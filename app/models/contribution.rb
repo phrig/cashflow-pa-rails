@@ -27,6 +27,14 @@ class Contribution < ApplicationRecord
   end
 
   def description
-    "Contribution: #{contributor} gave $#{sprintf('%.2f', contribution_amount)} (#{contribution_description})."
+    description = "<em>#{contribution_date&.strftime("%m/%d/%Y")}</em><br />
+    <strong>Contribution</strong> $#{sprintf('%.2f', contribution_amount)} <br />
+    <strong>To</strong> #{filer.filer_name}<br />
+    <strong>From</strong> #{contributor} <br />"
+    if contribution_description.to_s.empty?
+      description << ""
+    else
+      description << "<strong>Description</strong>#{contribution_description}"
+    end
   end
 end

@@ -28,6 +28,13 @@ class Receipt < ApplicationRecord
   end
 
   def description
-    "Receipt: #{name} received $#{sprintf('%.2f', receipt_amount)} for #{receipt_description}."
+    description = "<em>#{receipt_date&.strftime("%m/%d/%Y")}</em><br />
+    <strong>Receipt</strong> $#{sprintf('%.2f', receipt_amount)} <br />
+    <strong>To</strong> #{filer.filer_name}<br />"
+    if receipt_description.to_s.empty?
+      description << ""
+    else
+      description << "<strong>Description</strong>#{receipt_description}"
+    end
   end
 end

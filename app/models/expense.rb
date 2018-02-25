@@ -28,6 +28,10 @@ class Expense < ApplicationRecord
   end
 
   def description
-    "Expense: #{filer.filer_name} paid $#{sprintf('%.2f', expense_amount)} to #{name} on #{expense_date&.strftime("%m/%d/%Y")} for <em>#{expense_description}</em>."
+    "<em>#{expense_date&.strftime("%m/%d/%Y")}</em><br />
+    <strong>Expense</strong> $#{sprintf('%.2f', expense_amount)}<br />
+    <strong>From</strong> #{filer.filer_name}<br />
+    <strong>To</strong> #{name}<br />
+    <strong>Description</strong> #{expense_description}"
   end
 end

@@ -70,6 +70,9 @@ class Debt < ApplicationRecord
   end
 
   def description
-    "Debt: $#{sprintf('%.2f', debt_amount)}, debt description: #{ debt_description}, debt accrual date: #{debt_accrual_date}, filer: #{filer.filer_name}."
+    "<em>#{debt_accrual_date}</em>
+    <strong>Debt</strong> $#{sprintf('%.2f', debt_amount)} <br />
+    <strong>Incurred by</strong> {filer.filer_name} <br />
+    <strong>Description</strong> #{ debt_description}"
   end
 end
