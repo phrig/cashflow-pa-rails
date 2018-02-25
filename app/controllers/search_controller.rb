@@ -35,6 +35,7 @@ class SearchController < ApplicationController
       @markers = get_markers(transactions).paginate(page: params[:page], per_page: 50)
       @bounds = get_bounds
       @filers = get_filers(transactions)
+      @filers = get_filers(transactions).uniq
 
       @location_error = { error: false }
 
