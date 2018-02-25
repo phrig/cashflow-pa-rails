@@ -42,6 +42,6 @@
           %table.table
             -@filers&.each_with_index do |filer, index|
               %tr
-                %td{ tabindex: "#{index}" }
+                %td{ tabindex: "#{index}", id: "filer_id-#{filer.id}" }
                   %p= filer.filer_name
                   = link_to 'View filer profile', filer_path(filer.id)
