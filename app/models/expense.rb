@@ -25,7 +25,21 @@ class Expense < ApplicationRecord
 
   def lat_lng
     lat_lng = []
-    lat_lng.push(expense_location_1_lat).push(expense_location_1_long)
+
+    # Check as sometimes lat/long is null in DB
+    unless expense_location_1_lat.to_s.empty?
+      lat=expense_location_1_lat
+    else
+      lat=expense_location_2_lat
+    end
+
+    unless expense_location_1_long.to_s.empty?
+      long=expense_location_1_long
+    else
+      long=expense_location_2_long
+    end
+
+    lat_lng.push(lat).push(long)
   end
 
   def description

@@ -25,7 +25,23 @@ class Receipt < ApplicationRecord
 
   def lat_lng
     lat_lng = []
-    lat_lng.push(receipt_location_1_lat).push(receipt_location_1_long)
+
+    # Check as sometimes lat/long is null in DB
+    if !receipt_location_1_lat.to_s.empty? && !receipt_location_1_long.to_s.empty?
+      lat=receipt_location_1_lat
+      long=receipt_location_1_long
+    elsif !receipt_location_2_lat.to_s.empty? && !receipt_location_2_long.to_s.empty?
+      lat=receipt_location_2_lat
+      long=receipt_location_2_long
+    elsif !filer.filer_location_1_lat.to_s.empty? && !filer.filer_location_1_long.to_s.empty?
+      lat=filer.filer_location_1_lat
+      long=filer.filer_location_2_long
+    else
+      lat=filer.filer_location_2_lat
+      long=filer.filer_locatoin_2_long
+    end
+
+    lat_lng.push(lat).push(long)
   end
 
   def description
