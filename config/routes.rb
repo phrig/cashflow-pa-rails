@@ -18,5 +18,5 @@ Rails.application.routes.draw do
   post '/candidates' => 'candidates#show'
 
   get '/search' => 'search#search_results'
-
+  get '/search_filer' => 'search_filer#search_filer_results'
 end
