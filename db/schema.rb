@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180128235550) do
+ActiveRecord::Schema.define(version: 20180303184953) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -79,6 +79,7 @@ ActiveRecord::Schema.define(version: 20180128235550) do
     t.integer "county_fips"
     t.integer "district"
     t.string "county_name"
+    t.index ["contributor_location_1_lat", "contributor_location_1_long"], name: "contribution_lat_long"
   end
 
   create_table "counties", force: :cascade do |t|
@@ -120,6 +121,7 @@ ActiveRecord::Schema.define(version: 20180128235550) do
     t.integer "county_fips"
     t.integer "district"
     t.string "county_name"
+    t.index ["debt_reporting_location_1_lat", "debt_reporting_location_1_long"], name: "debt_lat_long"
   end
 
   create_table "expenses", force: :cascade do |t|
@@ -155,6 +157,7 @@ ActiveRecord::Schema.define(version: 20180128235550) do
     t.integer "county_fips"
     t.integer "district"
     t.string "county_name"
+    t.index ["expense_location_1_lat", "expense_location_1_long"], name: "expense_lat_long"
   end
 
   create_table "filers", force: :cascade do |t|
@@ -198,6 +201,7 @@ ActiveRecord::Schema.define(version: 20180128235550) do
     t.integer "county_fips"
     t.string "county_name"
     t.string "filer_type_code"
+    t.index ["filer_location_1_lat", "filer_location_1_long"], name: "filer_lat_long"
   end
 
   create_table "house_districts", force: :cascade do |t|
@@ -242,6 +246,7 @@ ActiveRecord::Schema.define(version: 20180128235550) do
     t.integer "county_fips"
     t.integer "district"
     t.string "county_name"
+    t.index ["receipt_location_1_lat", "receipt_location_1_long"], name: "receipt_lat_long"
   end
 
   create_table "senate_districts", force: :cascade do |t|
