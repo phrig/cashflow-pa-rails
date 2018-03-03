@@ -15,7 +15,7 @@ class SearchController < ApplicationController
       end
     end
 
-    @result = Geocoder.search(search_params[:query]).first
+    @result = safe_geocode_search(search_params[:query]).first
     unless @result
       @location_error = {
         error: true, message: 'Could not find the location you searched for. Please try again.'
