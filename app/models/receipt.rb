@@ -38,7 +38,7 @@ class Receipt < ApplicationRecord
       long=filer.filer_location_2_long
     else
       lat=filer.filer_location_2_lat
-      long=filer.filer_locatoin_2_long
+      long=filer.filer_location_2_long
     end
 
     lat_lng.push(lat).push(long)
