@@ -1,75 +1,88 @@
 = render 'shared/navbar'
 
-.container-fluid
-  .row
-    .col-sm-8
-      %h1
-        Filer Profile
-      %h2
-        = @filer.filer_name
-      %table.table.table-striped
-        %tbody
-          %tr
-            %th
-              Filer Name
-            %td
-              = @filer.filer_name
-            %th
-              Filer ID
-            %td
-              = @filer.filer_id
-          %tr
-            %th
-              Election Year
-            %td
-              = @filer.election_year
-            %th
-              Election Cycle
-            %td
-              = @filer.election_cycle
-          %tr
-            %th
-              Political Party
-            %td
-              = !@filer.party.nil? ? @filer.party : 'Not Reported'
-            %th
-              Filer Office
-            %td
-              = !@filer.office.nil? ? @filer.office : 'Not Reported'
-          %tr
-            %th
-              Filer Address
-            %td
-              = formatted_address(@filer)
-            %th
-              Filer Type
-            %td
-              = @filer.expanded_filer_type
-          %tr
-            %th
-              Beginning Balance
-            %td
-              = number_to_currency(@filer.beginning_balance)
-            %th
-              Monetary Contributions
-            %td
-              = number_to_currency(@filer.monetary)
-          %tr
-            %th
-              In-Kind Contributions
-            %td
-              = number_to_currency(@filer.in_kind)
-            %th
-            %td
+:javascript
+  initialCenter = #{@filer.lat_lng}
+  markerData = #{@markers.to_json.html_safe}
+  bounds = #{@bounds}
 
-    .col-sm-4
-  .row
+.row
+  .col-sm-8
     %h1
-      Filer Transactions
+      Filer Profile
+    %h2
+      = @filer.filer_name
     %table.table.table-striped
       %tbody
-        - @transactions.map do | transaction |
-          %tr
-            %td
-              = transaction.description.html_safe
+        %tr
+          %th
+            Filer Name
+          %td
+            = @filer.filer_name
+          %th
+            Filer ID
+          %td
+            = @filer.filer_id
+        %tr
+          %th
+            Election Year
+          %td
+            = @filer.election_year
+          %th
+            Election Cycle
+          %td
+            = @filer.election_cycle
+        %tr
+          %th
+            Political Party
+          %td
+            = !@filer.party.nil? ? @filer.party : 'Not Reported'
+          %th
+            Filer Office
+          %td
+            = !@filer.office.nil? ? @filer.office : 'Not Reported'
+        %tr
+          %th
+            Filer Address
+          %td
+            = formatted_address(@filer)
+          %th
+            Filer Type
+          %td
+            = @filer.expanded_filer_type
+        %tr
+          %th
+            Beginning Balance
+          %td
+            = number_to_currency(@filer.beginning_balance)
+          %th
+            Monetary Contributions
+          %td
+            = number_to_currency(@filer.monetary)
+        %tr
+          %th
+            In-Kind Contributions
+          %td
+            = number_to_currency(@filer.in_kind)
+          %th
+          %td
+  .col-sm-4
+    .panel.panel-default
+      .panel-heading
+        Select a marker to see the description
+      .panel-body.panel-map
+        #map
 
+.row
+  %h1
+    Filer Transactions
+  %table.table.table-striped
+    %tbody
+      - @transactions.map do | transaction |
+        %tr
+          %td
+            = transaction.description.html_safe
+
+
+:javascript
+  map = L.map('map').setView(initialCenter, 15)
+  loadMarkers()
