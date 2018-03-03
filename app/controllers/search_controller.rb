@@ -35,6 +35,7 @@ class SearchController < ApplicationController
       @markers = get_markers(transactions).paginate(page: params[:page], per_page: 50)
       @bounds = get_bounds
       @filers = get_filers(transactions)
+      @filers = get_filers(transactions).uniq
 
       @location_error = { error: false }
 
@@ -54,7 +55,7 @@ class SearchController < ApplicationController
         latlng: transaction.lat_lng,
         popup: transaction.description,
         id: "#{transaction_type}-#{transaction.id}",
-        filer_id: "filer_id-#{transaction.filer_id}",
+        filer_id: "#{transaction.filer.id}",
         marker_type: transaction_type
       }
     end

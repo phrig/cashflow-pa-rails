@@ -1,7 +1,7 @@
 @showFiler = (filer_id)->
   $('[id^=filer_id]').removeClass('active')
-  $("##{filer_id}").addClass('active')
-  $('#collapseTwo').collapse('show')
+  $("#filer_id-#{filer_id}").addClass('active')
+  $("#filer_id-#{filer_id}").scrollintoview()
 
 getIcon = (markerType, filerId)->
   iconPath = switch
