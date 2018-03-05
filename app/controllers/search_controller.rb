@@ -36,25 +36,42 @@ class SearchController < ApplicationController
       @bounds = get_bounds
       @filers = get_filers(transactions)
 
-      @sum_of_expenses = @expenses.map {|expense| expense.first["expense_amount"]}.reduce(:+)
+      if @expenses.any?
+        @sum_of_expenses = @expenses.map {|expense| expense.first["expense_amount"]}.reduce(:+)
 
-      @largest_expense_amount = @expenses.select {|expense| expense.first["expense_amount"] == @expenses.map {|expense| expense.first["expense_amount"]}.max }
+        @largest_expense_amount = @expenses.select {|expense| expense.first["expense_amount"] == @expenses.map {|expense| expense.first["expense_amount"]}.max }
 
-      @largest_expense_filer = @filers.select {|filer| filer.filer_id == @largest_expense_amount[0][0].filer_id}
+        @largest_expense_filer = @filers.select {|filer| filer.filer_id == @largest_expense_amount[0][0].filer_id}
+      end
 
-      # @sum_of_debts = @debts.map {|debt| debt.first["debt_amount"]}.reduce(:+)
-      # @largest_debt = @debts.map {|debt| debt.first["debt_amount"]}.max
-      #
-      # @sum_of_contributions = @contributions.map {|contribution| contribution.first["contribution_amount"]}.reduce(:+)
-      # @largest_contribution = @contributions.map {|contribution| contribution.first["contribution_amount"]}.max
-      #
-      # @sum_of_receipts = @receipts.map {|receipt| receipt.first["receipt_amount"]}.reduce(:+)
-      # @largest_receipt = @receipts.map {|receipt| receipt.first["receipt_amount"]}.max
-      #
-      # binding.pry
+      if @debts.any?
+        @sum_of_debts = @debts.map {|debt| debt.first["debt_amount"]}.reduce(:+)
+
+        @largest_debt_amount = @debts.select {|debt| debt.first["debt_amount"] == @debts.map {|debt| debt.first["debt_amount"]}.max }
+
+        @largest_debt_filer = @filers.select {|filer| filer.filer_id == @largest_debt_amount[0][0].filer_id}
+      end
+
+      if @contributions.any?
+        @sum_of_contributions = @contributions.map {|contribution| contribution.first["contribution_amount"]}.reduce(:+)
+
+        @largest_contribution_amount = @contributions.select {|contribution| contribution.first["contribution_amount"] == @contributions.map {|contribution| contribution.first["contribution_amount"]}.max }
+
+        @largest_contribution_filer = @filers.select {|filer| filer.filer_id == @largest_contribution_amount[0][0].filer_id}
+      end
+
+      if @receipts.any?
+        @sum_of_receipts = @receipts.map {|receipt| receipt.first["receipt_amount"]}.reduce(:+)
+
+        @largest_receipt_amount = @receipts.select {|receipt| receipt.first["receipt_amount"] == @receipts.map {|receipt| receipt.first["receipt_amount"]}.max }
+
+        @largest_receipt_filer = @filers.select {|filer| filer.filer_id == @largest_receipt_amount[0][0].filer_id}
+      end
+
+      binding.pry
 
       @location_error = { error: false }
-      binding.pry
+
 
     else
       @location_error = {
