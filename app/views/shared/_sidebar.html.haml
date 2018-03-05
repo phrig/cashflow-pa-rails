@@ -36,47 +36,65 @@
         %table.table
           %tr
             %td
-              largest expense: $X
+              number of expenses:
+              =@expenses.count
             %td
-              filer: xxx
+              sum of expenses: $
+              =@sum_of_expenses
           %tr
             %td
-              expenses amount: $X
+              largest expense amount: $
+              = @largest_expense_amount[0][0].expense_amount
             %td
-              expenses quantity: $X
-          %tr
-            %td
-              largest contribution: $X
-            %td
-              filer: xxx
-          %tr
-            %td
-              contributions amount: $X
-            %td
-              contributions quantity: $X
-          %tr
-            %td
-              largest debt: $X
-            %td
-              filer: xxx
-          %tr
-            %td
-              debts amount: $X
-            %td
-              debts quantity: $X
-          %tr
-            %td
-              largest receipt: $X
-            %td
-              filer: xxx
-          %tr
-            %td
-              receipts amount: $X
-            %td
-              receipts quantity: $X
-          %tr
-            %td
-              total activity: $X
+              filer:
+              =link_to @largest_expense_filer[0].id, filer_path(@largest_expense_filer[0].id)
+          -# %tr
+          -#   %td
+          -#     number of debt:
+          -#     =@debts.count
+          -#   %td
+          -#     sum of debts: $
+          -#     =@sum_of_debts
+          -# %tr
+          -#   %td
+          -#     largest debt: $
+          -#     = @largest_debt
+          -#   %td
+          -#     filer:
+          -#     =link_to @largest_debt.filer.id, filer_path(@largest_debt.filer.id)
+          -# %tr
+          -#   %td
+          -#     largest contribution: $X
+          -#   %td
+          -#     filer: xxx
+          -# %tr
+          -#   %td
+          -#     contributions amount: $X
+          -#   %td
+          -#     contributions quantity: $X
+          -# %tr
+          -#   %td
+          -#     largest debt: $X
+          -#   %td
+          -#     filer: xxx
+          -# %tr
+          -#   %td
+          -#     debts amount: $X
+          -#   %td
+          -#     debts quantity: $X
+          -# %tr
+          -#   %td
+          -#     largest receipt: $X
+          -#   %td
+          -#     filer: xxx
+          -# %tr
+          -#   %td
+          -#     receipts amount: $X
+          -#   %td
+          -#     receipts quantity: $X
+          -# %tr
+          -#   %td
+          -#     total activity: $X
 
   .panel.panel-default
     .panel-heading
