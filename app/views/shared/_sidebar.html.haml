@@ -34,64 +34,68 @@
     #collapseThree.panel-collapse.collapse
       .panel-body
         %table.table
-          %tr
-            %td
-              number of expenses:
-              =@expenses.count
-            %td
-              sum of expenses: $
-              =@sum_of_expenses
-          %tr
-            %td
-              largest expense amount: $
-              = @largest_expense_amount[0][0].expense_amount
-            %td
-              filer:
-              =link_to @largest_expense_filer[0].id, filer_path(@largest_expense_filer[0].id)
-          -# %tr
-          -#   %td
-          -#     number of debt:
-          -#     =@debts.count
-          -#   %td
-          -#     sum of debts: $
-          -#     =@sum_of_debts
-          -# %tr
-          -#   %td
-          -#     largest debt: $
-          -#     = @largest_debt
-          -#   %td
-          -#     filer:
-          -#     =link_to @largest_debt.filer.id, filer_path(@largest_debt.filer.id)
-          -# %tr
-          -#   %td
-          -#     largest contribution: $X
-          -#   %td
-          -#     filer: xxx
-          -# %tr
-          -#   %td
-          -#     contributions amount: $X
-          -#   %td
-          -#     contributions quantity: $X
-          -# %tr
-          -#   %td
-          -#     largest debt: $X
-          -#   %td
-          -#     filer: xxx
-          -# %tr
-          -#   %td
-          -#     debts amount: $X
-          -#   %td
-          -#     debts quantity: $X
-          -# %tr
-          -#   %td
-          -#     largest receipt: $X
-          -#   %td
-          -#     filer: xxx
-          -# %tr
-          -#   %td
-          -#     receipts amount: $X
-          -#   %td
-          -#     receipts quantity: $X
+          -if @expenses.any?
+            %tr
+              %td
+                number of expenses:
+                =@expenses.count
+              %td
+                sum of expenses: $
+                =@sum_of_expenses
+            %tr
+              %td
+                largest expense amount: $
+                = @largest_expense_amount[0][0].expense_amount
+              %td
+                filer:
+                =link_to @largest_expense_filer[0].id, filer_path(@largest_expense_filer[0].id)
+          -if @contributions.any?
+            %tr
+              %td
+                number of contributions:
+                =@contributions.count
+              %td
+                sum of contributions: $
+                =@sum_of_contributions
+            %tr
+              %td
+                largest contribution amount: $
+                = @largest_contribution_amount[0][0].contribution_amount
+              %td
+                filer:
+                =link_to @largest_contribution_filer[0].id, filer_path(@largest_contribution_filer[0].id)
+          -if @debts.any?
+            %tr
+              %td
+                number of debts:
+                =@debts.count
+              %td
+                sum of debts: $
+                =@sum_of_debts
+            %tr
+              %td
+                largest debt amount: $
+                = @largest_debt_amount[0][0].debt_amount
+              %td
+                filer:
+                =link_to @largest_debt_filer[0].id, filer_path(@largest_debt_filer[0].id)
+          -if @receipts.any?
+            %tr
+              %td
+                number of receipts:
+                =@receipts.count
+              %td
+                sum of receipts: $
+                =@sum_of_receipts
+            %tr
+              %td
+                largest receipt amount: $
+                = @largest_receipt_amount[0][0].receipt_amount
+              %td
+                filer:
+                =link_to @largest_receipt_filer[0].id, filer_path(@largest_receipt_filer[0].id)
+
+
           -# %tr
           -#   %td
           -#     total activity: $X
