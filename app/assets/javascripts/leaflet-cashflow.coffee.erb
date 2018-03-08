@@ -39,24 +39,16 @@ getIcon = (markerType, filerId)->
 
   map.addLayer(markers)
   map.fitBounds(bounds)
-  map.resetable = false
   $('#map-reset').fadeOut()
   $('#map-reset').click ->
     console.log('button clicked')
     map.fitBounds(bounds)
-    map.resetable = false
     $('#map-reset').fadeOut()
   
-  map.on 'load', () ->
-    console.log('load detected')
-    map.resetable = false
-    $('#map-reset').fadeOut()
+  $('.leaflet-control-zoom-in, .leaflet-control-zoom-out, #map').click ->
+     console.log 'map clicked or zoomed'
+     $('#map-reset').fadeIn()
 
-  map.on 'zoom', () ->
-    console.log 'move or zoom detected'
-    map.resetable = true
-    $('#map-reset').fadeIn()
-
-  $('[id^=filer_id]').click ->
-    $('[id^=filer_id]').removeClass('active')
-    $(this).addClass('active')
+	$('[id^=filer_id]').click ->
+		$('[id^=filer_id]').removeClass('active')
+		$(this).addClass('active')
