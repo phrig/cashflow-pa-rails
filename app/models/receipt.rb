@@ -1,14 +1,17 @@
 class Receipt < ApplicationRecord
-  include TransactionConcern
   include ActionView::Helpers::UrlHelper
   require 'geokit'
+
+  belongs_to :filer, foreign_key: 'filer_id'
+  belongs_to :filer, foreign_key: 'election_cycle'
 
   def self.get_nearby(lat, long, dist)
 
     lat_ranges = RangeFinder::find_lat_range(lat, dist)
     long_ranges = RangeFinder::find_long_range(lat, long, dist)
 
-    receipts = Receipt.where('receipt_location_1_lat <= ?', lat_ranges[:max_lat])
+    receipts = Receipt.includes(:filer)
+                      .where('receipt_location_1_lat <= ?', lat_ranges[:max_lat])
                       .where('receipt_location_1_lat >= ?', lat_ranges[:min_lat])
                       .where('receipt_location_1_long <= ?', long_ranges[:max_long])
                       .where('receipt_location_1_long >= ?', long_ranges[:min_long])

@@ -1,17 +1,20 @@
 class Contribution < ApplicationRecord
-  include TransactionConcern
   include ActionView::Helpers::UrlHelper
   require 'geokit'
+
+  belongs_to :filer, foreign_key: 'filer_id'
+  belongs_to :filer, foreign_key: 'election_cycle'
 
   def self.get_nearby(lat, long, dist)
 
     lat_ranges = RangeFinder::find_lat_range(lat, dist)
     long_ranges = RangeFinder::find_long_range(lat, long, dist)
 
-    contributions = Contribution.where('contributor_location_1_lat <= ?', lat_ranges[:max_lat])
-                      .where('contributor_location_1_lat >= ?', lat_ranges[:min_lat])
-                      .where('contributor_location_1_long <= ?', long_ranges[:max_long])
-                      .where('contributor_location_1_long >= ?', long_ranges[:min_long])
+    contributions = Contribution.includes(:filer)
+                                .where('contributor_location_1_lat <= ?', lat_ranges[:max_lat])
+                                .where('contributor_location_1_lat >= ?', lat_ranges[:min_lat])
+                                .where('contributor_location_1_long <= ?', long_ranges[:max_long])
+                                .where('contributor_location_1_long >= ?', long_ranges[:min_long])
 
     center = Geokit::LatLng.new(lat, long)
 
