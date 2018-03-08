@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180303184953) do
+ActiveRecord::Schema.define(version: 20180308011021) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -201,6 +201,7 @@ ActiveRecord::Schema.define(version: 20180303184953) do
     t.integer "county_fips"
     t.string "county_name"
     t.string "filer_type_code"
+    t.index ["filer_id", "election_cycle"], name: "index_filers_on_filer_id_and_election_cycle"
     t.index ["filer_location_1_lat", "filer_location_1_long"], name: "filer_lat_long"
   end
 
