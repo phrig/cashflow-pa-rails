@@ -26,9 +26,8 @@
             = page_entries_info(@markers, { model: 'Transactions' })
             = will_paginate @markers, page_links: false
         - else
-          Something went wrong with your search.
-          %br
-          Please enter a location in the search bar and try again.
+          %span.fas.fa-money-bill-alt
+          No transaction results found
     #collapseOne.panel-collapse.collapse
       .panel-body
         %table.table
@@ -40,9 +39,13 @@
   .panel.panel-default
     .panel-heading
       %h4.panel-title
-        %a{'data-parent' => '#accordion', 'data-toggle' => 'collapse',  href: '#collapseTwo'}
+        - if @filers!=nil && @filers.count!=0
+          %a{'data-parent' => '#accordion', 'data-toggle' => 'collapse',  href: '#collapseTwo'}
+            %span.fas.fa-users
+            Filers
+        - else
           %span.fas.fa-users
-          Filers
+          No filer results found
     #collapseTwo.panel-collapse
       .panel-body
         %table.table
