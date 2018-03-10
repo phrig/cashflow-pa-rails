@@ -1,5 +1,6 @@
 class Debt < ApplicationRecord
   include TransactionConcern
+  include ActionView::Helpers::UrlHelper
   require 'geokit'
 
   def to_geojson
@@ -69,7 +70,38 @@ class Debt < ApplicationRecord
     lat_lng.push(debt_reporting_location_1_lat).push(debt_reporting_location_1_long)
   end
 
+  def lat_lng
+    lat_lng = []
+
+    # Check as sometimes lat/long is null in DB
+    if !debt_reporting_location_1_lat.to_s.empty?
+      lat=debt_reporting_location_1_lat
+    elsif !debt_reporting_location_2_lat.to_s.empty?
+      lat=debt_reporting_location_2_lat
+    else
+      lat=filer.filer_location_1_lat
+    end
+
+    if !debt_reporting_location_1_long.to_s.empty?
+      long=debt_reporting_location_1_long
+    elsif !debt_reporting_location_2_long.to_s.empty?
+      long=debt_reporting_location_2_long
+    else
+      long=filer.filer_location_1_long
+    end
+
+    lat_lng.push(lat).push(long)
+  end
+
+
+
+
+
+
   def description
-    "Debt: $#{sprintf('%.2f', debt_amount)}, debt description: #{ debt_description}, debt accrual date: #{debt_accrual_date}, filer: #{filer.filer_name}."
+    "<em>#{debt_accrual_date}</em><br />
+    <strong>Debt</strong> $#{sprintf('%.2f', debt_amount)} <br />
+    <strong>Incurred by</strong> #{link_to filer.filer_name, Rails.application.routes.url_helpers.filer_path(filer.id)}<br />
+    <strong>Description</strong> #{ debt_description}"
   end
 end

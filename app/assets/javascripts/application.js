@@ -17,6 +17,7 @@
 //= require image_path
 //= require leaflet
 //= require Leaflet.GoogleMutant
+//= require scrollintoview
 //= require extended-icon
 //= require leaflet-cashflow
 //= require leaflet.awesome-markers

@@ -15,7 +15,7 @@ class SearchController < ApplicationController
       end
     end
 
-    @result = Geocoder.search(search_params[:query]).first
+    @result = safe_geocode_search(search_params[:query]).first
     unless @result
       @location_error = {
         error: true, message: 'Could not find the location you searched for. Please try again.'
@@ -35,6 +35,7 @@ class SearchController < ApplicationController
       @markers = get_markers(transactions).paginate(page: params[:page], per_page: 50)
       @bounds = get_bounds
       @filers = get_filers(transactions)
+      @filers = get_filers(transactions).uniq
 
       @location_error = { error: false }
 
@@ -54,14 +55,18 @@ class SearchController < ApplicationController
         latlng: transaction.lat_lng,
         popup: transaction.description,
         id: "#{transaction_type}-#{transaction.id}",
-        filer_id: "filer_id-#{transaction.filer_id}",
+        filer_id: "#{transaction.filer.id}",
         marker_type: transaction_type
       }
     end
   end
 
   def get_bounds
-    points = @markers.map { |marker| marker[:latlng] }
+    results = @markers.reject{
+                                |marker| marker[:latlng].nil? ||
+                                marker[:latlng].map{ |point| point.nil? }.any?
+                              }
+    points = results.map { |marker| marker[:latlng] }
     lats = points.map(&:first)
     lngs = points.map(&:last)
     [[lats.min, lngs.min], [lats.max, lngs.max]]
