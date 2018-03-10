@@ -1,4 +1,5 @@
 class Filer < ApplicationRecord
+  include ActionView::Helpers::UrlHelper
 
   has_many :contributions, foreign_key: 'filer_id'
   has_many :contributions, foreign_key: 'election_cycle'
@@ -63,6 +64,6 @@ class Filer < ApplicationRecord
   end
 
   def description
-    "<strong>Filer</strong> #{link_to filer.filer_name, Rails.application.routes.url_helpers.filer_path(filer.id)}<br />"
+    "<strong>Filer</strong> #{link_to filer_name, Rails.application.routes.url_helpers.filer_path(id)}<br />"
   end
 end

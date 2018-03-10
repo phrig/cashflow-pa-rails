@@ -76,7 +76,7 @@ class FilersController < ApplicationController
       icon_type = "filer"
       {
         latlng: filer.lat_lng,
-        popup: "#{filer.filer_name}",
+        popup: filer.description,
         id: "#{filer.id}",
         filer_id: "filer_id-#{filer.id}",
         marker_type: icon_type
