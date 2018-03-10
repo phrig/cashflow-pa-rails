@@ -1,3 +1,12 @@
+initResetButton = ->
+  $('#map-reset').fadeOut()
+  $('#map-reset').click ->
+    map.fitBounds(bounds)
+    $('#map-reset').fadeOut()
+  
+  $('.leaflet-control-zoom-in, .leaflet-control-zoom-out, #map').click ->
+     $('#map-reset').fadeIn()
+
 @showFiler = (filer_id)->
   $('[id^=filer_id]').removeClass('active')
   $("##{filer_id}").addClass('active')
@@ -38,16 +47,9 @@ getIcon = (markerType, filerId)->
     markers.addLayer(markerItem)
 
   map.addLayer(markers)
+  initResetButton()
   map.fitBounds(bounds)
-  $('#map-reset').fadeOut()
-  $('#map-reset').click ->
-    console.log('button clicked')
-    map.fitBounds(bounds)
-    $('#map-reset').fadeOut()
-  
-  $('.leaflet-control-zoom-in, .leaflet-control-zoom-out, #map').click ->
-     console.log 'map clicked or zoomed'
-     $('#map-reset').fadeIn()
+
 
 	$('[id^=filer_id]').click ->
 		$('[id^=filer_id]').removeClass('active')
