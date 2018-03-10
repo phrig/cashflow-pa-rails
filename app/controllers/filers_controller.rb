@@ -65,7 +65,11 @@ class FilersController < ApplicationController
     else
       markers = @markers
     end
-    points = markers.map{ |marker| marker[:latlng] }
+    results=markers.reject{
+                                |marker| marker[:latlng].nil? ||
+                                marker[:latlng].map{ |point| point.nil? }.any?
+                              }
+    points = results.map{ |marker| marker[:latlng] }
     lats = points.map(&:first)
     lngs = points.map(&:last)
     [[lats.min, lngs.min], [lats.max, lngs.max]]
