@@ -19,5 +19,4 @@ module LocationSearchConcern
       safe_geocode_search(string,retry_count)
     end
   end
-
 end
