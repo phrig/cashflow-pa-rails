@@ -8,14 +8,14 @@ module LocationSearchConcern
       false
     end
   end
-  def safe_geocode_search(string,retry_count=5)
+  def safe_geocode_search(string,retry_count=1)
     begin
       Geocoder.search(string)
-    rescue Geocoder::Oversafe_geocode_searchLimitError
-      sleep 0.5
-      Rails.logger.warn("Rescue: Oversafe_geocode_searchLimitError. Re-trying search")
-      raise  "Geocode retry over limit" if retry_count > 4 
+    rescue Geocoder::OverQueryLimitError
+      Rails.logger.warn("Rescue: Geocoder::OverQueryLimitError. Re-trying search. Retry count currently at #{retry_count}")
+      raise  "Geocoder::OverQueryLimitError. No more retry attempts left" if retry_count > 5 
       retry_count += 1
+      sleep 1
       safe_geocode_search(string,retry_count)
     end
   end
