@@ -1,5 +1,14 @@
 class Filer < ApplicationRecord
 
+  has_many :contributions, foreign_key: 'filer_id'
+  has_many :contributions, foreign_key: 'election_cycle'
+  has_many :debts, foreign_key: 'filer_id'
+  has_many :debts, foreign_key: 'election_cycle'
+  has_many :expenses, foreign_key: 'filer_id'
+  has_many :expenses, foreign_key: 'election_cycle'
+  has_many :receipts, foreign_key: 'filer_id'
+  has_many :receipts, foreign_key: 'election_cycle'
+
   def expanded_filer_type
     case filer_type_code
     when 'IEC'
