@@ -1,13 +1,8 @@
-/= render 'location_error'
 = render 'shared/navbar'
-/ :javascript
-/   checkLocationError(#{@location_error.to_json.html_safe})
-/ - unless @location_error[:error]
-/   :javascript
-/     initalCenter = #{[@result_lat, @result_lng]}
-/     markerData = #{@markers.to_json.html_safe}
-/     bounds = #{@bounds}
-
+:javascript
+  initalCenter = #{@initial_center}
+  markerData = #{@filer_markers.to_json.html_safe}
+  bounds = #{@bounds}
 
 .row
   .col-xs-8
@@ -19,7 +14,6 @@
   .col-xs-4
     = render 'shared/sidebar'
 
-/ - unless @location_error[:error]
-/   :javascript
-/     map = L.map('map').setView(initalCenter, 15)
-/     loadMarkers()
+:javascript
+  map = L.map('map').setView(initalCenter, 15)
+  loadMarkers()

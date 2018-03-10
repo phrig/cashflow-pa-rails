@@ -16,7 +16,7 @@
       = form_tag("/search_filer", method: "get") do
         %h5 Search among finance reports by filer name:
         .input-group
-          = text_field_tag( :query, nil, placeholder: "Enter name",
+          = text_field_tag( :query, nil, placeholder: "Enter filer name",
                             class: 'form-control', 'aria-label' => 'Search' )
           %span.input-group-btn
             = button_to('Search', nil, class: 'btn btn-default')

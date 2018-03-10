@@ -28,73 +28,26 @@ class FilersController < ApplicationController
     @filers = get_filers(@transactions)
   end
 
-  private
-
-  def get_markers()
-    @transactions.map do |transaction|
-      transaction_type = transaction.class.name.downcase
-      {
-        latlng: transaction.lat_lng,
-        popup: transaction.description,
-        id: "#{transaction_type}-#{transaction.id}",
-        filer_id: "filer_id-#{transaction.filer_id}",
-        marker_type: transaction_type
-      }
-    end
-  end
-
   def search_filer_results
-    puts search_params
+    @filer_query=search_params[:query]
+    @filers=Filer.where('UPPER(filer_name) like UPPER(?)', "%#{@filer_query}%")
+
     File.open('doc/PA_State.geojson', 'r') do |file|
       file.each_line do |line|
         @pa_state_geojson = line
       end
     end
 
-    @result = Geocoder.search(search_params[:query]).first
-    unless @result
-      @location_error = {
-        error: true, message: 'Could not find the location you searched for. Please try again.'
-      }
-      return
-    end
-
-    if in_pennsylvania?(@result)
-
-      @result_lat = @result.geometry['location']['lat']
-      @result_lng = @result.geometry['location']['lng']
-
-      transactions = get_transactions(@result_lat, @result_lng, 5)
-
-      @transactions_count = transactions.count
-
-      @markers = get_markers(transactions).paginate(page: params[:page], per_page: 50)
-      @bounds = get_bounds
-      @filers = get_filers(transactions)
-
-      @location_error = { error: false }
-
+    @filer_markers = get_filer_markers()
+    @bounds = get_bounds
+    if @filers==nil || @filers.count<=0
+      @initial_center=[40.88555556,-76.26444444]
     else
-      @location_error = {
-        error: true, message: 'You searched for a location outside Pennsylvania.'
-      }
+      @initial_center=@filers.first.lat_lng
     end
   end
 
   private
-
-  def get_markers(transactions)
-    transactions.map do |transaction|
-      transaction_type = transaction.class.name.downcase
-      {
-        latlng: transaction.lat_lng,
-        popup: transaction.description,
-        id: "#{transaction_type}-#{transaction.id}",
-        filer_id: "filer_id-#{transaction.filer_id}",
-        marker_type: transaction_type
-      }
-    end
-  end
 
   def get_filers(transactions)
     transactions.map do |transaction|
@@ -107,11 +60,40 @@ class FilersController < ApplicationController
   end
 
   def get_bounds
-    markers = @markers.reject{ |marker| marker[:latlng].count != 2 }
+    if @filer_markers!=nil
+      markers = @filer_markers
+    else
+      markers = @markers
+    end
     points = markers.map{ |marker| marker[:latlng] }
     lats = points.map(&:first)
     lngs = points.map(&:last)
     [[lats.min, lngs.min], [lats.max, lngs.max]]
+  end
 
+  def get_filer_markers()
+    @filers.map do |filer|
+      icon_type = "filer"
+      {
+        latlng: filer.lat_lng,
+        popup: "#{filer.filer_name}",
+        id: "#{filer.id}",
+        filer_id: "filer_id-#{filer.id}",
+        marker_type: icon_type
+      }
+    end
+  end
+
+  def get_markers()
+    @transactions.map do |transaction|
+      transaction_type = transaction.class.name.downcase
+      {
+        latlng: transaction.lat_lng,
+        popup: transaction.description,
+        id: "#{transaction_type}-#{transaction.id}",
+        filer_id: "#{transaction.filer.id}",
+        marker_type: transaction_type
+      }
+    end
   end
 end

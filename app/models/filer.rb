@@ -62,5 +62,7 @@ class Filer < ApplicationRecord
     lat_lng.push(lat).push(long)
   end
 
-
+  def description
+    "<strong>Filer</strong> #{link_to filer.filer_name, Rails.application.routes.url_helpers.filer_path(filer.id)}<br />"
+  end
 end

@@ -6,6 +6,13 @@
                           class: 'form-control', 'aria-label' => 'Search' )
         %span.input-group-btn
           = button_to('Search', nil, class: 'btn btn-default')
+    %br
+    = form_tag("/search_filer", method: "get") do
+      .input-group
+        = text_field_tag( :query, nil, placeholder: "Enter filer name",
+                          class: 'form-control', 'aria-label' => 'Search' )
+        %span.input-group-btn
+          = button_to('Search', nil, class: 'btn btn-default')
 #accordion.panel-group
   .panel.panel-default
     .panel-heading
