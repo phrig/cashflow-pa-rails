@@ -26,9 +26,13 @@ RSpec.describe SearchController, type: :controller do
       context 'when there are transactions' do
         let!(:filer) { FactoryBot.create(:filer) }
         let!(:local_debt) { FactoryBot.create(:debt, filer_id: filer.filer_id,
-                                              election_cycle: filer.election_cycle) }
+                                              election_cycle: filer.election_cycle,
+                                              election_year: filer.election_year,
+                                              filer: filer) }
         let!(:local_expense) { FactoryBot.create(:expense, filer_id: filer.filer_id,
-                                                 election_cycle: filer.election_cycle) }
+                                                 election_cycle: filer.election_cycle,
+                                                 election_year: filer.election_year,
+                                                 filer: filer) }
         let!(:far_debt) { FactoryBot.create(:debt,
           debt_reporting_location_1_lat: 45.522781, debt_reporting_location_1_long: -122.6779265 ) }
 

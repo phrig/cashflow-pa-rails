@@ -1,7 +1,7 @@
 = render 'shared/navbar'
 
 :javascript
-  initialCenter = #{@filer.lat_lng}
+  initialCenter = #{@initial_center}
   markerData = #{@markers.to_json.html_safe}
   bounds = #{@bounds}
 

@@ -1,8 +1,8 @@
 # TODO: Modify values as needed
 FactoryBot.define do
   factory :filer do
-    filer_id [1..40].sample
-    # election_year
+    filer_id 1
+    election_year 2017
     election_cycle 2
     # amended_report_indicator
     # termination_indicator
