@@ -24,10 +24,10 @@
           Please enter a location in the search bar and try again.
     #collapseOne.panel-collapse.collapse
       .panel-body
-        %table.table.transactions
+        %table.table
           -@markers&.each_with_index do |marker, index|
             %tr
-              %td{:tabindex => "#{index}", :id => "#{marker[:id]}", :latlng => "#{marker[:latlng]}",
+              %td{:tabindex => "#{index}", :id => "#{marker[:id]}",
                   :onclick => "map.panTo(#{marker[:latlng]})"}
                 %p= marker[:popup].html_safe
   .panel.panel-default
