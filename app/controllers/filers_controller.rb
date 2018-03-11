@@ -48,6 +48,7 @@ class FilersController < ApplicationController
 
   def search_filer_results
     @filer_query=search_params[:query]
+    @query=@filer_query
     @filers=Filer.where('UPPER(filer_name) like UPPER(?)', "%#{@filer_query}%")
 
     File.open('doc/PA_State.geojson', 'r') do |file|
