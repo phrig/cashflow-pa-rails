@@ -28,7 +28,7 @@
           -@markers&.each_with_index do |marker, index|
             %tr
               %td{:tabindex => "#{index}", :id => "#{marker[:id]}",
-                  :onclick => "map.panTo(#{marker[:latlng]})"}
+                  :onclick => "triggerPopup(#{marker[:latlng]},$(this).html())"}
                 %p= marker[:popup].html_safe
   .panel.panel-default
     .panel-heading
