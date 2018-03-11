@@ -16,6 +16,12 @@ class FilersController < ApplicationController
 
   def get_filer
     @filer = Filer.find(params[:id])
+    @related_filers = Filer.where(filer_id: @filer.filer_id)
+                            .map{|filer| {year: filer.election_year,
+                                          cycle: filer.election_cycle,
+                                          amended_report_indicator: filer.amended_report_indicator,
+                                          id: filer.id}}
+                            .sort_by{|x| x.to_a}
     @transactions = @filer.transactions
 
     @result = @filer.filer_zipcode
@@ -24,6 +30,13 @@ class FilersController < ApplicationController
     @transactions_count = @transactions.count
 
     @markers = get_markers()
+
+    @sidebar_markers=@markers
+    @map_markers=@markers.reject{
+                                |marker| marker[:latlng].nil? ||
+                                marker[:latlng].map{ |point| point.nil? }.any?
+                              }
+
     @bounds = get_bounds
     @filers = get_filers(@transactions)
     if @filers==nil || @filers.count<=0
