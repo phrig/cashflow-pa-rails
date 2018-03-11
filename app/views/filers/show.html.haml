@@ -2,7 +2,7 @@
 
 :javascript
   initialCenter = #{@initial_center}
-  markerData = #{@markers.to_json.html_safe}
+  markerData = #{@map_markers.to_json.html_safe}
   bounds = #{@bounds}
 
 .row
@@ -30,7 +30,12 @@
           %th
             Election Cycle
           %td
-            = @filer.election_cycle
+            - @related_filers.map do |filer|
+              - if filer[:cycle]==@filer.election_cycle
+                %strong
+                  = filer[:cycle]
+              - else
+                = link_to filer[:cycle], filer_path(filer[:id])
         %tr
           %th
             Political Party
