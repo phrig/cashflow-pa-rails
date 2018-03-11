@@ -26,6 +26,11 @@ class FilersController < ApplicationController
     @markers = get_markers()
     @bounds = get_bounds
     @filers = get_filers(@transactions)
+    if @filers==nil || @filers.count<=0
+      @initial_center=[40.88555556,-76.26444444]
+    else
+      @initial_center=@filers.first.lat_lng
+    end
   end
 
   def search_filer_results

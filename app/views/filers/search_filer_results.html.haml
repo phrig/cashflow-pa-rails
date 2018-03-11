@@ -1,6 +1,6 @@
 = render 'shared/navbar'
 :javascript
-  initalCenter = #{@initial_center}
+  initialCenter = #{@initial_center}
   markerData = #{@filer_markers.to_json.html_safe}
   bounds = #{@bounds}
 
@@ -15,5 +15,5 @@
     = render 'shared/sidebar'
 
 :javascript
-  map = L.map('map').setView(initalCenter, 15)
+  map = L.map('map').setView(initialCenter, 15)
   loadMarkers()

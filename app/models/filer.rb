@@ -2,6 +2,7 @@ require 'geocoder'
 
 class Filer < ApplicationRecord
   include ActionView::Helpers::UrlHelper
+  include LocationSearchConcern
 
   has_many :contributions, foreign_key: 'filer_id'
   has_many :contributions, foreign_key: 'election_cycle'
@@ -65,7 +66,7 @@ class Filer < ApplicationRecord
     if lat==nil || long==nil
       if filer_location_1_zip!=nil
         search=filer_location_1_zip + ", United States of America"
-        rough_location = Geocoder.search(search).first
+        rough_location = safe_geocode_search(search).first
         lat = rough_location.geometry['location']['lat']
         long = rough_location.geometry['location']['lng']
       end
