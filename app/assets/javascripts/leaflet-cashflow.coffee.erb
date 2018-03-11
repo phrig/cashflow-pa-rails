@@ -9,6 +9,7 @@ getIcon = (markerType, filerId)->
     when markerType == 'contribution' then image_path('icon-lightblue-plus.png')
     when markerType == 'debt' then image_path('icon-yellow-minus.png')
     when markerType == 'receipt' then image_path('icon-lightblue-plus.png')
+    when markerType == 'filer' then image_path('icon-lightblue-plus.png')
     else image_path('marker-icon.png')
 
   return L.extendedIcon({

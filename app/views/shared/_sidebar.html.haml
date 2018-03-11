@@ -6,6 +6,13 @@
                           class: 'form-control', 'aria-label' => 'Search' )
         %span.input-group-btn
           = button_to('Search', nil, class: 'btn btn-default')
+    %br
+    = form_tag("/search_filer", method: "get") do
+      .input-group
+        = text_field_tag( :query, nil, placeholder: "Enter filer name",
+                          class: 'form-control', 'aria-label' => 'Search' )
+        %span.input-group-btn
+          = button_to('Search', nil, class: 'btn btn-default')
 #accordion.panel-group
   .panel.panel-default
     .panel-heading
@@ -19,9 +26,8 @@
             = page_entries_info(@markers, { model: 'Transactions' })
             = will_paginate @markers, page_links: false
         - else
-          Something went wrong with your search.
-          %br
-          Please enter a location in the search bar and try again.
+          %span.fas.fa-money-bill-alt
+          No transaction results
     #collapseOne.panel-collapse.collapse
       .panel-body
         %table.table
@@ -33,9 +39,13 @@
   .panel.panel-default
     .panel-heading
       %h4.panel-title
-        %a{'data-parent' => '#accordion', 'data-toggle' => 'collapse',  href: '#collapseTwo'}
+        - if @filers!=nil && @filers.count!=0
+          %a{'data-parent' => '#accordion', 'data-toggle' => 'collapse',  href: '#collapseTwo'}
+            %span.fas.fa-users
+            Filers
+        - else
           %span.fas.fa-users
-          Filers
+          No filer results
     #collapseTwo.panel-collapse
       .panel-body
         %table.table

@@ -1,4 +1,8 @@
+require 'geocoder'
+
 class Filer < ApplicationRecord
+  include ActionView::Helpers::UrlHelper
+  include LocationSearchConcern
 
   has_many :contributions, foreign_key: 'filer_id'
   has_many :contributions, foreign_key: 'election_cycle'
@@ -47,20 +51,31 @@ class Filer < ApplicationRecord
     lat_lng = []
 
     # Check as sometimes lat/long is null in DB
-    unless filer_location_1_lat.to_s.empty?
+    if !filer_location_1_lat.to_s.empty?
       lat=filer_location_1_lat
     else
       lat=filer_location_2_lat
     end
 
-    unless filer_location_1_long.to_s.empty?
+    if !filer_location_1_long.to_s.empty?
       long=filer_location_1_long
     else
       long=filer_location_2_long
     end
 
+    if lat==nil || long==nil
+      if filer_location_1_zip!=nil
+        search=filer_location_1_zip + ", United States of America"
+        rough_location = safe_geocode_search(search).first
+        lat = rough_location.geometry['location']['lat']
+        long = rough_location.geometry['location']['lng']
+      end
+    end
+
     lat_lng.push(lat).push(long)
   end
 
-
+  def description
+    "<strong>Filer</strong> #{link_to filer_name, Rails.application.routes.url_helpers.filer_path(id)}<br />"
+  end
 end
