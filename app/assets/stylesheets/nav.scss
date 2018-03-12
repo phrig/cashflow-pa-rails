@@ -7,6 +7,15 @@ nav h1 {
   color: $tangerine-yellow;
 }
 
+nav a {
+  border:0;
+}
+
+nav a:hover, nav a:active {
+  background-color: transparent;
+  border: 0;
+}
+
 nav h4 {
   color: $middle-blue;
 }
