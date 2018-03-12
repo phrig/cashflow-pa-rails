@@ -51,19 +51,13 @@ class Filer < ApplicationRecord
     lat_lng = []
 
     # Check as sometimes lat/long is null in DB
-    if !filer_location_1_lat.to_s.empty?
+    if !filer_location_1_lat.to_s.empty? && !filer_location_1_long.to_s.empty? && filer_location_1_lat>=-66
       lat=filer_location_1_lat
-    else
-      lat=filer_location_2_lat
-    end
-
-    if !filer_location_1_long.to_s.empty?
       long=filer_location_1_long
-    else
+    elsif !filer_location_2_lat.to_s.empty? && !filer_location_2_long.to_s.empty? && filer_location_2_lat>=-66
+      lat=filer_location_2_lat
       long=filer_location_2_long
-    end
-
-    if lat==nil || long==nil
+    else
       if filer_location_1_zip!=nil
         search=filer_location_1_zip + ", United States of America"
         rough_location = safe_geocode_search(search).first

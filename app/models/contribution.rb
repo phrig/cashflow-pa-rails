@@ -29,31 +29,23 @@ class Contribution < ApplicationRecord
     lat_lng = []
 
     # Check as sometimes lat/long is null in DB
-    if !contributor_location_1_lat.to_s.empty?
+    if !contributor_location_1_lat.to_s.empty? && !contributor_location_1_long.to_s.empty? && contributor_location_1_lat>=-66
       lat=contributor_location_1_lat
-    elsif !contributor_location_2_lat.to_s.empty?
-      lat=contributor_location_2_lat
-    elsif !employer_location_1_lat.to_s.empty?
-      lat=employer_location_1_lat
-    elsif !employer_location_2_lat.to_s.empty?
-      lat=employer_location_2_lat
-    elsif !filer.filer_location_1_lat.to_s.empty?
-      lat=filer.filer_location_1_lat
-    else
-      lat=filer.filer_location_2_lat
-    end
-
-    if !contributor_location_1_long.to_s.empty?
       long=contributor_location_1_long
-    elsif !contributor_location_2_long.to_s.empty?
+    elsif !contributor_location_2_lat.to_s.empty? && !contributor_location_2_long.to_s.empty? && contributor_location_2_lat>=-66
+      lat=contributor_location_2_lat
       long=contributor_location_2_long
-    elsif !employer_location_1_long.to_s.empty?
+    elsif !employer_location_1_lat.to_s.empty? && !employer_location_1_long.to_s.empty? && employer_location_1_lat>=-66
+      lat=employer_location_1_lat
       long=employer_location_1_long
-    elsif !employer_location_2_long.to_s.empty?
+    elsif !employer_location_2_lat.to_s.empty? && !employer_location_2_long.to_s.empty? && employer_location_2_lat>=-66
+      lat=employer_location_2_lat
       long=employer_location_2_long
-    elsif !filer.filer_location_1_long.to_s.empty?
+    elsif !filer.filer_location_1_lat.to_s.empty? && !filer.filer_location_1_long.to_s.empty?
+      lat=filer.filer_location_1_lat
       long=filer.filer_location_1_long
     else
+      lat=filer.filer_location_2_lat
       long=filer.filer_location_2_long
     end
 
