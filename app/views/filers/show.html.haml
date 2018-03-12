@@ -61,6 +61,20 @@
             Filer ID
           %td
             = @filer.filer_id
+    #accordion.panel-group
+      .panel.panel-default
+        .panel-heading
+          %h4.panel-title
+            %a{'data-parent' => '#accordion', 'data-toggle' => 'collapse', href: '#collapseTwo'}
+              Transactions
+        #collapseTwo.panel-collapse
+          .panel-body
+            %table.table.table-striped
+              %tbody
+                - @transactions.map do | transaction |
+                  %tr
+                    %td
+                      = transaction.description.html_safe
   .col-sm-4
     .panel.panel-default
       .panel-heading
@@ -68,15 +82,6 @@
       .panel-body.panel-map
         #map
 
-.row
-  %h1
-    Transactions
-  %table.table.table-striped
-    %tbody
-      - @transactions.map do | transaction |
-        %tr
-          %td
-            = transaction.description.html_safe
 
 
 :javascript
