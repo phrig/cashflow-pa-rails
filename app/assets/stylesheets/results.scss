@@ -16,16 +16,15 @@
   overflow: scroll;
   height: 50vh;
   td {
-    color: #0090B2;
     border-radius: 5px;
     border: 0;
+    border-left: 10px solid #fff;
     &:hover {
-      color: white;
-      background-color: #59A0D1;
+      border-left: 10px solid $middle-blue;
     }
   }
   .active {
-    background-color: #FECD2F;
+    background-color: $tangerine-yellow;
   }
 }
 
@@ -37,12 +36,11 @@
 
 #map-reset {
   cursor: pointer;
-  color: $middle-blue;
-  border-radius: 5px;
   border: 0;
+  border-top: 1px dotted $smalt-blue;
+  border-bottom: 1px dotted $smalt-blue;
   &:hover {
-    color: white;
-    background-color: #59A0D1;
+    background-color: $tangerine-yellow;
   }
   
 }
