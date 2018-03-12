@@ -8,20 +8,9 @@
 .row
   .col-sm-8
     %h1
-      Filer Profile
-    %h2
       = @filer.filer_name
     %table.table.table-striped
       %tbody
-        %tr
-          %th
-            Filer Name
-          %td
-            = @filer.filer_name
-          %th
-            Filer ID
-          %td
-            = @filer.filer_id
         %tr
           %th
             Election Year
@@ -69,7 +58,9 @@
           %td
             = number_to_currency(@filer.in_kind)
           %th
+            Filer ID
           %td
+            = @filer.filer_id
   .col-sm-4
     .panel.panel-default
       .panel-heading
@@ -79,7 +70,7 @@
 
 .row
   %h1
-    Filer Transactions
+    Transactions
   %table.table.table-striped
     %tbody
       - @transactions.map do | transaction |
