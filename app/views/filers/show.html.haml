@@ -31,12 +31,12 @@
           %td
             = !@filer.party.nil? ? @filer.party : 'Not Reported'
           %th
-            Filer Office
+            Office
           %td
             = !@filer.office.nil? ? @filer.office : 'Not Reported'
         %tr
           %th
-            Filer Address
+            Address
           %td
             = formatted_address(@filer)
           %th
