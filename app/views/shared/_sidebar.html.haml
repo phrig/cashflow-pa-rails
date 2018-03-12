@@ -16,18 +16,18 @@
 #accordion.panel-group
   .panel.panel-default
     .panel-heading
-      %h4.panel-title
-        - if @markers
+
+      - if @markers
+        %h4.panel-title
           %a{'data-parent' => '#accordion', 'data-toggle' => 'collapse', href: '#collapseOne'}
             %span.fas.fa-money-bill-alt
             Nearby Transactions
-            = "(#{@markers.count} found)" if @markers
-            %br
-            = page_entries_info(@markers, { model: 'Transactions' })
-            = will_paginate @markers, page_links: false
-        - else
-          %span.fas.fa-money-bill-alt
-          No transaction results
+        %br
+        = page_entries_info(@markers, { model: 'Transactions' })
+        = will_paginate @markers, page_links: false
+      - else
+        %span.fas.fa-money-bill-alt
+        No transaction results
     #collapseOne.panel-collapse
       .panel-body
         %table.table

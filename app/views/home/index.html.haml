@@ -7,7 +7,7 @@
     .col-xs-3
     .col-xs-6
       = form_tag("/search", method: "get") do
-        %h5 Enter an address to see campaign contributions and expenses nearby:
+        %h5 Enter an address to see campaign transactions nearby:
         .input-group
           = text_field_tag( :query, nil, placeholder: "Enter your address or zip",
                             class: 'form-control', 'aria-label' => 'Search' )
@@ -24,16 +24,38 @@
 .row
   .col-xs-4
     %h5
-      Interesting fact zone
+      Welcome to Cash Flow PA
     %p
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
+      Pennsylvania's Department of State maintains a
+      %a{:href => "https://www.campaignfinanceonline.pa.gov/Pages/CampaignFinanceHome.aspx"}public record
+      of almost 140,000 campaign finance reports. Keeping this data is important to operating an efficient, functional government, but making sense of it can take a lot of time and effort.
+    %p
+      Cash Flow PA makes Pennsylvania’s campaign finance data easier for you to read and interpret by organizing all available transactions and filers, fetching the reports based on a location you provide, and presenting the data to you in an easily digestible format.
   .col-xs-4
     %h5
-      Hmm, facts!
-    %p
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
+      What You Can Do
+    %ul
+      %li
+        Search for and examine campaign transactions, including expenses, debts, contributions, and receipts.
+      %li
+        Discover which filers, including candidates, individuals, and political organizations, are making and receiving donations.
+      %li
+        Examine how funds are spent to support and influence elections in Pennsylvania.
   .col-xs-4
     %h5
-      All the insights fit to print
-    %p
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
+      Other Resources
+    %ul
+      %li
+        Explore Pennyslvania’s publicly available data at
+        %a{:href => "https://data.pa.gov"} data.pa.gov.
+      %li
+        Dive deeper into federal data at the
+        %a{:href => "https://www.fec.gov/data/"} FEC’s data portal.
+      %li
+        Read the
+        %a{:href => "http://www.dos.pa.gov/VotingElections/CandidatesCommittees/CampaignFinance/Documents/Law-CF/law.pdf"} official documentation (PDF)
+        of Pennsylvania's Campaign Finance Reporting Law.
+      %li
+        Check out
+        %a{:href => "https://www.code4pa.tech/"} Code4PA,
+        the hackathon where Cash Flow PA got its start!

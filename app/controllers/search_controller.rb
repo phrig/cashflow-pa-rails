@@ -33,6 +33,7 @@ class SearchController < ApplicationController
       @transactions_count = transactions.count
 
       @markers = get_markers(transactions).paginate(page: params[:page], per_page: 50)
+
       @bounds = get_bounds
       @filers = get_filers(transactions)
       @filers = get_filers(transactions).uniq
