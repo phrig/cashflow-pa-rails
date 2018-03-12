@@ -14,10 +14,9 @@
         %span.input-group-btn
           = button_to('Search', nil, class: 'btn btn-default')
 #accordion.panel-group
-  .panel.panel-default
-    .panel-heading
-
-      - if @markers
+  - if @markers!=nil && @markers.count!=0
+    .panel.panel-default
+      .panel-heading
         %h4.panel-title
           %a{'data-parent' => '#accordion', 'data-toggle' => 'collapse', href: '#collapseOne'}
             %span.fas.fa-money-bill-alt
@@ -25,32 +24,26 @@
         %br
         = page_entries_info(@markers, { model: 'Transactions' })
         = will_paginate @markers, page_links: false
-      - else
-        %span.fas.fa-money-bill-alt
-        No transaction results
-    #collapseOne.panel-collapse
-      .panel-body
-        %table.table
-          -@markers&.each_with_index do |marker, index|
-            %tr
-              %td{:tabindex => "#{index}", :id => "#{marker[:id]}",
-                  :onclick => "triggerPopup(#{marker[:latlng]},$(this).html())"}
-                %p= marker[:popup].html_safe
-  .panel.panel-default
-    .panel-heading
-      %h4.panel-title
-        - if @filers!=nil && @filers.count!=0
+      #collapseOne.panel-collapse
+        .panel-body
+          %table.table
+            -@markers&.each_with_index do |marker, index|
+              %tr
+                %td{:tabindex => "#{index}", :id => "#{marker[:id]}",
+                    :onclick => "triggerPopup(#{marker[:latlng]},$(this).html())"}
+                  %p= marker[:popup].html_safe
+  - if @filers!=nil && @filers.count!=0
+    .panel.panel-default
+      .panel-heading
+        %h4.panel-title
           %a{'data-parent' => '#accordion', 'data-toggle' => 'collapse',  href: '#collapseTwo'}
             %span.fas.fa-users
             Filers
-        - else
-          %span.fas.fa-users
-          No filer results
-    #collapseTwo.panel-collapse
-      .panel-body
-        %table.table
-          -@filers&.each_with_index do |filer, index|
-            %tr
-              %td{ tabindex: "#{index}", id: "filer_id-#{filer.id}" }
-                %p= filer.filer_name
-                = link_to 'View filer profile', filer_path(filer.id)
+      #collapseTwo.panel-collapse
+        .panel-body
+          %table.table
+            -@filers&.each_with_index do |filer, index|
+              %tr
+                %td{ tabindex: "#{index}", id: "filer_id-#{filer.id}" }
+                  %p= filer.filer_name
+                  = link_to 'View filer profile', filer_path(filer.id)
