@@ -7,10 +7,14 @@
 .row
   .col-xs-8
     .panel.panel-default
-      .panel-heading
-        Select a marker to see the description
-      .panel-body.panel-map
-        #map
+      - if @filer_markers!=nil && @filer_markers.count>1
+        .panel-heading
+          = "Search results for '#{@query}'. Select a marker to see the description."
+        .panel-body.panel-map
+          #map
+      - else
+        .panel-heading
+          = "No results found for '#{@query}'. Please try again."
   .col-xs-4
     = render 'shared/sidebar'
 
