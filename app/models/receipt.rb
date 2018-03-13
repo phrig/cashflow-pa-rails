@@ -2,8 +2,8 @@ class Receipt < ApplicationRecord
   include ActionView::Helpers::UrlHelper
   require 'geokit'
 
-  belongs_to :filer, foreign_key: 'filer_id'
-  belongs_to :filer, foreign_key: 'election_cycle'
+  has_one :filers_receipts
+  has_one :filer, through: :filers_receipts
 
   def self.get_nearby(lat, long, dist)
 

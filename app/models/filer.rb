@@ -4,14 +4,10 @@ class Filer < ApplicationRecord
   include ActionView::Helpers::UrlHelper
   include LocationSearchConcern
 
-  has_many :contributions, foreign_key: 'filer_id'
-  has_many :contributions, foreign_key: 'election_cycle'
-  has_many :debts, foreign_key: 'filer_id'
-  has_many :debts, foreign_key: 'election_cycle'
-  has_many :expenses, foreign_key: 'filer_id'
-  has_many :expenses, foreign_key: 'election_cycle'
-  has_many :receipts, foreign_key: 'filer_id'
-  has_many :receipts, foreign_key: 'election_cycle'
+  has_many :contributions, through: :filers_contributions
+  has_many :debts, through: :filers_debts
+  has_many :expenses, through: :filers_expenses
+  has_many :receipts, through: :filers_receipts
 
   def expanded_filer_type
     case filer_type_code

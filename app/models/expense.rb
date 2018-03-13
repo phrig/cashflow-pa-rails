@@ -3,8 +3,8 @@ class Expense < ApplicationRecord
   include RangeFinder
   require 'geokit'
 
-  belongs_to :filer, foreign_key: 'filer_id'
-  belongs_to :filer, foreign_key: 'election_cycle'
+  has_one :filers_expenses
+  has_one :filer, through: :filers_expenses
 
   def self.get_nearby(lat, long, dist)
 

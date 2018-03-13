@@ -2,8 +2,8 @@ class Debt < ApplicationRecord
   include ActionView::Helpers::UrlHelper
   require 'geokit'
 
-  belongs_to :filer, foreign_key: 'filer_id'
-  belongs_to :filer, foreign_key: 'election_cycle'
+  has_one :filers_debts
+  has_one :filer, through: :filers_debts
 
   def to_geojson
 
