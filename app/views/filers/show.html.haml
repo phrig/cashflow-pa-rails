@@ -8,20 +8,9 @@
 .row
   .col-sm-8
     %h1
-      Filer Profile
-    %h2
       = @filer.filer_name
     %table.table.table-striped
       %tbody
-        %tr
-          %th
-            Filer Name
-          %td
-            = @filer.filer_name
-          %th
-            Filer ID
-          %td
-            = @filer.filer_id
         %tr
           %th
             Election Year
@@ -42,12 +31,12 @@
           %td
             = !@filer.party.nil? ? @filer.party : 'Not Reported'
           %th
-            Filer Office
+            Office
           %td
             = !@filer.office.nil? ? @filer.office : 'Not Reported'
         %tr
           %th
-            Filer Address
+            Address
           %td
             = formatted_address(@filer)
           %th
@@ -69,7 +58,23 @@
           %td
             = number_to_currency(@filer.in_kind)
           %th
+            Filer ID
           %td
+            = @filer.filer_id
+    #accordion.panel-group
+      .panel.panel-default
+        .panel-heading
+          %h4.panel-title
+            %a{'data-parent' => '#accordion', 'data-toggle' => 'collapse', href: '#collapseTwo'}
+              Transactions
+        #collapseTwo.panel-collapse
+          .panel-body
+            %table.table.table-striped
+              %tbody
+                - @transactions.map do | transaction |
+                  %tr
+                    %td
+                      = transaction.description.html_safe
   .col-sm-4
     .panel.panel-default
       .panel-heading
@@ -77,15 +82,6 @@
       .panel-body.panel-map
         #map
 
-.row
-  %h1
-    Filer Transactions
-  %table.table.table-striped
-    %tbody
-      - @transactions.map do | transaction |
-        %tr
-          %td
-            = transaction.description.html_safe
 
 
 :javascript
