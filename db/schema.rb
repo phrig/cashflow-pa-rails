@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180308011021) do
+ActiveRecord::Schema.define(version: 20180313012302) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -203,6 +203,26 @@ ActiveRecord::Schema.define(version: 20180308011021) do
     t.string "filer_type_code"
     t.index ["filer_id", "election_cycle"], name: "index_filers_on_filer_id_and_election_cycle"
     t.index ["filer_location_1_lat", "filer_location_1_long"], name: "filer_lat_long"
+  end
+
+  create_table "filers_contributions", id: false, force: :cascade do |t|
+    t.bigint "filer_id", null: false
+    t.bigint "contribution_id", null: false
+  end
+
+  create_table "filers_debts", id: false, force: :cascade do |t|
+    t.bigint "filer_id", null: false
+    t.bigint "debt_id", null: false
+  end
+
+  create_table "filers_expenses", id: false, force: :cascade do |t|
+    t.bigint "filer_id", null: false
+    t.bigint "expense_id", null: false
+  end
+
+  create_table "filers_receipts", id: false, force: :cascade do |t|
+    t.bigint "filer_id", null: false
+    t.bigint "receipt_id", null: false
   end
 
   create_table "house_districts", force: :cascade do |t|
