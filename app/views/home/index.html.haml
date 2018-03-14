@@ -14,7 +14,7 @@
           %span.input-group-btn
             = button_to('Search', nil, class: 'btn btn-default')
       = form_tag("/search_filer", method: "get") do
-        %h5 Search among finance reports by filer name:
+        %h5 Search transactions by candidate, lobbyist or committee name:
         .input-group
           = text_field_tag( :query, nil, placeholder: "Enter filer name",
                             class: 'form-control', 'aria-label' => 'Search' )
@@ -46,7 +46,7 @@
       Other Resources
     %ul
       %li
-        Explore Pennyslvania’s publicly available data at
+        Explore Pennsylvania’s publicly available data at
         %a{:href => "https://data.pa.gov"} data.pa.gov.
       %li
         Dive deeper into federal data at the
