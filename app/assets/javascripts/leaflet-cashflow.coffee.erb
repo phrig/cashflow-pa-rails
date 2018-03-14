@@ -7,11 +7,6 @@ initResetButton = ->
   $('.leaflet-control-zoom-in, .leaflet-control-zoom-out, #map').click ->
      $('#map-reset').fadeIn()
 
-@showFiler = (filer_id)->
-  $('[id^=filer_id]').removeClass('active')
-  $("#filer_id-#{filer_id}").addClass('active')
-  $("#filer_id-#{filer_id}").scrollintoview()
-
 getIcon = (markerType, filerId)->
   iconPath = switch
     when markerType == 'expense' then image_path('icon-yellow-minus.png')
