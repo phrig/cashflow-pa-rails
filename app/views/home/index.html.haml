@@ -14,7 +14,7 @@
           %span.input-group-btn
             = button_to('Search', nil, class: 'btn btn-default')
       = form_tag("/search_filer", method: "get") do
-        %h5 Search among finance reports by filer name:
+        %h5 Search transactions by candidate, lobbyist or committee name:
         .input-group
           = text_field_tag( :query, nil, placeholder: "Enter filer name",
                             class: 'form-control', 'aria-label' => 'Search' )
