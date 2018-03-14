@@ -32,7 +32,7 @@
                 %td{:tabindex => "#{index}", :id => "#{marker[:id]}",
                     :onclick => "triggerPopup(#{marker[:latlng]},$(this).html())"}
                   %p= marker[:popup].html_safe
-  - if @filers!=nil && @filers.count!=0
+  - if @filers!=nil && @filers.count!=0 && @filer_query!=nil
     .panel.panel-default
       .panel-heading
         %h4.panel-title
