@@ -1,6 +1,14 @@
 !!!
 %html
   %head
+
+    %script{:async => "", :src => "https://www.googletagmanager.com/gtag/js?id=UA-115924737-1"}
+    :javascript
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-115924737-1');
+
     %title
       Cashflow PA
     %meta{content: "width=device-width, initial-scale=1, shrink-to-fit=no", name: "viewport"}
