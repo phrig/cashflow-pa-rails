@@ -13,11 +13,6 @@ RSpec.describe SearchController, type: :controller do
         expect(do_action.response_code).to eq(200)
       end
 
-      it 'loads the PA map data' do
-        do_action
-        expect(assigns(:pa_state_geojson)).to_not be(nil)
-      end
-
       it 'does not return an error' do
         do_action
         expect(assigns(:location_error)).to eq( { error: false } )
@@ -68,11 +63,6 @@ RSpec.describe SearchController, type: :controller do
         expect(do_action.response_code).to eq(200)
       end
 
-      it 'loads the PA map data' do
-        do_action
-        expect(assigns(:pa_state_geojson)).to_not be(nil)
-      end
-
       it 'returns an error with a message' do
         do_action
         expect(assigns(:location_error)).to eq( { error: true,
@@ -86,11 +76,6 @@ RSpec.describe SearchController, type: :controller do
 
       it 'is successful' do
         expect(do_action.response_code).to eq(200)
-      end
-
-      it 'loads the PA map data' do
-        do_action
-        expect(assigns(:pa_state_geojson)).to_not be(nil)
       end
 
       it 'returns an error with a message' do

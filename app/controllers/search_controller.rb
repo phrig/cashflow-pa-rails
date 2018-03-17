@@ -9,12 +9,6 @@ class SearchController < ApplicationController
 
   def search_results
 
-    File.open('doc/PA_State.geojson', 'r') do |file|
-      file.each_line do |line|
-        @pa_state_geojson = line
-      end
-    end
-
     @result = safe_geocode_search(search_params[:query]).first
     @query=search_params[:query]
     unless @result
