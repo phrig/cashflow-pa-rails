@@ -1,3 +1,4 @@
+# UTILITIES
 /.bundle
 /log/*
 /tmp/*
@@ -7,11 +8,14 @@
 /node_modules
 /yarn-error.log
 
+# TESTING
+/coverage
 .byebug_history
-.env
+
+# SECRETS
 /config/database.yml
 /config/secrets.yml
-
+.env
 
 .DS_Store
 cash_flow_pa_development*
