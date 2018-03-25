@@ -15,12 +15,13 @@ Once you have `rvm` and `ruby 2.3.4` installed,
     cd cashflow-pa-rails
     bundle install
 
-Copy the environment variables and secrets into their appropriate place and oyt in production data:
+Copy the environment variables and secrets into their appropriate place and import the data:
 
     cp .env.example .env
     cp config/database.yml.example config/database.yml
     cp config/secrets.yml.example config/secrets.yml
     rails db:create
+    gunzip -c db/{SNAPSHOT_NAME} | psql cash_flow_pa_development
     rails db:migrate
 
 Run the server
@@ -31,7 +32,7 @@ Run the console
 
     rails c
 
-Import the data
+If you don't have a database snapshot, import the data from Socrata
 
     rake import:all
 
@@ -45,7 +46,7 @@ To deploy
 
     cap production deploy
 
-## Take a snapshot of the database and import the data into your development database
+## Take a snapshot of the production database and import the data into your development database
 
 SSH into the server and run the following command from the home directory:
 
