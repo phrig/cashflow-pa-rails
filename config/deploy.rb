@@ -1,4 +1,4 @@
-lock "3.9.1"
+lock "3.10.1"
 
 set :rvm_ruby_version, "2.3.4"
 
