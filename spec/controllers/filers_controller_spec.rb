@@ -30,5 +30,25 @@ RSpec.describe FilersController, type: :controller do
       end
     end
 
+    context 'when a filer has transactions' do
+      let!(:filer) { FactoryBot.create(:filer) }
+      let!(:debts) { FactoryBot.create_list(
+                                            :debt, 3, filer_id: filer.filer_id,
+                                            election_cycle: filer.election_cycle) }
+      let!(:expenses) { FactoryBot.create_list(
+                                               :expense, 4, filer_id: filer.filer_id,
+                                               election_cycle: filer.election_cycle) }
+      before do
+        debts.each{ |debt| FactoryBot.create(:filers_debts, filer_id: filer.id, debt_id: debt.id) }
+        expenses.each{ |expense| FactoryBot.create(:filers_expenses, filer_id: filer.id,
+                                                   expense_id: expense.id) }
+      end
+
+      subject(:do_action) { get :show, params: { id: filer.id } }
+      it 'returns the right number of transactions' do
+        do_action
+        expect(assigns(:transactions).length).to be(7)
+      end
+    end
   end
 end
