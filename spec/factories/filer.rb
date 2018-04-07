@@ -4,10 +4,10 @@ FactoryBot.define do
     filer_id 1
     election_year 2017
     election_cycle 2
-    # amended_report_indicator
+    amended_report_indicator 'Y'
     # termination_indicator
-    # filer_type
-    filer_name 'Daddy Warbucks'
+    filer_type 2
+    sequence(:filer_name) { |n| "Filer Name #{n}" }
     # office
     # district
     # party
